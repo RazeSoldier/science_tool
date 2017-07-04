@@ -1,5 +1,5 @@
 ﻿<?php
 require_once "..\includes\physics.php";
 
-$str = new SchwarzschildObject();
+$str = new PhysicsObject();
 echo $str->schwarzschild($_POST["sm"]);
