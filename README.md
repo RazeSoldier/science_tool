@@ -6,5 +6,5 @@
 
 == 授权协议 ==
 
-自版本0.1.4以来，本软件以GNU General Public License v3.0协议授权。(0.1.4以前以CC BY-SA 4.0协议授权)
+自版本0.2.0以来，本软件以GNU General Public License v3.0协议授权。(0.1.4以前以CC BY-SA 4.0协议授权)
 详细授权协议见软件根目录下的"COPYING"文件。
