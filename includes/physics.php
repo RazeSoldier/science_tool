@@ -13,7 +13,7 @@ class  PhysicsObject{ //物理计算
     <a href=\"JavaScript:history.go(-1)\">返回</a>
     ";
 	
-        public function gravity($m1,$m2,$r){
+        public function gravity($m1,$m2,$r){ //计算万有引力
             /*声明初始变量*/
             $gc = self::GRAVITATIONAL_CONSTANT; //声明万有引力常数(变量)
                     
@@ -34,10 +34,38 @@ class  PhysicsObject{ //物理计算
             }else{
                 return $output;
             }
-            
         }
+        
+        public function length_contraction($s,$v){ //计算长度收缩
+            /*声明初始变量*/
+	    $c = self::SPEED_OF_LIGHT; //声明光速(变量)
             
-        public function relativistic_mass($m,$v){
+            $c2 = $c * $c; //计算光速平方
+	    $v2 = $v * $v; //计算物体速度的平方
+	    $y = $v2 / $c2; //计算(v^2/c^2)
+            $down = sqrt(1 - $y); //计算√(1-(v^2/c^2))
+	    $result = $s / $down;
+            
+            $lorentz_factor = 1 / $down; //计算洛伦兹因子
+            
+            /*输出变量*/
+            $output = "<title>长度收缩计算结果/学园都市</title>"
+                    . "<b>条件量</b></br>"
+                    . "物体运动方向的长度:$s m</br>"
+                    . "物体的速度:$v m·s<sup>-1</sup></br>"
+                    . "<hr/>洛伦兹因子:$lorentz_factor</br><b>计算结果</b>:$result m
+                    ";
+            
+            if($v >= $c){ ////判断"物体速度"是否大于等于光速
+		    return $this->error1; //如果ture，则返回错误信息"$error1"
+			}else if(($s <= 0) or ($v <= 0)){ //判断2个输入值是否有小于等于0的数值
+			return $this->error2; //如果ture，则返回错误信息"$error2"
+			}else{ 
+			return $output;
+			}
+        }
+                
+        public function relativistic_mass($m,$v){ //计算相对论质量
 		/*声明初始变量*/
 		$c = self::SPEED_OF_LIGHT; //声明光速(变量)
 		
@@ -64,7 +92,7 @@ class  PhysicsObject{ //物理计算
 			}
 	} 
         
-        public function schwarzschild($m){ //史瓦西半径计算
+        public function schwarzschild($m){ //计算史瓦西半径
 		/*声明初始变量*/
 		$c = self::SPEED_OF_LIGHT; //声明光速(变量)
 		$gc = 6.67408E-11; //声明万有引力常数(变量)
@@ -86,7 +114,7 @@ class  PhysicsObject{ //物理计算
 		}
 	}
 	
-	public function time_dilation($t,$v){
+	public function time_dilation($t,$v){ //计算时间膨胀
 		/*声明初始变量*/
 		$c = self::SPEED_OF_LIGHT; //声明光速(变量)
 		
