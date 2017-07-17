@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once "..\includes\physics.php";
 
 $str = new PhysicsObject();
