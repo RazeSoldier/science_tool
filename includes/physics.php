@@ -94,19 +94,19 @@ class  PhysicsObject{ //物理计算
         
         public function relativistic_momentum($m,$v){ //计算相对论动量
             /*声明初始变量*/
-	    $c = self::SPEED_OF_LIGHT; //声明光速(变量)
+	        $c = self::SPEED_OF_LIGHT; //声明光速(变量)
             
             $c2 = $c * $c; //计算光速平方
-	    $v2 = $v * $v; //计算物体速度的平方
-	    $y = $v2 / $c2; //计算(v^2/c^2)
+	        $v2 = $v * $v; //计算物体速度的平方
+	        $y = $v2 / $c2; //计算(v^2/c^2)
             $down = sqrt(1 - $y); //计算√(1-(v^2/c^2))
             $up = $m * $v; //计算vm0
-	    $result = $up / $down;
+	        $result = $up / $down;
             
             $lorentz_factor = 1 / $down; //计算洛伦兹因子
             
             /*输出变量*/
-	    $output = "<title>相对论动量计算结果/学园都市</title>
+	        $output = "<title>相对论动量计算结果/学园都市</title>
                 <b>条件量</b></br>
                 物体的质量:$m kg</br>
                 物体的速度:$v m·s<sup>-1</sup></br>
@@ -120,7 +120,7 @@ class  PhysicsObject{ //物理计算
 			return $output;
 			}
         }
-        
+		
         public function schwarzschild($m){ //计算史瓦西半径
 		/*声明初始变量*/
 		$c = self::SPEED_OF_LIGHT; //声明光速(变量)
