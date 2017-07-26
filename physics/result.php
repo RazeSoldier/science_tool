@@ -7,17 +7,17 @@ $judge5 = (is_numeric($_POST["tdt"]) and is_numeric($_POST["tdv"])); //判断"�
 $judge6 = (is_numeric($_POST["rmm1"]) and is_numeric($_POST["rmv1"])); //判断"相对论动量计算"的2个输入量是否都为数字
 
 if($judge1){
-	require_once "./resource/gravity.php"; //万有引力计算
+	require_once "./resources/gravity.php"; //万有引力计算
 }else if($judge2){ 
-	require_once "./resource/schwarzschild.php"; //史瓦西半径计算
+	require_once "./resources/schwarzschild.php"; //史瓦西半径计算
 }else if($judge3){
-	require_once "./resource/relativistic_mass.php"; //相对论质量计算
+	require_once "./resources/relativistic_mass.php"; //相对论质量计算
 }else if($judge4){
-	require_once "./resource/length_contraction.php"; //长度收缩计算
+	require_once "./resources/length_contraction.php"; //长度收缩计算
 }else if($judge5){
-	require_once "./resource/time_dilation.php"; //时间膨胀计算
+	require_once "./resources/time_dilation.php"; //时间膨胀计算
 }else if($judge6){
-	require_once "./resource/relativistic_momentum.php"; //相对论动量计算计算
+	require_once "./resources/relativistic_momentum.php"; //相对论动量计算计算
 }else{
-	require_once "../includes/gravity/return.php";
+	require_once "../includess/gravity/return.php";
 }
