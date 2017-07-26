@@ -19,5 +19,5 @@ if($judge1){
 }else if($judge6){
 	require_once "./resources/relativistic_momentum.php"; //相对论动量计算计算
 }else{
-	require_once "../includess/gravity/return.php";
+	require_once "../includes/gravity/return.php";
 }
