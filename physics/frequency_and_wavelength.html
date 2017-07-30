@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>频率和波长互换 - 公式计算/学园都市</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+            function FtoW() {
+            var FtoW = document.getElementById("FtoW");
+            var WtoF = document.getElementById("WtoF");
+            FtoW.style.display = "block";
+            if (WtoF.style.display === "block"){
+                WtoF.style.display = "none";
+            }
+            }
+            function WtoF(){
+            var FtoW = document.getElementById("FtoW");
+            var WtoF = document.getElementById("WtoF");
+            WtoF.style.display = "block";
+            if (FtoW.style.display === "block"){
+                FtoW.style.display = "none";
+            }
+            }
+        </script>
+        <style>
+            #FtoW{display: none;}
+            #WtoF{display: none;}
+        </style>
+    </head>
+    <body>
+        <h1>电磁波频率和波长互换</h1>
+        <form name="frequency-wavelength" method="post" action="./resources/frequency-wavelength.php">
+            <input name="type" type="radio" value="FtoW" onclick="FtoW()">知频率求波长
+            <input name="type" type="radio" value="WtoF" onclick="WtoF()">知波长求频率<br>
+            <div id="FtoW"><!--知道频率，求波长-->
+		频率:<input name="frequency" type="text"> 赫兹(HZ)
+            </div>
+            <div id="WtoF"><!--知道波长，求频率-->
+                波长:<input name="wavelength" type="text"> cm
+            </div>
+            <input name="submit" type="submit" value="计算">
+        </form>
+    </body>
+</html>
