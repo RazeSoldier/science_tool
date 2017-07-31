@@ -36,7 +36,13 @@
 		频率:<input name="frequency" type="text"> 赫兹(HZ)
             </div>
             <div id="WtoF"><!--知道波长，求频率-->
-                波长:<input name="wavelength" type="text"> cm
+                波长:<input name="wavelength" type="text"> 
+                <select name="unit">
+                    <option value="m" selected>米(m)</option>
+                    <option value="km">千米(km)</option>
+                    <option value="cm">厘米(cm)</option>
+                    <option value="mm">毫米(mm)</option>
+                </select>
             </div>
             <input name="submit" type="submit" value="计算">
         </form>
