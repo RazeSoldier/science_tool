@@ -51,7 +51,8 @@ ErrorHTML;
         return $frequency;
     }
 
-    private function getTitle(){ //根据type成员变量获取标题
+    private function getHead(){ //根据type成员变量获取Head
+        echo '<head>';
         switch ($this -> type) {
             case 'FtoW':
                 echo '<title>知频率求波长 - 物理公式计算</title>';
@@ -63,6 +64,8 @@ ErrorHTML;
             default :
                 echo '<title>错误 - 物理公式计算</title>';
         }
+        echo '<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';
+        echo '</head>';
     }
     
     private function getHTML(){ //得出输出html的主体
@@ -94,7 +97,7 @@ ErrorHTML;
 
 
     final function finalOutput(){ //最终输出
-        $this -> getTitle();
+        $this -> getHead();
         $this -> getHTML();
     }
 }
