@@ -5,11 +5,21 @@ class Conversion {
     private $frequency; //频率
     private $wavelength; //波长
     private $unit; //(知波长求频率)波长输入值的单位
-    private $errorhtml =<<<ErrorHTML
+    private $error1 =<<<Error1
+<h1>错误！</h1>
+你未选择任意选项！<br>
+<a href="JavaScript:history.go(-1)">返回</a>
+Error1;
+    private $error2 =<<<Error2
+<h1>错误！</h1>
+你未输入任何数值！<br>
+<a href="JavaScript:history.go(-1)">返回</a>
+Error2;
+    private $error3 =<<<Error3
 <h1>错误！</h1>
 你输入的数值小于等于0！<br>
 <a href="JavaScript:history.go(-1)">返回</a>
-ErrorHTML;
+Error3;
 
     public function __construct($type,$frequency,$wavelength,$unit){ //获取外部数据
         $this -> type = $type;
@@ -17,29 +27,64 @@ ErrorHTML;
         $this -> wavelength = $wavelength;
         $this -> unit = $unit;
     }
+	
+	private function checkType(){ //检查$type成员变量是否被赋值
+		if (isset($this -> type)){
+			return false;
+		}else{
+			return true;
+		}
+	}
     
-    private function checkValue(){ //检查输入值是否合法(大于0)；如果合法,返回true；如果不合法,返回false
+    private function checkImport(){ //检查输入值是否被赋值；如果被赋值,返回false；反之,返回true
         switch ($this -> type) {
-                case 'FtoW':
-                    if ($this -> frequency > 0){
-                        return true;
-                    } else {
-                        return false;
-                    }
-                    break;
-
-                case 'WtoF':
-                    if ($this -> wavelength > 0){
-                        return true;
-                    } else {
-                        return false;
-                    }
-                    break;
-                    
-                default :  //保留默认值,旨在当用户未选任何选项就提交的时候,在getHTML()的if语句里跳到switch的default选项
+            case 'FtoW':
+                if ('' !== $this -> frequency){
+                    return false;
+                } else {
                     return true;
-            }
+                }
+                break;
+
+            case 'WtoF':
+                if ('' !== $this -> wavelength){
+                    return false;
+                } else {
+                    return true;
+                }
+                break;
+        }
     }
+	
+	private function checkValue(){ //检查输入值是否合法(大于0)；如果合法,返回false；如果不合法,返回true
+        switch ($this -> type) {
+            case 'FtoW':
+                if ($this -> frequency > 0){
+                    return false;
+                } else {
+                    return true;
+                }
+                break;
+
+            case 'WtoF':
+                if ($this -> wavelength > 0){
+                    return false;
+                } else {
+                    return true;
+                }
+                break;
+        }
+    }
+	
+	private function getError(){ //获取错误信息
+		if ($this -> checkType()){
+			return 1; //如果$type未被赋值，则返回错误码1
+		}else if($this -> checkImport() == 1){ //如果输入值未被赋值，返回错误码2
+			return 2;
+		}else if($this -> checkValue()){ //如果输入值小于等于0，返回错误码3
+			return 3;
+		}
+	}
 
     private function getWavelength(){ //知频率求波长
         $fre = $this -> frequency;
@@ -76,18 +121,26 @@ ErrorHTML;
     }
 
     private function getHead(){ //根据type成员变量获取Head
+		if (NULL !== $this -> getError()){
+			$error = false;
+		}else{
+			$error = true;
+		}
+		
         echo '<head>';
-        switch ($this -> type) {
-            case 'FtoW':
-                echo '<title>知频率求波长 - 物理公式计算</title>';
-                break;
+		if ($error){ //如果有错误码，返回错误信息
+			switch ($this -> type) {
+				case 'FtoW':
+					echo '<title>知频率求波长 - 物理公式计算</title>';
+					break;
 
-            case 'WtoF':
-                echo '<title>知波长求频率 - 物理公式计算</title>';
-                break;
-            default :
-                echo '<title>错误 - 物理公式计算</title>';
-        }
+				case 'WtoF':
+					echo '<title>知波长求频率 - 物理公式计算</title>';
+					break;
+			}
+		}else{
+			echo '<title>错误 - 物理公式计算</title>'; //如果未选任何单选，则返回输出此值
+		}
         echo '<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';
         echo '</head>';
     }
@@ -109,30 +162,31 @@ ErrorHTML;
     }
 
     private function getHTML(){ //得出输出html的主体
-        if ($this -> checkValue()){ //检查:输入值是否合法
-            switch ($this -> type) { //如果$this->type为NULL或者输入值大于0，执行以下语句
-                case 'FtoW':
-                    echo '<h1>知频率求波长</h1>';
-                    echo "<b>条件量</b><br>频率:{$this -> frequency} 赫兹(HZ)";
-                    echo '<hr/><b>计算结果</b><br>';
-                    echo "波长:{$this -> getWavelength()} 米(m)";
-                    break;
+		$error = $this -> getError();
+		
+		if ($error == 1){
+			echo $this -> error1;
+		}else if($error == 2){
+			echo $this -> error2;
+		}else if($error == 3){
+			echo $this -> error3;
+		}else{
+			switch ($this -> type) { //如果$this->type为NULL或者输入值大于0，执行以下语句
+				case 'FtoW':
+					echo '<h1>知频率求波长</h1>';
+					echo "<b>条件量</b><br>频率:{$this -> frequency} 赫兹(HZ)";
+					echo '<hr/><b>计算结果</b><br>';
+					echo "波长:{$this -> getWavelength()} 米(m)";
+					break;
 
-                case 'WtoF':
-                    echo '<h1>知波长求频率</h1>';
-                    echo "<b>条件量</b><br>波长:{$this -> wavelength} {$this -> getUnitHTML()}";
-                    echo '<hr/><b>计算结果</b><br>';
-                    echo "频率:{$this -> getFrequency()} 赫兹(HZ)";
-                    break;
-            
-                default :
-                    echo '<h1>错误！</h1>';
-                    echo '你未选择任意选项！<br>';
-                    echo '<a href="JavaScript:history.go(-1)">返回</a>';
+				case 'WtoF':
+					echo '<h1>知波长求频率</h1>';
+					echo "<b>条件量</b><br>波长:{$this -> wavelength} {$this -> getUnitHTML()}";
+					echo '<hr/><b>计算结果</b><br>';
+					echo "频率:{$this -> getFrequency()} 赫兹(HZ)";
+					break;
             }
-        } else { //如果输入值小于等于0，执行以下语句
-            echo $this -> errorhtml;
-        }
+		}
     }
 
 
