@@ -15,14 +15,6 @@ class BMI {
             return true; //如果两个数值都大于0,返回true
         }
     }
-    
-    private function getTitle(){ //根据checkValue方法，给出title的值
-        if ($this ->checkValue()){
-            return 'BMI计算结果 - 健康/学园都市';
-        }else{
-            return '错误 - 健康/学园都市';
-        }
-    }
 
     private function getValue(){ //计算
         $h2 = pow($this -> h,2);
@@ -42,16 +34,31 @@ class BMI {
             return '肥胖 (>28)';
         }
     }
+    
+    private function getTitle(){ //根据checkValue方法，给出title的值
+        if ($this ->checkValue()){
+            return '<title>BMI计算结果 - 健康/学园都市</title>';
+        }else{
+            return '<title>错误 - 健康/学园都市</title>';
+        }
+    }
+    
+    private function getHead(){ //获取Head
+        $title = $this -> getTitle();
+        echo '<head>';
+        echo '<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';
+        echo $title;
+        echo '</head>';
+    }
 
     final public function output(){ //最终输出
-        $title = $this -> getTitle();
+        $this -> getHead();
         if ($this -> checkValue()){
-            echo "<title>$title</title>";
             echo '你的BMI为:'.$this -> getValue().' kg/m<sup>2</sup>';
             echo '<br>健康状况:'.$this ->getHealthStatus();
         }else{
-            echo "<title>$title</title>";
             echo '<b>错误!</b>你输入了小于等于0的数字';
+            echo '<br><a href="JavaScript:history.go(-1)">返回</a>';
         }
     }
 }
