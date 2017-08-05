@@ -43,14 +43,29 @@ class Conversion {
                 return $check;
         }
     }
-	
+    
+    private function checkValueIsNumber(){ //检查用户输入值是否为数字；如果合法,返回false；如果不合法,返回true
+        switch ($this -> type) {
+            case 'FtoW':
+                $check = checkPhysicsError::checkIsNumber($this -> frequency);
+                return $check;
+
+            case 'WtoF':
+                $check = checkPhysicsError::checkIsNumber($this -> wavelength);
+                return $check;
+        }
+    }
+
+
     private function getError(){ //获取错误信息
 	if ($this -> checkType()){
             return 11; //如果$type未被赋值，则返回错误码11
 	}else if($this -> checkImport() == 1){
             return 10; //如果输入值未被赋值，返回错误码10
-	}else if($this -> checkValue()){ //如果输入值小于等于0，返回错误码2
-            return 2;
+        }else if($this -> checkValueIsNumber()){
+            return 3; //如果输入值不为数字，返回错误码3
+	}else if($this -> checkValue()){
+            return 2; //如果输入值小于等于0，返回错误码2
 	}
     }
 
@@ -138,6 +153,8 @@ class Conversion {
             echo checkPhysicsError::$error10;
 	}else if($error == 2){
             echo checkPhysicsError::$error2;
+        }else if($error == 3){
+            echo checkPhysicsError::$error3;
 	}else{
             switch ($this -> type) { //如果$this->type为NULL或者输入值大于0，执行以下语句
 		case 'FtoW':
