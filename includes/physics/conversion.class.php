@@ -1,25 +1,12 @@
 <?php
+require_once 'checkPhysicsError.subclass.php';
+
 class Conversion {
     const SPEED_OF_LIGHT = 299792458; //声明光速(常量)
     public $type; //计算类型(FtoW,WtoF)
     private $frequency; //频率
     private $wavelength; //波长
     private $unit; //(知波长求频率)波长输入值的单位
-    private $error1 =<<<Error1
-<h1>错误！</h1>
-你未选择任意选项！<br>
-<a href="JavaScript:history.go(-1)">返回</a>
-Error1;
-    private $error2 =<<<Error2
-<h1>错误！</h1>
-你未输入任何数值！<br>
-<a href="JavaScript:history.go(-1)">返回</a>
-Error2;
-    private $error3 =<<<Error3
-<h1>错误！</h1>
-你输入的数值小于等于0！<br>
-<a href="JavaScript:history.go(-1)">返回</a>
-Error3;
 
     public function __construct($type,$frequency,$wavelength,$unit){ //获取外部数据
         $this -> type = $type;
@@ -28,63 +15,44 @@ Error3;
         $this -> unit = $unit;
     }
 	
-	private function checkType(){ //检查$type成员变量是否被赋值
-		if (isset($this -> type)){
-			return false;
-		}else{
-			return true;
-		}
-	}
+    private function checkType(){ //检查$type成员变量是否被赋值
+        $check = checkPhysicsError::checkRadioValue($this -> type);
+        return $check;
+    }
     
     private function checkImport(){ //检查输入值是否被赋值；如果被赋值,返回false；反之,返回true
         switch ($this -> type) {
             case 'FtoW':
-                if ('' !== $this -> frequency){
-                    return false;
-                } else {
-                    return true;
-                }
-                break;
+                $check = checkPhysicsError::checkNullValue($this -> frequency);
+                return $check;
 
             case 'WtoF':
-                if ('' !== $this -> wavelength){
-                    return false;
-                } else {
-                    return true;
-                }
-                break;
+                $check = checkPhysicsError::checkNullValue($this -> wavelength);
+                return $check;
         }
     }
 	
-	private function checkValue(){ //检查输入值是否合法(大于0)；如果合法,返回false；如果不合法,返回true
+    private function checkValue(){ //检查输入值是否合法(大于0)；如果合法,返回false；如果不合法,返回true
         switch ($this -> type) {
             case 'FtoW':
-                if ($this -> frequency > 0){
-                    return false;
-                } else {
-                    return true;
-                }
-                break;
+                $check = checkPhysicsError::checkValue($this -> frequency);
+                return $check;
 
             case 'WtoF':
-                if ($this -> wavelength > 0){
-                    return false;
-                } else {
-                    return true;
-                }
-                break;
+                $check = checkPhysicsError::checkValue($this -> wavelength);
+                return $check;
         }
     }
 	
-	private function getError(){ //获取错误信息
-		if ($this -> checkType()){
-			return 1; //如果$type未被赋值，则返回错误码1
-		}else if($this -> checkImport() == 1){ //如果输入值未被赋值，返回错误码2
-			return 2;
-		}else if($this -> checkValue()){ //如果输入值小于等于0，返回错误码3
-			return 3;
-		}
+    private function getError(){ //获取错误信息
+	if ($this -> checkType()){
+            return 11; //如果$type未被赋值，则返回错误码11
+	}else if($this -> checkImport() == 1){
+            return 10; //如果输入值未被赋值，返回错误码10
+	}else if($this -> checkValue()){ //如果输入值小于等于0，返回错误码2
+            return 2;
 	}
+    }
 
     private function getWavelength(){ //知频率求波长
         $fre = $this -> frequency;
@@ -162,31 +130,31 @@ Error3;
     }
 
     private function getHTML(){ //得出输出html的主体
-		$error = $this -> getError();
+	$error = $this -> getError();
 		
-		if ($error == 1){
-			echo $this -> error1;
-		}else if($error == 2){
-			echo $this -> error2;
-		}else if($error == 3){
-			echo $this -> error3;
-		}else{
-			switch ($this -> type) { //如果$this->type为NULL或者输入值大于0，执行以下语句
-				case 'FtoW':
-					echo '<h1>知频率求波长</h1>';
-					echo "<b>条件量</b><br>频率:{$this -> frequency} 赫兹(HZ)";
-					echo '<hr/><b>计算结果</b><br>';
-					echo "波长:{$this -> getWavelength()} 米(m)";
-					break;
+	if ($error == 11){
+            echo checkPhysicsError::$error11;
+	}else if($error == 10){
+            echo checkPhysicsError::$error10;
+	}else if($error == 2){
+            echo checkPhysicsError::$error2;
+	}else{
+            switch ($this -> type) { //如果$this->type为NULL或者输入值大于0，执行以下语句
+		case 'FtoW':
+                    echo '<h1>知频率求波长</h1>';
+                    echo "<b>条件量</b><br>频率:{$this -> frequency} 赫兹(HZ)";
+                    echo '<hr/><b>计算结果</b><br>';
+                    echo "波长:{$this -> getWavelength()} 米(m)";
+                    break;
 
-				case 'WtoF':
-					echo '<h1>知波长求频率</h1>';
-					echo "<b>条件量</b><br>波长:{$this -> wavelength} {$this -> getUnitHTML()}";
-					echo '<hr/><b>计算结果</b><br>';
-					echo "频率:{$this -> getFrequency()} 赫兹(HZ)";
-					break;
+		case 'WtoF':
+                    echo '<h1>知波长求频率</h1>';
+                    echo "<b>条件量</b><br>波长:{$this -> wavelength} {$this -> getUnitHTML()}";
+                    echo '<hr/><b>计算结果</b><br>';
+                    echo "频率:{$this -> getFrequency()} 赫兹(HZ)";
+                    break;
             }
-		}
+	}
     }
 
 
