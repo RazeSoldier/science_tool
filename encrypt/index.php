@@ -2,14 +2,14 @@
 /* 
  * 处理enerypt/index.html传入的参数
  */
-require_once '../includes/checkError.class.php';
+require_once '../includes/enerypt/checkEneryptError.subclass.php';
 require_once '../includes/enerypt/enerypt.class.php';
 
 $type = filter_input(INPUT_POST, 'type'); //获取计算类型
 
-if ($type == NULL){ //如果用户为未选择单选，终止脚本
-    die (checkError::$error11);
-}
+/*检查用户是否选定单选项(error11)*/
+$checkerror = new checkEneryptError(); 
+$checkerror -> checkRadioValue($type);
 
 $value = filter_input(INPUT_POST, $type); //获取用户输入的数值
 
