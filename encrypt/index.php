@@ -14,6 +14,7 @@ $checkerror -> checkRadioValue($type);
 $value = filter_input(INPUT_POST, $type); //获取用户输入的数值
 
 $enerypt = new enerypt($type, $value);
+$space = $enerypt -> checkSpace($value); //检查用户是否输入了文本或是否输入了空格
 $result = $enerypt -> Output();
 
 $titletype = $enerypt -> getTitle(); //大写计算类型
@@ -31,7 +32,7 @@ $titletype = $enerypt -> getTitle(); //大写计算类型
         <?php
         echo <<<body
 <h1>{$titletype}函数计算结果</h1>
-<b>原文本</b><br>{$value}<hr/>
+<b>原文本</b><br>{$value}{$space}<hr/>
 <b>计算结果</b><br>{$result}
 body;
         ?>
