@@ -7,6 +7,8 @@
  * 用户未选择任何单选项 | 11 | 具有单选的页面
  * 用户输入的值不合法 | 2
  * 用户输入值不是数字 | 3 | 设置要求输入值为数字时
+ * //内部错误
+ * 开发者未按要求编程 - 输入值并非数组 | 500 | 要求方法的输入值为数组的时
  */
 
 abstract class checkError {
@@ -28,6 +30,19 @@ Error11;
 <a href="JavaScript:history.go(-1)">返回</a>
 Error3;
 
+    private $error500 = <<<Error500
+<title>Internal Error</title>
+<h1>500 Error</h1>
+You entered a non-array for the method.
+Error500;
+    
+    /*检查输入值是否为数组*/
+    private function checkMethodInputValueIsArray($value){
+        if (is_array($value) == false){
+            die ($this -> error500);
+        }
+    }
+
     public function checkNullValue($value){ //检查用户是否输入内容(error1)
         if ('' !== $value){
             return false;
@@ -46,7 +61,8 @@ Error3;
     }
     
     /*检查用户输入值是否为数字(error3)*/
-    public function checkIsNumber($value){ 
+    public function checkIsNumber($value){
+        $this -> checkMethodInputValueIsArray($value);
         $error = NULL; //声明一个空值的变量
         /*循环数组$value*/
         foreach ($value as $check) {
