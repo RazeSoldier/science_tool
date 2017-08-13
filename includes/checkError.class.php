@@ -22,11 +22,11 @@ Error10;
 <a href="JavaScript:history.go(-1)">返回</a>
 Error11;
     
-    static $error3 = <<<Error2
+    static $error3 = <<<Error3
 <h1>错误！</h1>
 你输入了非数字，请输入大于0的数字。<br>
 <a href="JavaScript:history.go(-1)">返回</a>
-Error2;
+Error3;
 
     public function checkNullValue($value){ //检查用户是否输入内容(error1)
         if ('' !== $value){
@@ -45,8 +45,23 @@ Error2;
         }
     }
     
-    public function checkIsNumber($value){ //检查用户输入值是否为数字(error3)
-        if (is_numeric($value)){
+    /*检查用户输入值是否为数字(error3)*/
+    public function checkIsNumber($value){ 
+        $error = NULL; //声明一个空值的变量
+        /*循环数组$value*/
+        foreach ($value as $check) {
+            /* 如果数组$value其中一个元素不为数字，
+             * 为$error赋1
+             */ 
+            if (is_numeric($check) == false){
+                $error = 1;
+            }
+        }
+        
+        /* 检查$error是否等于0
+         * 如果等于1，则说明用户输入了小于等于0的数字，返回false
+         */
+        if ($error == 1){
             return false;
         }else{
             return true;
