@@ -1,4 +1,10 @@
 <?php
+/* 计算BMI
+ * 
+ */
+require_once 'checkHealthError.subclass.php';
+$check = new checkHealthError();
+
 class BMI {
     public $m ; //身高
     public $h ; //体重
@@ -9,11 +15,10 @@ class BMI {
     }
     
     private function checkValue(){ //检查$m和$h是否大于0
-        if ($this -> m <= 0 || $this -> h <=0){
-            return false; //如果有一个数值小于等于0,返回false
-        }else{
-            return true; //如果两个数值都大于0,返回true
-        }
+        $arr[0] = $this -> m;
+        $arr[1] = $this -> h;
+        global $check;
+        return $check -> checkValue($arr);
     }
 
     private function getValue(){ //计算
@@ -59,6 +64,7 @@ class BMI {
         }else{
             echo '<b>错误!</b>你输入了小于等于0的数字';
             echo '<br><a href="JavaScript:history.go(-1)">返回</a>';
+
         }
     }
 }
