@@ -120,28 +120,6 @@ class  PhysicsObject{ //物理计算
 			return $output;
 			}
         }
-		
-        public function schwarzschild($m){ //计算史瓦西半径
-		/*声明初始变量*/
-		$c = self::SPEED_OF_LIGHT; //声明光速(变量)
-		$gc = 6.67408E-11; //声明万有引力常数(变量)
-		
-		$c2 = $c * $c; //计算光速平方
-		$up = 2 * $m * $gc; //计算2MG
-		$result = $up / $c2; //计算$up/c^2
-		
-		/*输出变量*/
-		$output = "<title>史瓦西半径计算结果/学园都市</title><b>条件量</b></br>
-		天体质量:$m kg</br><hr/>
-		<b>计算结果</b>:$result m
-		";
-
-		if($m <= 0){ //判断1个输入数值是否小于等于0
-			return $this->error2; //如果ture，则返回错误信息"$error2"
-		}else{
-			return $output; //输出结果
-		}
-	}
 	
 	public function time_dilation($t,$v){ //计算时间膨胀
 		/*声明初始变量*/

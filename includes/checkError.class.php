@@ -13,18 +13,21 @@
 
 abstract class checkError {
     static $error10 = <<<Error10
+<title>错误 - 工具箱/学园都市</title>
 <h1>错误！</h1>
 你未输入任何数值！<br>
 <a href="JavaScript:history.go(-1)">返回</a>
 Error10;
     
     static $error11 = <<<Error11
+<title>错误 - 工具箱/学园都市</title>
 <h1>错误！</h1>
 你未选择任意选项！<br>
 <a href="JavaScript:history.go(-1)">返回</a>
 Error11;
     
     static $error3 = <<<Error3
+<title>错误 - 工具箱/学园都市</title>
 <h1>错误！</h1>
 你输入了非数字，请输入大于0的数字。<br>
 <a href="JavaScript:history.go(-1)">返回</a>
