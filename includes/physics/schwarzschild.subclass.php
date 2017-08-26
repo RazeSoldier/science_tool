@@ -17,10 +17,10 @@ class schwarzschild extends physics{
         $checkNull = $check -> checkNullValue($this -> in_sm);
         $checkValue = $check -> checkValue($this -> in_sm);
         
-        if ($checkNull){
+        if ($checkNull == false){
             die (checkPhysicsError::$error10);
         }
-        if ($checkValue){
+        if ($checkValue == false){
             die (checkPhysicsError::$error2);
         }
     }

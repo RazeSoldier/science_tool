@@ -10,7 +10,7 @@ class checkPhysicsError extends checkError {
 Error2;
     
     public function checkValue($value){ //检查用户输入值是否合法(error2)
-        if ($value > 0){
+        if ($value < 0){
             return false;
         }else{
             return true;

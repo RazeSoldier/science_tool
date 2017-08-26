@@ -29,7 +29,7 @@ Error11;
     static $error3 = <<<Error3
 <title>错误 - 工具箱/学园都市</title>
 <h1>错误！</h1>
-你输入了非数字，请输入大于0的数字。<br>
+你输入了非数字，请输入正确的数字。<br>
 <a href="JavaScript:history.go(-1)">返回</a>
 Error3;
 
@@ -47,20 +47,12 @@ Error500;
     }
 
     public function checkNullValue($value){ //检查用户是否输入内容(error1)
-        if ('' !== $value){
-            return false;
-        }else{
-            return true;
-        }
+        return ('' !== $value);
     }
 
 
     public function checkRadioValue($value) { //检查用户是否选定单选项(error11)
-        if (isset($value)){
-            return false;
-        }else{
-            return true;
-        }
+        return isset($value);
     }
     
     /*检查用户输入值是否为数字(error3)*/
@@ -78,7 +70,7 @@ Error500;
         }
         
         /* 检查$error是否等于0
-         * 如果等于1，则说明用户输入了小于等于0的数字，返回false
+         * 如果等于1，则说明用户没有输入数字，返回false
          */
         if ($error == 1){
             return false;

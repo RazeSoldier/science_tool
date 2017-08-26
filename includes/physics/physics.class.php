@@ -12,12 +12,14 @@ abstract class physics {
      *  $in 用户输入量
      *  $value 计算输出值
      */
-    protected function getOutput($type, $in, $value){
+    private function getOutput($type, $in, $value){
         switch ($type) {
             case 'schwarzschild':
                 $titletype = '史瓦西半径';
                 $in_type = '天体质量:'.$in.' kg';
                 break;
+            case 'F-W':
+                $titletype = '电磁波频率和波长互换';
         }
         
         /*生成head*/
