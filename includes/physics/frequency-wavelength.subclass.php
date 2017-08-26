@@ -115,7 +115,7 @@ class frequency_wavelength extends physics {
         }
     }
     
-    private function getOutput() { //获取html
+    private function getHTML() { //获取html
         switch ($this -> in_type) {
             case 'FtoW':
                 $title = '知频率求波长';
@@ -150,7 +150,7 @@ class frequency_wavelength extends physics {
 
     final public function finalOutput(){
         $this -> checkError();
-        $html = $this -> getOutput();
+        $html = $this -> getHTML();
 
         echo <<<HTML
 <!DOCTYPE html>

@@ -12,7 +12,7 @@ abstract class physics {
      *  $in 用户输入量
      *  $value 计算输出值
      */
-    private function getOutput($type, $in, $value){
+    protected function getOutput($type, $in, $value){
         switch ($type) {
             case 'schwarzschild':
                 $titletype = '史瓦西半径';
