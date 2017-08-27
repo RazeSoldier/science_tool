@@ -48,7 +48,7 @@ You entered a non-array for the method.
 Error500;
     
     /*检查输入值是否为数组*/
-    private function checkMethodInputValueIsArray($value){
+    protected function checkMethodInputValueIsArray($value){
         if (is_array($value) == false){
             die ($this -> error500);
         }
