@@ -5,6 +5,7 @@
  * 错误信息 | 错误码 | 使用场景
  * 用户未输入任何值 | 10
  * 用户未选择任何单选项 | 11 | 具有单选的页面
+ * 用户未完全输入必要的值 | 12 | 需要输入所有必要值的页面
  * 用户输入的值不合法 | 2
  * 用户输入值不是数字 | 3 | 设置要求输入值为数字时
  * //内部错误
@@ -26,6 +27,13 @@ Error10;
 <a href="JavaScript:history.go(-1)">返回</a>
 Error11;
     
+    static $error12 = <<<Error12
+<title>错误 - 工具箱/学园都市</title>
+<h1>错误！</h1>
+你未输入所有计算所需要的数值<br>
+<a href="JavaScript:history.go(-1)">返回</a>
+Error12;
+    
     static $error3 = <<<Error3
 <title>错误 - 工具箱/学园都市</title>
 <h1>错误！</h1>
@@ -46,16 +54,44 @@ Error500;
         }
     }
 
-    public function checkNullValue($value){ //检查用户是否输入内容(error1)
+    public function checkNullValue($value){ //检查用户是否输入内容(error10)
         return ('' !== $value);
     }
-
 
     public function checkRadioValue($value) { //检查用户是否选定单选项(error11)
         return isset($value);
     }
     
-    /*检查用户输入值是否为数字(error3)*/
+    /** 检查是否用户输入所有的必要值(error12)
+     * 使用方法:参数$value必须为数组
+     */
+    public function checkAllValueNotNull($value){ 
+        $this -> checkMethodInputValueIsArray($value);
+        $error = NULL; //声明一个空值的变量
+        /*循环数组$value*/
+        foreach ($value as $check) {
+            /* 如果数组$value其中一个元素为空，
+             * 为$error赋1
+             */ 
+            if ('' == $check){
+                $error = 1;
+            }
+        }
+        
+        /* 检查$error是否等于0
+         * 如果等于1，则说明用户没有输入任何内容，返回false
+         */
+        if ($error == 1){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
+    /** 检查用户输入值是否为数字(error3)
+     * 使用方法:参数$value必须为数组
+     */
     public function checkIsNumber($value){
         $this -> checkMethodInputValueIsArray($value);
         $error = NULL; //声明一个空值的变量
