@@ -16,10 +16,18 @@ abstract class physics {
         switch ($type) {
             case 'schwarzschild':
                 $titletype = '史瓦西半径';
-                $in_type = '天体质量:'.$in.' kg';
+                $input = '天体质量:'.$in.' kg';
+                $resultunit = 'm';
                 break;
-            case 'F-W':
-                $titletype = '电磁波频率和波长互换';
+            case 'gravity':
+                $titletype = '万有引力';
+                $input = <<<HTML
+一个物体的质量:{$in['m1']} kg</br>
+另一个物体的质量:{$in['m2']} kg</br>
+两物体之间的距离:{$in['r']} m
+HTML;
+                $resultunit = 'N';
+                break;
         }
         
         /*生成head*/
@@ -32,10 +40,10 @@ abstract class physics {
         /*生成body*/
         $body = '<body>'
                 .'<b>条件量</b><br>'
-                .$in_type
+                .$input
                 .'</br><hr/>'
                 .'<b>计算结果</b>:'
-                .$value.' m'
+                .$value.' '.$resultunit
                 .'</body>';
         
         /*拼接成html*/

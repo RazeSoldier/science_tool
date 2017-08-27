@@ -17,7 +17,29 @@ Error2;
 Error21;
     
     public function checkValue($value){ //检查用户输入值是否合法(error2)
-        if ($value <= 0){
+        /*如果$value不是数组，则只检查单一数值*/
+        if (is_array($value) == false){
+            if ($value <= 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        /*如果$value是数组，则循环数组*/
+        $error = NULL; //声明一个空值的变量
+        /*循环数组$value*/
+        foreach ($value as $check) {
+            /* 如果数组$value其中一个元素小于等于0，
+             * 为$error赋1
+             */ 
+            if ($check <= 0){
+                $error = 1;
+            }
+        }
+        /* 检查$error是否等于0
+         * 如果等于1，则说明用户输入了小于等于0的数字，返回false
+         */
+        if ($error == 1){
             return false;
         }else{
             return true;

@@ -22,4 +22,12 @@ switch ($type) {
 	$FW = new frequency_wavelength($in_type, $in_f, $in_w, $in_unit);
         $FW -> finalOutput();
         break;
+    case 'gravity':
+        require_once INCLUDES_PATH.'/physics/gravity.subclass.php';
+        $in_m1 = filter_input(INPUT_POST, 'gm1'); //一个物体的质量
+        $in_m2 = filter_input(INPUT_POST, 'gm2'); //另一个物体的质量
+        $in_r = filter_input(INPUT_POST, 'gr'); //两个物体之间的距离
+        $output = new gravity($in_m1, $in_m2, $in_r);
+        $output -> finalOutput();
+        break;
 }

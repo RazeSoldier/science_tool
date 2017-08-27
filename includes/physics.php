@@ -12,29 +12,6 @@ class  PhysicsObject{ //物理计算
     请确保您输入的数字<b>大于0</b></br>
     <a href=\"JavaScript:history.go(-1)\">返回</a>
     ";
-	
-        public function gravity($m1,$m2,$r){ //计算万有引力
-            /*声明初始变量*/
-            $gc = self::GRAVITATIONAL_CONSTANT; //声明万有引力常数(变量)
-                    
-            $m12 = $m1 * $m2;
-            $gm = $gc * $m12;
-            $result = $gm / ($r * $r);
-            
-            /*输出变量*/
-            $output = "<title>万有引力计算结果/学园都市</title><b>条件量</b></br>"
-                    . "一个物体的质量:$m1 kg</br>"
-                    . "另一个物体的质量:$m2 kg</br>"
-                    . "两物体之间的距离:$r m</br>"
-                    . "<hr/><b>计算结果</b>:$result N
-                    ";
-            
-            if(($m1 <= 0) or ($m2 <= 0) or ($r <= 0)){//判断3个输入值是否有小于等于0的数值
-                return $this->error2; //如果ture，则返回错误信息"$error2"
-            }else{
-                return $output;
-            }
-        }
         
         public function length_contraction($s,$v){ //计算长度收缩
             /*声明初始变量*/
