@@ -30,4 +30,11 @@ switch ($type) {
         $output = new gravity($in_m1, $in_m2, $in_r);
         $output -> finalOutput();
         break;
+    case 'relativistic_mass':
+        require_once INCLUDES_PATH.'/physics/relativistic_mass.subclass.php';
+        $in_m = filter_input(INPUT_POST, 'rmm0'); //物体的质量
+        $in_v = filter_input(INPUT_POST, 'rmv'); //物体的速度
+        $output = new relativistic_mass($in_m, $in_v);
+        $output -> finalOutput();
+        break;
 }

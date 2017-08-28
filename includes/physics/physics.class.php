@@ -11,8 +11,14 @@ abstract class physics {
      *  $type 计算类型
      *  $in 用户输入量
      *  $value 计算输出值
+     *  $ps_value 补充输出值(可选)
+     * 
+     *  $title 网页标题
+     *  $input 条件量
+     *  $resultunit 结果量的单位
+     *  $ps 补充
      */
-    protected function getOutput($type, $in, $value){
+    protected function getOutput($type, $in, $value, $ps_value = NULL){
         switch ($type) {
             case 'schwarzschild':
                 $titletype = '史瓦西半径';
@@ -28,6 +34,14 @@ abstract class physics {
 HTML;
                 $resultunit = 'N';
                 break;
+            case 'relativistic_mass':
+                $titletype = '相对论质量';
+                $input = <<<HTML
+物体的质量:{$in['m']} kg<br>
+物体的速度:{$in['v']} m·s<sup>-1</sup>
+HTML;
+                $resultunit = 'kg·m/s';
+                $ps = '洛伦兹因子:'.$ps_value['lorentz_factor'];
         }
         
         /*生成head*/
@@ -43,7 +57,8 @@ HTML;
                 .$input
                 .'</br><hr/>'
                 .'<b>计算结果</b>:'
-                .$value.' '.$resultunit
+                .$value.' '.$resultunit.'<br>'
+                .$ps
                 .'</body>';
         
         /*拼接成html*/
