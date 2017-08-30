@@ -40,8 +40,18 @@ HTML;
 物体的质量:{$in['m']} kg<br>
 物体的速度:{$in['v']} m·s<sup>-1</sup>
 HTML;
+                $resultunit = 'kg';
+                $ps = '洛伦兹因子:'.$ps_value['lorentz_factor'];
+                break;
+            case 'relativistic_momentum':
+                $titletype = '相对论动量';
+                $input = <<<HTML
+物体的质量:{$in['m']} kg<br>
+物体的速度:{$in['v']} m·s<sup>-1</sup>
+HTML;
                 $resultunit = 'kg·m/s';
                 $ps = '洛伦兹因子:'.$ps_value['lorentz_factor'];
+                break;
         }
         
         /*生成head*/
