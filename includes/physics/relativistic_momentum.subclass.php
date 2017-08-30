@@ -17,7 +17,8 @@ class relativistic_momentum extends physics{
     /**检查用户输入的内容
      * 先检查用户是否输入所有必要的数值,
      * 然后检查用户输入的值是否都为数字,
-     * 最后检查用户输入的数字是否大于0
+     * 之后检查用户输入的数字是否大于0,
+     * 最后检查用户输入的数字是否小于光速
      */
     private function checkError(){
         $value = array(
@@ -39,6 +40,11 @@ class relativistic_momentum extends physics{
         $checkValue = $check -> checkValue($value);
         if ($checkValue == false){
             die (checkPhysicsError::$error2); //检查用户输入的数字是否大于0
+        }
+        
+        $checkLightSpeed = $check -> checkLightSpeed($value);
+        if ($checkLightSpeed == false){
+            die (checkPhysicsError::$error21); //检查用户输入的数字是否小于光速
         }
     }
     
