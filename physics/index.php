@@ -37,4 +37,11 @@ switch ($type) {
         $output = new relativistic_mass($in_m, $in_v);
         $output -> finalOutput();
         break;
+    case 'relativistic_momentum':
+        require_once INCLUDES_PATH.'/physics/relativistic_momentum.subclass.php';
+        $in_m = filter_input(INPUT_POST, 'rmm1'); //物体的质量
+        $in_v = filter_input(INPUT_POST, 'rmv1'); //物体的速度
+        $output = new relativistic_momentum($in_m, $in_v);
+        $output -> finalOutput();
+        break;
 }
