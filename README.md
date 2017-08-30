@@ -30,16 +30,16 @@
         \checkPhysicsError.subclass.php
         \frequency-wavelength.subclass.php
         \gravity.subclass.php
+        \length_contraction.php
         \physics.class.php
+        \relativistic_mass.php
+        \relativistic_momentum.php
         \schwarzschild.subclass.php
     \checkError.class.php
     \physics.php
     \return.php
 *physics
     *resources
-        \length_contraction.php
-        \relativistic_mass.php
-        \relativistic_momentum.php
         \time_dilation.php
     \frequency_and_wavelength.html
     \gravity.html

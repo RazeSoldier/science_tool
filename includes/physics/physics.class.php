@@ -4,19 +4,19 @@
  */
 
 abstract class physics {
-    const SPEED_OF_LIGHT = 299792458; //声明光速(常量)
-    const GRAVITATIONAL_CONSTANT = 6.67408E-11; //声明万有引力常数(常量)
+    const SPEED_OF_LIGHT = 299792458; //@var 声明光速(常量)
+    const GRAVITATIONAL_CONSTANT = 6.67408E-11; //@var 声明万有引力常数(常量)
     
     /** 计算结果输出模板
-     *  $type 计算类型
-     *  $in 用户输入量
-     *  $value 计算输出值
-     *  $ps_value 补充输出值(可选)
+     *  @param string $type 计算类型
+     *  @param numeric/string $in 用户输入量
+     *  @param numeric $value 计算输出值
+     *  @param array $ps_value 补充输出值(可选)
      * 
-     *  $title 网页标题
-     *  $input 条件量
-     *  $resultunit 结果量的单位
-     *  $ps 补充
+     *  @var string $title 网页标题
+     *  @var string $input 条件量
+     *  @var string $resultunit 结果量的单位
+     *  @var mixed $ps 补充
      */
     protected function getOutput($type, $in, $value, $ps_value = NULL){
         switch ($type) {
@@ -50,6 +50,15 @@ HTML;
 物体的速度:{$in['v']} m·s<sup>-1</sup>
 HTML;
                 $resultunit = 'kg·m/s';
+                $ps = '洛伦兹因子:'.$ps_value['lorentz_factor'];
+                break;
+            case 'length_contraction':
+                $titletype = '长度收缩计算';
+                $input = <<<HTML
+物体运动方向的长度:{$in['l']} kg<br>
+物体的速度:{$in['v']} m·s<sup>-1</sup>
+HTML;
+                $resultunit = 'm';
                 $ps = '洛伦兹因子:'.$ps_value['lorentz_factor'];
                 break;
         }

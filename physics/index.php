@@ -6,6 +6,11 @@ define('INCLUDES_PATH', realpath('../includes')); //定义includes目录的绝�
 
 $type = filter_input(INPUT_POST, 'type'); //获取计算类型
 
+/**
+ * 路由来自前端的请求
+ * 
+ * @param string $type 
+ */
 switch ($type) {
     case 'schwarzschild':
         require_once INCLUDES_PATH.'/physics/schwarzschild.subclass.php';
@@ -42,6 +47,13 @@ switch ($type) {
         $in_m = filter_input(INPUT_POST, 'rmm1'); //物体的质量
         $in_v = filter_input(INPUT_POST, 'rmv1'); //物体的速度
         $output = new relativistic_momentum($in_m, $in_v);
+        $output -> finalOutput();
+        break;
+    case 'length_contraction':
+        require_once INCLUDES_PATH.'/physics/length_contraction.subclass.php';
+        $in_l = filter_input(INPUT_POST, 'lcs'); //物体运动方向的长度
+        $in_v = filter_input(INPUT_POST, 'lcv'); //物体的速度
+        $output = new length_contraction($in_l, $in_v);
         $output -> finalOutput();
         break;
 }
