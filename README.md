@@ -48,6 +48,7 @@ root
         |encrypt.php
         |health.php
         |physics.php
+    |Defines.php
     |checkError.class.php
 |--physics
     |index.php
