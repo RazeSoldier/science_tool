@@ -61,6 +61,15 @@ HTML;
                 $resultunit = 'm';
                 $ps = '洛伦兹因子:'.$ps_value['lorentz_factor'];
                 break;
+            case 'time_dilation':
+                $titletype = '时间膨胀计算';
+                $input = <<<HTML
+物体的原时:{$in['t']} s<br>
+物体的速度:{$in['v']} m·s<sup>-1</sup>
+HTML;
+                $resultunit = 's';
+                $ps = '洛伦兹因子:'.$ps_value['lorentz_factor'];
+                break;
         }
         
         /*生成head*/

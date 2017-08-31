@@ -8,48 +8,50 @@
 详细授权协议见软件根目录下的"COPYING"文件。
 
 == 目录结构图 ==
-*enerypt
-    \index.html
-    \index.php
-*health
-    *resources
-        \bmi.php
-    \bmi.html
-*includes
-    *enerypt
-        \checkEneryptError.subclass.php
-        \enerypt.calss.php
-    *gravity
-        \error_1.php
-        \error_2.php
-        \return.php
-    *health
-        \bmi.class.php
-        \checkHealthError.subclass.php
-    *physics
-        \checkPhysicsError.subclass.php
-        \frequency-wavelength.subclass.php
-        \gravity.subclass.php
-        \length_contraction.php
-        \physics.class.php
-        \relativistic_mass.php
-        \relativistic_momentum.php
-        \schwarzschild.subclass.php
-    \checkError.class.php
-    \physics.php
-    \return.php
-*physics
-    *resources
-        \time_dilation.php
-    \frequency_and_wavelength.html
-    \gravity.html
-    \index.php
-    \length_contraction.html
-    \relativistic_momentum.html
-    \result.php
-    \schwarzschild.html
-    \time_dilation.html
-\COPYING
-\README.md
-\RELEASE-x.x.x
-\index.html
+root
+|--docs
+    |--encrypt
+        |index.html
+    |--health
+        |bmi.html
+    |--physics
+        |frequency_and_wavelength.html
+        |gravity.html
+        |length_contraction.html
+        |relativistic_mass.html
+        |relativistic_momentum.html
+        |schwarzschild.html
+        |time_dilation.html
+    |index.html
+|--enerypt
+    |index.php
+|--health
+    |index.php
+|--includes
+    |--enerypt
+        |checkEneryptError.subclass.php
+        |enerypt.calss.php
+    |--health
+        |bmi.class.php
+        |checkHealthError.subclass.php
+    |--physics
+        |checkPhysicsError.subclass.php
+        |frequency-wavelength.subclass.php
+        |gravity.subclass.php
+        |length_contraction.subclass.php
+        |physics.class.php
+        |relativistic_mass.subclass.php
+        |relativistic_momentum.subclass.php
+        |schwarzschild.subclass.php
+        |time_dilation.subclass.php
+    |--routing
+        |encrypt.php
+        |health.php
+        |physics.php
+    |checkError.class.php
+|--physics
+    |index.php
+|COPYING
+|README.md
+|RELEASE-x.x.x
+|index.php

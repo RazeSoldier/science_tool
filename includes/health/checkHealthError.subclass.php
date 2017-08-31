@@ -2,7 +2,7 @@
 /**健康
  * checkError的子类
  */
-require_once '../../includes/checkError.class.php';
+require_once INCLUDES_PATH.'checkError.class.php';
 
 class checkHealthError extends checkError{
     /*检查用户输入的数值是否大于0*/

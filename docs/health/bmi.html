@@ -8,7 +8,8 @@
     <body>
         <h1>身高体重指数计算</h1>
         <div>
-            <form name="BMI计算" method="post" action="resources/bmi.php">
+            <form name="BMI计算" method="post" action="index.php?title=health/bmi&action=result">
+                <input type="hidden" name="type" value="bmi">
                 体重:<input name="weight" type="text">公斤<br>
                 身高:<input name="height" type="text">厘米<br>
                 <input name="submit" type="submit" value="计算">
