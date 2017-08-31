@@ -8,11 +8,13 @@
  * 用户未完全输入必要的值 | 12 | 需要输入所有必要值的页面
  * 用户输入的值不合法 | 2
  * 用户输入值不是数字 | 3 | 设置要求输入值为数字时
+ * 用户访问了不存在的页面 | 404
+ * 用户指定了不存在的错误 | 405
  * //内部错误
  * 开发者未按要求编程 - 输入值并非数组 | 500 | 要求方法的输入值为数组的时
  */
 
-abstract class checkError {
+class checkError {
     static $error10 = <<<Error10
 <title>错误 - 工具箱/学园都市</title>
 <h1>错误！</h1>
@@ -40,6 +42,20 @@ Error12;
 你输入了非数字，请输入正确的数字。<br>
 <a href="JavaScript:history.go(-1)">返回</a>
 Error3;
+    
+    static $error404 = <<<Error404
+<title>页面不存在 - 工具箱/学园都市</title>
+<h1>页面不存在</h1>
+<a href="JavaScript:history.go(-1)">返回上一页</a>或者
+<a href="index.php">返回首页</a>
+Error404;
+    
+    static $error405 = <<<Error405
+<title>操作不存在 - 工具箱/学园都市</title>
+<h1>操作不存在</h1>
+<a href="JavaScript:history.go(-1)">返回上一页</a>或者
+<a href="index.php">返回首页</a>
+Error405;
 
     private $error500 = <<<Error500
 <title>Internal Error</title>
@@ -113,6 +129,18 @@ Error500;
         }else{
             return true;
         }
+    }
+    
+    /*返回404错误码并且返回404错误信息*/
+    public function return404(){
+        http_response_code(404);
+        echo self::$error404;
+    }
+    
+    /*返回405错误码并且返回405错误信息*/
+    public function return405(){
+        http_response_code(405);
+        echo self::$error405;
     }
 }
 

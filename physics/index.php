@@ -2,8 +2,6 @@
 /* 
  * 作为物理学计算的后台接口
  */
-define('INCLUDES_PATH', realpath('../includes')); //定义includes目录的绝对路径
-
 $type = filter_input(INPUT_POST, 'type'); //获取计算类型
 
 /**
@@ -54,6 +52,13 @@ switch ($type) {
         $in_l = filter_input(INPUT_POST, 'lcs'); //物体运动方向的长度
         $in_v = filter_input(INPUT_POST, 'lcv'); //物体的速度
         $output = new length_contraction($in_l, $in_v);
+        $output -> finalOutput();
+        break;
+    case 'time_dilation':
+        require_once INCLUDES_PATH.'/physics/time_dilation.subclass.php';
+        $in_t = filter_input(INPUT_POST, 'tdt'); //物体运动方向的长度
+        $in_v = filter_input(INPUT_POST, 'tdv'); //物体的速度
+        $output = new time_dilation($in_t, $in_v);
         $output -> finalOutput();
         break;
 }

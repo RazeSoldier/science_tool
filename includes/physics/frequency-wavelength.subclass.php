@@ -2,9 +2,8 @@
 /**
 * 电磁波频率和波长互换
 */
-require_once 'physics.class.php'; //引用physics父类
-require_once 'checkPhysicsError.subclass.php';
-$check = new checkPhysicsError(); //调用checkPhysicsError子类的方法：如果返回的结果为false，则终止脚本
+require_once INCLUDES_PATH.'physics/physics.class.php'; //引用physics父类
+require_once INCLUDES_PATH.'physics/checkPhysicsError.subclass.php';
 
 class frequency_wavelength extends physics {
     private $in_type; //声明计算类型
@@ -23,9 +22,9 @@ class frequency_wavelength extends physics {
      * 检查用户输入值是否符合程序
      */
     private function checkError(){ //检查用户输入量
-        global $check;
+        //global $check;
         /*检查type变量是否被赋值*/
-        if ($check -> checkRadioValue($this -> in_type) == false){
+        if ($this -> checkType() == false){
             die (checkPhysicsError::$error11);
         }
         if ($this -> checkNullValue() == false){
@@ -38,26 +37,30 @@ class frequency_wavelength extends physics {
             die (checkPhysicsError::$error2);
         }
     }
+    private function checkType(){ //检查$type是否被赋值
+        global $checkerror;
+        return $checkerror -> checkRadioValue($this -> in_type);
+    }
     private function checkNullValue(){ //检查输入值是否为空
-        global $check;
+        global $checkerror;
         switch ($this -> in_type) {
             case 'FtoW':
-                return $check -> checkNullValue($this -> in_f);
+                return $checkerror -> checkNullValue($this -> in_f);
             case 'WtoF':
-                return $check -> checkNullValue($this -> in_w);
+                return $checkerror -> checkNullValue($this -> in_w);
         }
     }
     private function checkIsNumber(){ //检查用户输入值是否为数字
-        global $check;
+        global $checkerror;
         switch ($this -> in_type) {
             case 'FtoW':
-                return $check -> checkIsNumber(array($this -> in_f));
+                return $checkerror -> checkIsNumber(array($this -> in_f));
             case 'WtoF':
-                return $check -> checkIsNumber(array($this -> in_w));
+                return $checkerror -> checkIsNumber(array($this -> in_w));
         }
     }
     private function checkValue(){ //检查用户输入值是否大于0
-        global $check;
+        $check = new checkPhysicsError(); //调用checkPhysicsError子类的方法：如果返回的结果为false，则终止脚本
         switch ($this -> in_type) {
             case 'FtoW':
                 return $check -> checkValue($this -> in_f);

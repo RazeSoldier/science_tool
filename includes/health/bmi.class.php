@@ -3,7 +3,6 @@
  * 
  */
 require_once 'checkHealthError.subclass.php';
-$check = new checkHealthError();
 
 class BMI {
     public $m ; //身高
@@ -20,14 +19,14 @@ class BMI {
     }
     
     private function checkValueIsNumber(){ //检查$m和$h是否都为数字
-        global $check;
-        return $check -> checkIsNumber($this -> arr);
+        $checkhealth = new checkHealthError();
+        return $checkhealth -> checkIsNumber($this -> arr);
     }
 
 
     private function checkValue(){ //检查$m和$h是否大于0
-        global $check;
-        return $check -> checkValue($this -> arr);
+        $checkhealth = new checkHealthError();
+        return $checkhealth -> checkValue($this -> arr);
     }
 
     private function getValue(){ //计算
