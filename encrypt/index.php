@@ -2,8 +2,8 @@
 /* 
  * 处理enerypt/index.html传入的参数
  */
-require_once INCLUDES_PATH.'enerypt/checkEneryptError.subclass.php';
-require_once INCLUDES_PATH.'enerypt/enerypt.class.php';
+require_once INCLUDES_PATH.'encrypt/checkEncryptError.subclass.php';
+require_once INCLUDES_PATH.'encrypt/encrypt.class.php';
 
 $type = filter_input(INPUT_POST, 'type'); //获取计算类型
 
