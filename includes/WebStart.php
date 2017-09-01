@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /** 
  * 本文件初始化来自用户的web请求，
  * 并实例化checkError类
@@ -28,27 +28,27 @@ $checkerror = new checkError();
 /**
  * 获取url中的查询字串符
  * @var array httpreqies URL中所有的查询字串符
- * @var string 抓取URL中title的查询字串符
+ * @var string titlerequire 抓取URL中title的查询字串符
  */
 $httprequire = filter_input_array(INPUT_GET);
-$title = $httprequire['title'];
+$titlerequire = $httprequire['title'];
 
 /**
  * 首页路由
- * 如果$title为NULL或者title为main_page，
+ * 如果$titlerequire为NULL或者$titlerequire为main_page，
  * 则引用首页的html文件
  */
-if ($title == NULL or $title == 'main_page'){
+if ($titlerequire == NULL or $titlerequire == 'main_page'){
     require_once DOCS_PATH.'index.html';
-    $title = 'main_page';
+    $titlerequire = 'main_page';
 }
 
 /**
- * 拆分$title的请求
- * @param string $require Description
+ * 拆分$titlerequire
+ * @param array $require 拆分后的title请求，可以区别主请求和子请求
  * @return array 返回一个数组
  */
-$require = explode('/', $title);
+$require = explode('/', $titlerequire);
 
 /**
  * 路由主请求
