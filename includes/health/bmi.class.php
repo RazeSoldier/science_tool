@@ -14,20 +14,28 @@ class BMI {
         $this -> h = $height / 100;
         $this -> arr = array(
             1 => $this -> m,
-            2 => $this -> h
+            2 => $height
         );
     }
-    
-    private function checkValueIsNumber(){ //检查$m和$h是否都为数字
-        $checkhealth = new checkHealthError();
-        return $checkhealth -> checkIsNumber($this -> arr);
-    }
-
-
-    private function checkValue(){ //检查$m和$h是否大于0
-        $checkhealth = new checkHealthError();
-        return $checkhealth -> checkValue($this -> arr);
-    }
+	
+	private function checkError(){
+		$check = new checkHealthError();
+		
+		$checkallvalue = $check -> checkAllValueNotNull($this -> arr);
+		if ($checkallvalue == false){
+			die (checkHealthError::$error12);
+		}
+		
+		$checknumber = $check -> checkIsNumber($this -> arr);
+		if ($checknumber == false){
+			die (checkHealthError::$error3);
+		}
+		
+		$checkvalue = $check -> checkvalue($this -> arr);
+		if ($checkvalue == false){
+			die (checkHealthError::$error2);
+		}
+	}
 
     private function getValue(){ //计算
         $h2 = pow($this -> h,2);
@@ -48,35 +56,17 @@ class BMI {
         }
     }
     
-    /*根据checkValue方法，给出title的值*/
-    private function getTitle(){ 
-        if ($this -> checkValue() and $this -> checkValueIsNumber()){ //如果这两个方法都为true，返回正常标题
-            return '<title>BMI计算结果 - 健康/学园都市</title>';
-        }else{
-            return '<title>错误 - 健康/学园都市</title>';
-        }
-    }
-    
     private function getHead(){ //获取Head
-        $title = $this -> getTitle();
         echo '<head>';
         echo '<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';
-        echo $title;
+        echo '<title>BMI计算结果 - 健康/学园都市</title>';
         echo '</head>';
     }
 
     final public function output(){ //最终输出
+		$this -> checkError();
         $this -> getHead();
-        /*如果用户输入了非数字，终止脚本返回错误码3*/
-        if ($this -> checkValueIsNumber() == false){
-            die (checkHealthError::$error3);
-        }
-        if ($this -> checkValue()){
-            echo '你的BMI为:'.$this -> getValue().' kg/m<sup>2</sup>';
-            echo '<br>健康状况:'.$this ->getHealthStatus();
-        }else{
-            echo '<b>错误!</b>你输入了小于等于0的数字';
-            echo '<br><a href="JavaScript:history.go(-1)">返回</a>';
-        }
-    }
+        echo '你的BMI为:'.$this -> getValue().' kg/m<sup>2</sup>';
+        echo '<br>健康状况:'.$this ->getHealthStatus();
+	}
 }
