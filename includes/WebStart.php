@@ -31,47 +31,11 @@ $checkerror = new checkError();
  * @var string titlerequire 抓取URL中title的查询字串符
  */
 $httprequire = filter_input_array(INPUT_GET);
-$titlerequire = $httprequire['title'];
 
-/**
- * 首页路由
- * 如果$titlerequire为NULL或者$titlerequire为main_page，
- * 则引用首页的html文件
- */
-if ($titlerequire == NULL or $titlerequire == 'main_page'){
-    require_once DOCS_PATH.'index.html';
-    $titlerequire = 'main_page';
-}
-
-/**
- * 拆分$titlerequire
- * @param array $require 拆分后的title请求，可以区别主请求和子请求
- * @return array 返回一个数组
- */
-$require = explode('/', $titlerequire);
-
-/**
- * 路由主请求
- * 
- * 如果请求未匹配则返回404错误码
- */
-switch ($require[0]) {
-    case 'physics':
-        require_once ROUTING_PATH.'physics.php';
-        break;
-    case 'encrypt':
-        require_once ROUTING_PATH.'encrypt.php';
-        break;
-    case 'health':
-        require_once ROUTING_PATH.'health.php';
-        break;
-    case 'main_page':
-        break;
-    default:
-        $error = 404;
-        break;
-}
-
+/*实例化PathRouter类*/
+require_once INCLUDES_PATH.'PathRouter.php';
+$pathRouter = new PathRouter($httprequire);
+$Routing = $pathRouter->Routing();
 
 /*如果错误码为404，则返回404错误页*/
 if ($error == 404){
