@@ -5,6 +5,13 @@
 require_once INCLUDES_PATH.'checkError.class.php';
 
 class checkHealthError extends checkError{
+	static $error2 = <<<Error2
+<title>错误 - 工具箱/学园都市</title>
+<h1>错误！</h1>
+你输入了小于0的数值<br>
+<a href="JavaScript:history.go(-1)">返回</a>
+Error2;
+	
     /*检查用户输入的数值是否大于0*/
     public function checkValue($value){
         $error = NULL; //声明一个空值的变量
