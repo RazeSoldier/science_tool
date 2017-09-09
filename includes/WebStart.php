@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /** 
  * 本文件初始化来自用户的web请求，
  * 并实例化checkError类
@@ -21,18 +21,21 @@
  * @file
  */
 
-/*实例化checkError类*/
+/**
+ * 实例化checkError类
+ * 
+ * @var string gCheckError 将checkError对象存储到全局变量里
+ */
 require_once INCLUDES_PATH.'checkError.class.php';
-$checkerror = new checkError();
+$gCheckError = new checkError();
 
 /**
  * 获取url中的查询字串符
- * @var array httpreqies URL中所有的查询字串符
- * @var string titlerequire 抓取URL中title的查询字串符
+ * @var array gHttpRequire URL中所有的查询字串符
  */
-$httprequire = filter_input_array(INPUT_GET);
+$gHttpRequire = filter_input_array(INPUT_GET);
 
 /*实例化PathRouter类*/
 require_once INCLUDES_PATH.'PathRouter.php';
-$pathRouter = new PathRouter($httprequire);
+$pathRouter = new PathRouter($gHttpRequire);
 $Routing = $pathRouter->Routing();
