@@ -38,25 +38,25 @@ class frequency_wavelength extends physics {
         }
     }
     private function checkType(){ //检查$type是否被赋值
-        global $checkerror;
-        return $checkerror -> checkRadioValue($this -> in_type);
+        global $gCheckError;
+        return $gCheckError -> checkRadioValue($this -> in_type);
     }
     private function checkNullValue(){ //检查输入值是否为空
-        global $checkerror;
+        global $gCheckError;
         switch ($this -> in_type) {
             case 'FtoW':
-                return $checkerror -> checkNullValue($this -> in_f);
+                return $gCheckError -> checkNullValue($this -> in_f);
             case 'WtoF':
-                return $checkerror -> checkNullValue($this -> in_w);
+                return $gCheckError -> checkNullValue($this -> in_w);
         }
     }
     private function checkIsNumber(){ //检查用户输入值是否为数字
-        global $checkerror;
+        global $gCheckError;
         switch ($this -> in_type) {
             case 'FtoW':
-                return $checkerror -> checkIsNumber(array($this -> in_f));
+                return $gCheckError -> checkIsNumber(array($this -> in_f));
             case 'WtoF':
-                return $checkerror -> checkIsNumber(array($this -> in_w));
+                return $gCheckError -> checkIsNumber(array($this -> in_w));
         }
     }
     private function checkValue(){ //检查用户输入值是否大于0

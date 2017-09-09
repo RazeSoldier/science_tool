@@ -21,8 +21,8 @@
  */
 
 function routing($in){
-    global $httprequire;
-    $action = $httprequire['action'];
+    global $gHttpRequire;
+    $action = $gHttpRequire['action'];
     if ($action == 'result'){
         require_once 'physics/index.php';
     }else{
