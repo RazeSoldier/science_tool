@@ -9,20 +9,6 @@
 
 == 目录结构图 ==
 root
-|--docs
-    |--encrypt
-        |index.html
-    |--health
-        |bmi.html
-    |--physics
-        |frequency_and_wavelength.html
-        |gravity.html
-        |length_contraction.html
-        |relativistic_mass.html
-        |relativistic_momentum.html
-        |schwarzschild.html
-        |time_dilation.html
-    |index.html
 |--enerypt
     |index.php
 |--health
@@ -34,6 +20,20 @@ root
     |--health
         |bmi.class.php
         |checkHealthError.subclass.php
+    |--page
+        |--encrypt
+            |index.html
+        |--health
+            |bmi.html
+        |--physics
+            |frequency_and_wavelength.html
+            |gravity.html
+            |length_contraction.html
+            |relativistic_mass.html
+            |relativistic_momentum.html
+            |schwarzschild.html
+            |time_dilation.html
+        |index.html
     |--physics
         |checkPhysicsError.subclass.php
         |frequency-wavelength.subclass.php
