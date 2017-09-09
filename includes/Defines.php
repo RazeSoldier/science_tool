@@ -27,7 +27,7 @@
  * @const string INCLUDES_PATH 软件根目录下的includes文件夹路径
  * @const string ROUTING_PATH 软件根目录下的includes/routing文件夹路径
  */
-define('DOCS_PATH', $IP.'/docs/');
 define('INCLUDES_PATH', $IP.'/includes/');
+define('DOCS_PATH', INCLUDES_PATH.'page/');
 define('ROUTING_PATH', INCLUDES_PATH.'routing/');
 
