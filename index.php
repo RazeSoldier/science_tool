@@ -20,6 +20,10 @@
  * @file
  */
 
+// Bail on old versions of PHP, or if composer has not been run yet to install
+// dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
+require_once dirname( __FILE__ ) . '/includes/PHPVersionCheck.php';
+
 /**
  * 定义软件的根目录的绝对路径，即安装目录(Install Path)
  * @var string $IP
