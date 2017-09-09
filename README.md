@@ -49,7 +49,9 @@ root
         |health.php
         |physics.php
     |Defines.php
-	|WebStart.php
+    |PHPVersionCheck.php
+    |PathRouter.php
+    |WebStart.php
     |checkError.class.php
 |--physics
     |index.php
