@@ -36,8 +36,3 @@ $httprequire = filter_input_array(INPUT_GET);
 require_once INCLUDES_PATH.'PathRouter.php';
 $pathRouter = new PathRouter($httprequire);
 $Routing = $pathRouter->Routing();
-
-/*如果错误码为404，则返回404错误页*/
-if ($error == 404){
-    die (checkError::return404());
-}

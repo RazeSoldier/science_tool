@@ -53,6 +53,6 @@ switch ($subTitleRequire) {
         routing('length_contraction');
         break;
     default:
-        $error = 404;
+        die (checkError::return404());
         break;
 }

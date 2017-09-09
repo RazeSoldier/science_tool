@@ -103,6 +103,8 @@ class PathRouter {
                 break;
             case 'main_page':
                 break;
+            default :
+                die (checkError::return404());
         }
     }
 
