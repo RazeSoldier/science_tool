@@ -22,6 +22,11 @@
  */
 
 /**
+ * @var float 请求开始的时间戳
+ */
+$gRequestTime = $_SERVER['REQUEST_TIME'];
+
+/**
  * 实例化checkError类
  * 
  * @var string gCheckError 将checkError对象存储到全局变量里
