@@ -26,6 +26,9 @@
  */
 $gRequestTime = $_SERVER['REQUEST_TIME'];
 
+/*预加载配置*/
+require_once "$IP/includes/PreConfigSetup.php";
+
 /**
  * 实例化checkError类
  * 
