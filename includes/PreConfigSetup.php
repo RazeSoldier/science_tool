@@ -22,3 +22,11 @@
 
 /*加载一些全局常量*/
 require_once "$IP/includes/Defines.php";
+
+/**
+ * 实例化checkError类
+ * 
+ * @var string gCheckError 将checkError对象存储到全局变量里
+ */
+require_once INCLUDES_PATH.'checkError.class.php';
+$gCheckError = new checkError();
