@@ -100,3 +100,8 @@ HTML;
     }
 } 
 
+/**
+ * 实例化PHPVersionCheck类
+ */
+$PHPVersionCheck = new PHPVersionCheck();
+$PHPVersionCheck->returnError();
