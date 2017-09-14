@@ -22,9 +22,9 @@
  */
 
 /**
- * @var float 请求开始的时间戳
+ * @var float 请求开始的时间戳，微秒级别
  */
-$gRequestTime = $_SERVER['REQUEST_TIME'];
+$gRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
 
 /*预加载配置*/
 require_once "$IP/includes/PreConfigSetup.php";

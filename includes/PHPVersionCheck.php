@@ -22,7 +22,7 @@
 
 /**
  * 检查PHP的版本
- * 如果当前环境的版本低于5.3.2,报错
+ * 如果当前环境的版本低于5.4.0,报错
  * 
  * @class
  */
@@ -36,7 +36,7 @@ class PHPVersionCheck{
      * - 'upgradeURL':升级网址
      */
     function getPHPinfo(){
-        $minimumVersionPHP = '5.3.2';
+        $minimumVersionPHP = '5.4.0';
         $phpVersion = PHP_VERSION;
         $upgradeURL = 'https://secure.php.net/downloads.php';
         return array(
