@@ -2,7 +2,7 @@
 /**健康
  * checkError的子类
  */
-require_once INCLUDES_PATH.'checkError.class.php';
+
 
 class checkHealthError extends checkError{
 	static $error2 = <<<Error2

@@ -2,8 +2,6 @@
 /* 
  * 史瓦西计算
  */
-require_once 'physics.class.php';
-require_once 'checkPhysicsError.subclass.php';
 
 class schwarzschild extends physics{
     private $in_sm; //声明质量(用户输入值)

@@ -2,8 +2,6 @@
 /*
  * 万有引力计算
  */
-require_once 'physics.class.php';
-require_once 'checkPhysicsError.subclass.php';
 
 class gravity extends physics{
     private $in_m1;

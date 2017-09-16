@@ -2,8 +2,6 @@
 /*
  * 长度收缩计算
  */
-require_once 'physics.class.php'; //引用physics父类
-require_once 'checkPhysicsError.subclass.php';
 
 class length_contraction extends physics{
     private $in_l; //物体运动方向的长度

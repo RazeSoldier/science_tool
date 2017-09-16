@@ -2,8 +2,6 @@
 /**
 * 电磁波频率和波长互换
 */
-require_once INCLUDES_PATH.'physics/physics.class.php'; //引用physics父类
-require_once INCLUDES_PATH.'physics/checkPhysicsError.subclass.php';
 
 class frequency_wavelength extends physics {
     private $in_type; //声明计算类型

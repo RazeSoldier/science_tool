@@ -2,8 +2,6 @@
 /**
  * 相对论动量
  */
-require_once 'physics.class.php';
-require_once 'checkPhysicsError.subclass.php';
 
 class relativistic_momentum extends physics{
     private $in_m; //物体的质量

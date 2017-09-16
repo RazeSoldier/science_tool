@@ -1,6 +1,6 @@
 <?php
 /** 
- * 预加载配置文件
+ * 本文件自动加载本软件所有的类
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,17 +20,19 @@
  * @file
  */
 
-/*手动设置include_path路径*/
-set_include_path($IP.'includes');
+class AutoLoader{
+    /**
+     * 设定spl_autoload_register的默认文件扩展名
+     */
+    private function setSplExtension(){
+        spl_autoload_extensions('.class.php,.subclass.php,.php');
+    }
+    
+    final public function autoLoading(){
+        $this->setSplExtension();
+        spl_autoload_register();
+    }
+}
 
-/*加载一些全局常量*/
-require_once "$IP/includes/Defines.php";
-
-require_once INCLUDES_PATH.'AutoLoader.php';
-
-/**
- * 实例化checkError类
- * 
- * @var string gCheckError 将checkError对象存储到全局变量里
- */
-$gCheckError = new checkError();
+$AutoLoader = new AutoLoader();
+$AutoLoader->autoLoading();

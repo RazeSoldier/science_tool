@@ -48,9 +48,12 @@ root
         |encrypt.php
         |health.php
         |physics.php
+    |.htaccess
+    |AutoLoader.php
     |Defines.php
     |PHPVersionCheck.php
     |PathRouter.php
+    |PreConfigSetup.php
     |WebStart.php
     |checkError.class.php
 |--physics

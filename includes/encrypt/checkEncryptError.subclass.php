@@ -1,5 +1,4 @@
 <?php
-require_once INCLUDES_PATH.'checkError.class.php';
 
 class checkEneryptError extends checkError {
     public function checkRadioValue($value){ //检查用户是否选定单选项(error11)
