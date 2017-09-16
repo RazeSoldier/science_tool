@@ -1,6 +1,11 @@
 <?php
 /** 
- * 预加载配置文件
+ * 本文件包含了默认软件设置，请勿修改本文件
+ * 
+ *         NEVER EDIT THIS FILE
+ *           永远不要编辑本文件
+ * 
+ * 要修改网站设置，请编辑‘LocalSettings.php’文件
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,21 +25,8 @@
  * @file
  */
 
-/*手动设置include_path路径*/
-set_include_path($IP.'includes');
-
-/*加载一些全局常量*/
-require_once "$IP/includes/Defines.php";
-
-/*加载自动加载类的代码*/
-require_once INCLUDES_PATH.'AutoLoader.php';
-
-/*加载默认设置*/
-require_once INCLUDES_PATH.'DefaultSettings.php';
-
 /**
- * 实例化checkError类
- * 
- * @var string gCheckError 将checkError对象存储到全局变量里
+ * 网站名称
+ * @since 0.3.0
  */
-$gCheckError = new checkError();
+$gSitename = '工具箱';
