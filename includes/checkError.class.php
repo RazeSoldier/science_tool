@@ -15,50 +15,60 @@
  */
 
 class checkError {
+    /**
+     * 获取$gSitename的数值
+     * 
+     * @return string $gSitename的数值
+     */
+    private function getSiteName(){
+        global $gSitename;
+        return $gSitename;
+    }
+    
     static $error10 = <<<Error10
-<title>错误 - 工具箱/学园都市</title>
+<title>错误 - {$this->getSiteName()}</title>
 <h1>错误！</h1>
 你未输入任何数值！<br>
 <a href="JavaScript:history.go(-1)">返回</a>
 Error10;
     
     static $error11 = <<<Error11
-<title>错误 - 工具箱/学园都市</title>
+<title>错误 - {$this->getSiteName()}</title>
 <h1>错误！</h1>
 你未选择任意选项！<br>
 <a href="JavaScript:history.go(-1)">返回</a>
 Error11;
     
     static $error12 = <<<Error12
-<title>错误 - 工具箱/学园都市</title>
+<title>错误 - {$this->getSiteName()}</title>
 <h1>错误！</h1>
 你未输入所有计算所需要的数值<br>
 <a href="JavaScript:history.go(-1)">返回</a>
 Error12;
     
     static $error3 = <<<Error3
-<title>错误 - 工具箱/学园都市</title>
+<title>错误 - {$this->getSiteName()}</title>
 <h1>错误！</h1>
 你输入了非数字，请输入正确的数字。<br>
 <a href="JavaScript:history.go(-1)">返回</a>
 Error3;
     
     static $error404 = <<<Error404
-<title>页面不存在 - 工具箱/学园都市</title>
+<title>页面不存在 - {$this->getSiteName()}</title>
 <h1>页面不存在</h1>
 <a href="JavaScript:history.go(-1)">返回上一页</a>或者
 <a href="index.php">返回首页</a>
 Error404;
     
     static $error405 = <<<Error405
-<title>操作不存在 - 工具箱/学园都市</title>
+<title>操作不存在 - {$this->getSiteName()}</title>
 <h1>操作不存在</h1>
 <a href="JavaScript:history.go(-1)">返回上一页</a>或者
 <a href="index.php">返回首页</a>
 Error405;
 
     private $error500 = <<<Error500
-<title>Internal Error</title>
+<title>Internal Error - {$this->getSiteName()}</title>
 <h1>500 Error</h1>
 You entered a non-array for the method.
 Error500;

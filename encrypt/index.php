@@ -2,8 +2,6 @@
 /* 
  * 处理enerypt/index.html传入的参数
  */
-require_once INCLUDES_PATH.'encrypt/checkEncryptError.subclass.php';
-require_once INCLUDES_PATH.'encrypt/encrypt.class.php';
 
 $type = filter_input(INPUT_POST, 'type'); //获取计算类型
 
@@ -25,7 +23,7 @@ $titletype = $enerypt -> getTitle(); //大写计算类型
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php
-        echo "<title>{$titletype}函数计算结果 - 工具箱/学园都市</title>";
+        echo "<title>{$titletype}函数计算结果 - {$gSitename}</title>";
         ?>
     </head>
     <body>

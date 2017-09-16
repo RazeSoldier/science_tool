@@ -50,6 +50,7 @@ root
         |physics.php
     |.htaccess
     |AutoLoader.php
+    |DefaultSettings.php
     |Defines.php
     |PHPVersionCheck.php
     |PathRouter.php
