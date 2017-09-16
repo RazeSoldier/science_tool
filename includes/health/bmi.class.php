@@ -2,7 +2,6 @@
 /* 计算BMI
  * 
  */
-require_once 'checkHealthError.subclass.php';
 
 class BMI {
     public $m ; //身高

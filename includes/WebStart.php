@@ -1,7 +1,6 @@
 <?php
 /** 
- * 本文件初始化来自用户的web请求，
- * 并实例化checkError类
+ * 本文件初始化来自用户的web请求
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +35,5 @@ require_once "$IP/includes/PreConfigSetup.php";
 $gHttpRequire = filter_input_array(INPUT_GET);
 
 /*实例化PathRouter类*/
-require_once INCLUDES_PATH.'PathRouter.php';
 $pathRouter = new PathRouter($gHttpRequire);
 $Routing = $pathRouter->Routing();

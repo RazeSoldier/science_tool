@@ -1,5 +1,4 @@
 <?php
-require_once INCLUDES_PATH.'checkError.class.php';
 
 class checkPhysicsError extends checkError {
     static $error2 = <<<Error2

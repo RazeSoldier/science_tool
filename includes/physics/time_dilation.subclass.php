@@ -2,8 +2,6 @@
 /* 
  * 时间膨胀计算
  */
-require_once 'physics.class.php';
-require_once 'checkPhysicsError.subclass.php';
 
 class time_dilation extends physics{
     private $in_t;
