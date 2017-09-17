@@ -29,17 +29,17 @@ class gravity extends physics{
         $check = new checkPhysicsError();
         $checknull = $check -> checkAllValueNotNull($value); //检查用户是否输入所有必要的数值
         if ($checknull == false){
-            die (checkPhysicsError::$error12);
+            die ($check->return12());
         }
         
         $checkisnumber = $check -> checkIsNumber($value); //检查用户输入的值是否都为数字
         if ($checkisnumber == false){
-            die (checkPhysicsError::$error3);
+            die ($check->return3());
         }
         
         $checkValue = $check -> checkValue($value);
         if ($checkValue == false){
-            die (checkPhysicsError::$error2); //检查用户输入的数字是否大于0
+            die ($check->return2()); //检查用户输入的数字是否大于0
         }
     }
     

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>时间膨胀 - 公式计算/学园都市</title>
+        <title>时间膨胀 - <?php echo $gSitename;?></title>
         <meta charset="UTF-8" />
     </head>   
     <body>

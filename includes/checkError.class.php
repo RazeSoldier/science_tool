@@ -9,7 +9,7 @@
  * 用户输入的值不合法 | 2
  * 用户输入值不是数字 | 3 | 设置要求输入值为数字时
  * 用户访问了不存在的页面 | 404
- * 用户指定了不存在的错误 | 405
+ * 用户指定了不存在的操作 | 405
  * //内部错误
  * 开发者未按要求编程 - 输入值并非数组 | 500 | 要求方法的输入值为数组的时
  */
@@ -20,63 +20,15 @@ class checkError {
      * 
      * @return string $gSitename的数值
      */
-    private function getSiteName(){
+    protected function getSiteName(){
         global $gSitename;
         return $gSitename;
     }
     
-    static $error10 = <<<Error10
-<title>错误 - {$this->getSiteName()}</title>
-<h1>错误！</h1>
-你未输入任何数值！<br>
-<a href="JavaScript:history.go(-1)">返回</a>
-Error10;
-    
-    static $error11 = <<<Error11
-<title>错误 - {$this->getSiteName()}</title>
-<h1>错误！</h1>
-你未选择任意选项！<br>
-<a href="JavaScript:history.go(-1)">返回</a>
-Error11;
-    
-    static $error12 = <<<Error12
-<title>错误 - {$this->getSiteName()}</title>
-<h1>错误！</h1>
-你未输入所有计算所需要的数值<br>
-<a href="JavaScript:history.go(-1)">返回</a>
-Error12;
-    
-    static $error3 = <<<Error3
-<title>错误 - {$this->getSiteName()}</title>
-<h1>错误！</h1>
-你输入了非数字，请输入正确的数字。<br>
-<a href="JavaScript:history.go(-1)">返回</a>
-Error3;
-    
-    static $error404 = <<<Error404
-<title>页面不存在 - {$this->getSiteName()}</title>
-<h1>页面不存在</h1>
-<a href="JavaScript:history.go(-1)">返回上一页</a>或者
-<a href="index.php">返回首页</a>
-Error404;
-    
-    static $error405 = <<<Error405
-<title>操作不存在 - {$this->getSiteName()}</title>
-<h1>操作不存在</h1>
-<a href="JavaScript:history.go(-1)">返回上一页</a>或者
-<a href="index.php">返回首页</a>
-Error405;
-
-    private $error500 = <<<Error500
-<title>Internal Error - {$this->getSiteName()}</title>
-<h1>500 Error</h1>
-You entered a non-array for the method.
-Error500;
-    
     /*检查输入值是否为数组*/
     protected function checkMethodInputValueIsArray($value){
         if (is_array($value) == false){
-            die ($this -> error500);
+            die ($this ->return500());
         }
     }
 
@@ -141,16 +93,85 @@ Error500;
         }
     }
     
+    /*返回10错误码*/
+    public function return10(){
+        $error10 = <<<Error10
+<title>错误 - {$this->getSiteName()}</title>
+<h1>错误！</h1>
+你未输入任何数值！<br>
+<a href="JavaScript:history.go(-1)">返回</a>
+Error10;
+
+        return $error10;
+    }
+
+    /*返回11错误码*/
+    public function return11(){
+        $error11 = <<<Error11
+<title>错误 - {$this->getSiteName()}</title>
+<h1>错误！</h1>
+你未选择任意选项！<br>
+<a href="JavaScript:history.go(-1)">返回</a>
+Error11;
+
+        return $error11;
+    }
+    
+    /*返回12错误码*/
+    public function return12(){
+        $error12 = <<<Error12
+<title>错误 - {$this->getSiteName()}</title>
+<h1>错误！</h1>
+你未输入所有计算所需要的数值<br>
+<a href="JavaScript:history.go(-1)">返回</a>
+Error12;
+
+        return $error12;
+    }
+    
+    /*返回3错误码*/
+    public function return3(){
+        $error3 = <<<Error3
+<title>错误 - {$this->getSiteName()}</title>
+<h1>错误！</h1>
+你输入了非数字，请输入正确的数字。<br>
+<a href="JavaScript:history.go(-1)">返回</a>
+Error3;
+
+        return $error3;
+    }
+
     /*返回404错误码并且返回404错误信息*/
     public function return404(){
         http_response_code(404);
-        echo self::$error404;
+        echo <<<Error404
+<title>页面不存在 - {$this->getSiteName()}</title>
+<h1>页面不存在</h1>
+<a href="JavaScript:history.go(-1)">返回上一页</a>或者
+<a href="index.php">返回首页</a>
+Error404;
     }
     
     /*返回405错误码并且返回405错误信息*/
     public function return405(){
         http_response_code(405);
-        echo self::$error405;
+        echo <<<Error405
+<title>操作不存在 - {$this->getSiteName()}</title>
+<h1>操作不存在</h1>
+<a href="JavaScript:history.go(-1)">返回上一页</a>或者
+<a href="index.php">返回首页</a>
+Error405;
+    }
+    
+    /*返回500错误码*/
+    public function return500(){
+        $error500 = <<<Error500
+<title>Internal Error - {$this->getSiteName()}</title>
+<h1>500 Error</h1>
+You entered a non-array for the method.
+Error500;
+
+        return $error500;
     }
 }
 

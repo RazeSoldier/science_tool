@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>相对论动量 - 公式计算/学园都市</title>
+        <title>相对论动量 - <?php echo $gSitename;?></title>
         <meta charset="UTF-8" />
     </head>
     <body>

@@ -26,5 +26,5 @@ $action = $gHttpRequire['action'];
 if ($action == 'result'){
     require_once 'encrypt/index.php';
 }else{
-    require_once DOCS_PATH.'encrypt/index.html';
+    require_once DOCS_PATH.'encrypt/index.php';
 }

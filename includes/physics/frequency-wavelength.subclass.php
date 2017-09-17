@@ -20,19 +20,19 @@ class frequency_wavelength extends physics {
      * 检查用户输入值是否符合程序
      */
     private function checkError(){ //检查用户输入量
-        //global $check;
+        $check = new checkPhysicsError();
         /*检查type变量是否被赋值*/
         if ($this -> checkType() == false){
-            die (checkPhysicsError::$error11);
+            die ($check->return11());
         }
         if ($this -> checkNullValue() == false){
-            die (checkPhysicsError::$error10);
+            die ($check->return10());
         }
         if ($this -> checkIsNumber() == false){
-            die (checkPhysicsError::$error3);
+            die ($check->return3());
         }
         if ($this -> checkValue() == false){
-            die (checkPhysicsError::$error2);
+            die ($check->return2());
         }
     }
     private function checkType(){ //检查$type是否被赋值

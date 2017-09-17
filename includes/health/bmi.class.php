@@ -22,17 +22,17 @@ class BMI {
 		
 		$checkallvalue = $check -> checkAllValueNotNull($this -> arr);
 		if ($checkallvalue == false){
-			die (checkHealthError::$error12);
+			die ($check->return12());
 		}
 		
 		$checknumber = $check -> checkIsNumber($this -> arr);
 		if ($checknumber == false){
-			die (checkHealthError::$error3);
+			die ($check->return3());
 		}
 		
 		$checkvalue = $check -> checkvalue($this -> arr);
 		if ($checkvalue == false){
-			die (checkHealthError::$error2);
+			die ($check->return2());
 		}
 	}
 
