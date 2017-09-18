@@ -20,7 +20,7 @@
  * @file
  */
 
-/*检测PHL版本*/
+/*检测PHP版本*/
 require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
 
 require_once __DIR__ . '/../includes/Installer.php';
