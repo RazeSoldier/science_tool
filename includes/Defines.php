@@ -26,8 +26,9 @@
  * @const string DOCS_PATH 软件根目录下的docs文件夹路径
  * @const string INCLUDES_PATH 软件根目录下的includes文件夹路径
  * @const string ROUTING_PATH 软件根目录下的includes/routing文件夹路径
+ * @const string CONFIG_FILE 软件的配置文件路径
  */
 define('INCLUDES_PATH', $IP.'/includes/');
 define('DOCS_PATH', INCLUDES_PATH.'page/');
 define('ROUTING_PATH', INCLUDES_PATH.'routing/');
-
+define('CONFIG_FILE', $IP.'/LocalSettings.php');

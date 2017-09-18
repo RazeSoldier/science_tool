@@ -22,18 +22,18 @@ root
         |checkHealthError.subclass.php
     |--page
         |--encrypt
-            |index.html
+            |index.php
         |--health
-            |bmi.html
+            |bmi.php
         |--physics
-            |frequency_and_wavelength.html
-            |gravity.html
-            |length_contraction.html
-            |relativistic_mass.html
-            |relativistic_momentum.html
-            |schwarzschild.html
-            |time_dilation.html
-        |index.html
+            |frequency_and_wavelength.php
+            |gravity.php
+            |length_contraction.php
+            |relativistic_mass.php
+            |relativistic_momentum.php
+            |schwarzschild.php
+            |time_dilation.php
+        |index.php
     |--physics
         |checkPhysicsError.subclass.php
         |frequency-wavelength.subclass.php
@@ -52,6 +52,8 @@ root
     |AutoLoader.php
     |DefaultSettings.php
     |Defines.php
+	|Installer.php
+	|NoLocalSettings.php
     |PHPVersionCheck.php
     |PathRouter.php
     |PreConfigSetup.php

@@ -1,6 +1,6 @@
 <?php
 /** 
- * 本文件初始化来自用户的web请求
+ * 软件的安装和配置脚本文件
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,28 +20,14 @@
  * @file
  */
 
-/**
- * @var float 请求开始的时间戳，微秒级别
- */
-$gRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
+/*检测PHL版本*/
+require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
 
-/*预加载配置*/
-require_once "$IP/includes/PreConfigSetup.php";
-
-/*加载配置文件*/
-if (file_exists(CONFIG_FILE)){
-	require_once CONFIG_FILE;
-}else{
-	require_once INCLUDES_PATH.'/NoLocalSettings.php';
-	die (1);
-}
+require_once __DIR__ . '/../includes/Installer.php';
+$Installer = new Installer();
 
 /**
- * 获取url中的查询字串符
- * @var array gHttpRequire URL中所有的查询字串符
+ * @var string $HttpRequest 获取查询字符串的page参数
  */
-$gHttpRequire = filter_input_array(INPUT_GET);
-
-/*实例化PathRouter类*/
-$pathRouter = new PathRouter($gHttpRequire);
-$Routing = $pathRouter->Routing();
+$HttpRequest = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
+$Installer->pathRouting($HttpRequest);

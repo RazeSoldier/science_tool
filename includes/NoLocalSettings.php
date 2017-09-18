@@ -1,6 +1,6 @@
 <?php
 /** 
- * 本文件初始化来自用户的web请求
+ * 在没有LocalSttings.php文件的情况下会引用本文件
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,29 +19,19 @@
  * 
  * @file
  */
-
-/**
- * @var float 请求开始的时间戳，微秒级别
- */
-$gRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
-
-/*预加载配置*/
-require_once "$IP/includes/PreConfigSetup.php";
-
-/*加载配置文件*/
-if (file_exists(CONFIG_FILE)){
-	require_once CONFIG_FILE;
-}else{
-	require_once INCLUDES_PATH.'/NoLocalSettings.php';
-	die (1);
-}
-
-/**
- * 获取url中的查询字串符
- * @var array gHttpRequire URL中所有的查询字串符
- */
-$gHttpRequire = filter_input_array(INPUT_GET);
-
-/*实例化PathRouter类*/
-$pathRouter = new PathRouter($gHttpRequire);
-$Routing = $pathRouter->Routing();
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div{text-align:center}
+		</style>
+		<title>LocalSettings.php不存在</title>
+	</head>
+	<body>
+		<div>
+			<h1>找不到LocalSettings.php文件</h1>
+			<a href='/config/index.php'>使用安装脚本安装软件</a>
+		</div>
+	</body>
+</html>
