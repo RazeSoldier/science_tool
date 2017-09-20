@@ -59,7 +59,7 @@ class BMI {
         global $gSitename;
         echo '<head>';
         echo '<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';
-        echo "<title>BMI计算结果 - 健康/{$gSitename}</title>";
+        echo "<title>BMI计算结果 - {$gSitename}</title>";
         echo '</head>';
     }
 
