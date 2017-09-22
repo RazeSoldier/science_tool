@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>长度收缩 - 公式计算/学园都市</title>
+        <title>长度收缩 - <?php echo $gSitename;?></title>
         <meta charset="UTF-8" />
     </head>
     <body>

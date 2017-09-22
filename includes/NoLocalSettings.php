@@ -1,6 +1,6 @@
 <?php
-/**
- * 本文件用来路由哈希函数计算的请求
+/** 
+ * 在没有LocalSttings.php文件的情况下会引用本文件
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,19 @@
  * 
  * @file
  */
-
-global $gHttpRequire;
-$action = $gHttpRequire['action'];
-
-if ($action == 'result'){
-    require_once 'encrypt/index.php';
-}else{
-    require_once DOCS_PATH.'encrypt/index.php';
-}
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div{text-align:center}
+		</style>
+		<title>LocalSettings.php不存在</title>
+	</head>
+	<body>
+		<div>
+			<h1>找不到LocalSettings.php文件</h1>
+			<a href='/config/index.php'>使用安装脚本安装软件</a>
+		</div>
+	</body>
+</html>

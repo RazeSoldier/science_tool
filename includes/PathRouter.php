@@ -47,7 +47,7 @@ class PathRouter {
         $titleParm = $this->getTitleParm();
         
         if ($titleParm == NULL or $titleParm == 'main_page'){
-            require_once DOCS_PATH.'index.html';
+            require_once DOCS_PATH.'index.php';
             $this->titleParm = 'main_page';
             
             die(1);
@@ -88,6 +88,7 @@ class PathRouter {
      * 路由主请求
      */
     private function MainRouter(){
+		global $gSitename;
         $mainTitleRequire = $this->getMainTitleRequire();
         $subTitleRequire = $this->getSubTitleRequire();
         

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>工具箱/学园都市</title>
+    <title><?php global $gSitename;echo $gSitename;?></title>
     <meta charset="UTF-8" />
     </head>
     <body>
-        <h1>工具箱 - 学园都市</h1>
+        <h1><?php echo $gSitename; ?></h1>
         <h2>物理学公式计算</h2>
         <table border="1" style="float:right;border-collapse:collapse;">
             <tr>

@@ -22,11 +22,12 @@
 
 function routing($in){
     global $gHttpRequire;
+	global $gSitename;
     $action = $gHttpRequire['action'];
     if ($action == 'result'){
         require_once 'health/index.php';
     }else{
-        require_once DOCS_PATH.'health/'.$in.'.html';
+        require_once DOCS_PATH.'health/'.$in.'.php';
     }
 }
 

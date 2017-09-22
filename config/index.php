@@ -1,6 +1,6 @@
 <?php
-/**
- * 本文件用来路由哈希函数计算的请求
+/** 
+ * 软件的安装和配置脚本文件
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +20,14 @@
  * @file
  */
 
-global $gHttpRequire;
-$action = $gHttpRequire['action'];
+/*检测PHP版本*/
+require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
 
-if ($action == 'result'){
-    require_once 'encrypt/index.php';
-}else{
-    require_once DOCS_PATH.'encrypt/index.php';
-}
+require_once __DIR__ . '/../includes/Installer.php';
+$Installer = new Installer();
+
+/**
+ * @var string $HttpRequest 获取查询字符串的page参数
+ */
+$HttpRequest = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
+$Installer->pathRouting($HttpRequest);

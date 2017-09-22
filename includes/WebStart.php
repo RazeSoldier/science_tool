@@ -28,6 +28,14 @@ $gRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
 /*预加载配置*/
 require_once "$IP/includes/PreConfigSetup.php";
 
+/*加载配置文件*/
+if (file_exists(CONFIG_FILE)){
+	require_once CONFIG_FILE;
+}else{
+	require_once INCLUDES_PATH.'/NoLocalSettings.php';
+	die (1);
+}
+
 /**
  * 获取url中的查询字串符
  * @var array gHttpRequire URL中所有的查询字串符
