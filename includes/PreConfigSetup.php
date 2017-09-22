@@ -35,6 +35,11 @@ require_once INCLUDES_PATH.'DefaultSettings.php';
 /**
  * 实例化checkError类
  * 
- * @var string gCheckError 将checkError对象存储到全局变量里
+ * @var string $gCheckError 将checkError对象存储到全局变量里
  */
 $gCheckError = new checkError();
+
+/**
+ * @var string $gCommonHead 通用的head代码
+ */
+$gCommonHead = '<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';

@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>长度收缩 - <?php echo $gSitename;?></title>
-        <meta charset="UTF-8" />
+        <?php global $gCommonHead;echo $gCommonHead;?>
     </head>
     <body>
         <h1>长度收缩计算</h1>

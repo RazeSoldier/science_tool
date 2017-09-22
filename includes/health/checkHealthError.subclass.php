@@ -28,8 +28,10 @@ class checkHealthError extends checkError{
     }
     
     public function return2(){
+        global $gCommonHead;
         $error2 = <<<Error2
 <title>错误 - 工具箱/学园都市</title>
+$gCommonHead
 <h1>错误！</h1>
 你输入了小于0的数值<br>
 <a href="JavaScript:history.go(-1)">返回</a>
