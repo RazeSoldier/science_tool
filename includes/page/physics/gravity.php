@@ -2,7 +2,7 @@
 <html>
     <head>
     <title>万有引力 - <?php echo $gSitename;?></title>
-    <meta charset="UTF-8" />
+    <?php global $gCommonHead;echo $gCommonHead;?>
     </head>
     <body>
         <h1>万有引力计算</h1>

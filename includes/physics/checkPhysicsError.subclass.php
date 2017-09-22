@@ -59,8 +59,10 @@ class checkPhysicsError extends checkError {
     
     /*返回错误码2*/
     public function return2(){
+        global $gCommonHead;
         $error2 = <<<Error2
 <title>错误 - {$this->getSiteName()}</title>
+$gCommonHead
 <h1>错误！</h1>
 你输入的数值小于等于0！<br>
 <a href="JavaScript:history.go(-1)">返回</a>
@@ -71,8 +73,10 @@ Error2;
     
     /*返回错误码21*/
     public function return21(){
+        global $gCommonHead;
         $error21 = <<<Error21
 <title>错误 - {$this->getSiteName()}</title>
+$gCommonHead
 <h1>错误！</h1>
 你输入的数值大于等于光速(299792458)！<br>
 <a href="JavaScript:history.go(-1)">返回</a>

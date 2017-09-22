@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>相对论质量 - <?php echo $gSitename;?></title>
-        <meta charset="UTF-8" />
+        <?php global $gCommonHead;echo $gCommonHead;?>
     </head>
     <body>
         <h1>相对论质量计算</h1>
