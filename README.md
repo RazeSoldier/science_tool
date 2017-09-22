@@ -52,8 +52,8 @@ root
     |AutoLoader.php
     |DefaultSettings.php
     |Defines.php
-	|Installer.php
-	|NoLocalSettings.php
+    |Installer.php
+    |NoLocalSettings.php
     |PHPVersionCheck.php
     |PathRouter.php
     |PreConfigSetup.php
