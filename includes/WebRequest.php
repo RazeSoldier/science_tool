@@ -1,6 +1,6 @@
 <?php
 /** 
- * 本文件初始化来自用户的web请求
+ * 本文件处理http请求
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,28 +20,24 @@
  * @file
  */
 
-/**
- * @var float 请求开始的时间戳，微秒级别
- */
-$gRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
-
-/*预加载配置*/
-require_once "$IP/includes/PreConfigSetup.php";
-
-/*加载配置文件*/
-if (file_exists(CONFIG_FILE)){
-	require_once CONFIG_FILE;
-}else{
-	require_once INCLUDES_PATH.'/NoLocalSettings.php';
-	die (1);
+class WebRequest{
+    /**
+     * @var string POST请求
+     */
+    private $postRequest;
+    
+    /**
+     * @var string GET请求
+     */
+    private $getRequest;
+    
+    public function __construct() {
+        $this->postRequest = $_POST;
+        $this->getRequest = $_GET;
+    }
+    
+    public function getHttpRequire(){
+        $getRequest = $this->getRequest;
+        return $getRequest;
+    }
 }
-
-/**
- * 获取url中的查询字串符
- * @var array gHttpRequire URL中所有的查询字串符
- */
-$gHttpRequire = $gWebRequest->getHttpRequire();
-
-/*实例化PathRouter类*/
-$pathRouter = new PathRouter($gHttpRequire);
-$Routing = $pathRouter->Routing();
