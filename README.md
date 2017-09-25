@@ -57,6 +57,7 @@ root
     |PHPVersionCheck.php
     |PathRouter.php
     |PreConfigSetup.php
+    |WebRequest.php
     |WebStart.php
     |checkError.class.php
 |--physics

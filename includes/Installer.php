@@ -118,6 +118,7 @@ HTML;
 	
 	private function outputPage3(){
 		$post = filter_input_array(INPUT_POST);
+		$this->checkInstall($post);
 		$code = $this->getCode($post);
 		$content = <<<HTML
 <div>
@@ -197,5 +198,11 @@ CODE;
 <a href="JavaScript:history.go(-1)">返回上一页</a>或者
 <a href="index.php">返回首页</a>
 Error404;
+	}
+
+	private function checkInstall($value){
+		if (isset($value) == false){
+			echo '<script type="text/javascript">alert(\'非法访问!\');window.location.href=\'index.php?page=2\';</script>';
+		}
 	}
 }
