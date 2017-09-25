@@ -200,9 +200,15 @@ CODE;
 Error404;
 	}
 
+	/**
+	 = 检查用户访问是否非法
+	 *
+	 * @param string $value
+	 */
 	private function checkInstall($value){
 		if (isset($value) == false){
 			echo '<script type="text/javascript">alert(\'非法访问!\');window.location.href=\'index.php?page=2\';</script>';
+			die (1);
 		}
 	}
 }
