@@ -128,7 +128,7 @@ HTML;
 <textarea name="文本框" rows=10 cols=40 warp="hard" readonly>{$code}</textarea>
 </div>
 HTML;
-	$css = 'div{text-align:center} .infobox {
+	$css = 'div{text-align:center} .warning-infobox {
 		border: 2px solid #ff7f00;
 		margin: 0.5em;
 		clear: left;
@@ -234,7 +234,7 @@ Error404;
 		global $IP;
 		$filepath = $IP.$in_filepath;
 		if (file_exists($filepath) == false){
-			return '<div class="infobox"><b>警告</b><br><li id=>地址栏图标文件不存在</li></div>';
+			return '<div class="warning-infobox"><b>警告</b><br><li id=>地址栏图标文件不存在</li></div>';
 		}
 	}
 
