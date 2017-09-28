@@ -165,10 +165,10 @@ HTML;
 	 */
 	private function handler($post){
 		$Sitename = $post['set_Sitename'];
-		$Sitecion = $this->spliceFilePath($post['set_Siteicon']);
+		$SitecionPart = $this->getSitecionPart($post['set_Siteicon']);
 		$config = array(
 			'Sitename' => $Sitename,
-			'Sitecion' => $Sitecion
+			'SitecionPart' => $SitecionPart
 		);
 		return $config;
 	}
@@ -189,11 +189,28 @@ HTML;
 
 //网站名称 
 \$gSitename = '{$config['Sitename']}';
-
-//网站地址栏图标路径
-\$gSitecion = '{$config['Sitecion']}';
+{$config['SitecionPart']}
 CODE;
 	return $template;
+	}
+
+	/**
+	 * 获取$gSitexion配置的段落html代码
+	 *
+	 * 如果用户未指定Sitecion，则返回NULL
+	 *
+	 * @return string|NULL
+	 */
+	private function getSitecionPart($in){
+		if ($this->checkInputValueIsNotNull($in) == false){
+			return NULL;
+		}else{
+			$code = <<<CODE
+\n//网站地址栏图标路径
+\$gSitecion = {$this->spliceFilePath($in)};
+CODE;
+			return $code;
+		}
 	}
 	
 	/**
@@ -235,6 +252,21 @@ Error404;
 		$filepath = $IP.$in_filepath;
 		if (file_exists($filepath) == false){
 			return '<div class="warning-infobox"><b>警告</b><br><li id=>地址栏图标文件不存在</li></div>';
+		}
+	}
+
+	/**
+	 * 检查用户是否输入值
+	 *
+	 * 如果有，则返回原始值;如果没有，则返回NULL
+	 *
+	 * @param string|NULL $value
+	 */
+	private function checkInputValueIsNotNull($value){
+		if ($value == '' or ctype_space($value) == true){
+			return false;
+		}else{
+			return true;
 		}
 	}
 
