@@ -108,6 +108,7 @@ HTML;
 	<div>
 		<h2>安装脚本</h2>
 		网站名称:<input name="set_Sitename" type="text"><br>
+		网站地址栏图标路径:\$IP/ <input name="set_Siteicon" type="text"> <small>(请把图标文件放置到网站的目录下面，\$IP指软件当前的安装路径)</small><br>
 		<input name="submit" type="submit" value="提交">
 	</div>
 </form>
@@ -122,12 +123,17 @@ HTML;
 		$code = $this->getCode($post);
 		$content = <<<HTML
 <div>
-<h2>安装脚本</h2>
+<h2>安装脚本</h2>{$this->checkFileExist($post['set_Siteicon'])}
 配置已完成，请复制以下代码到软件的根目录并命名为LocalSettings.php<br>
 <textarea name="文本框" rows=10 cols=40 warp="hard" readonly>{$code}</textarea>
 </div>
 HTML;
-	$css = 'div{text-align:center}';
+	$css = 'div{text-align:center} .infobox {
+		border: 2px solid #ff7f00;
+		margin: 0.5em;
+		clear: left;
+		overflow: hidden;
+	}';
 	return $this->output($content, $css);
 	}
 	
@@ -159,8 +165,10 @@ HTML;
 	 */
 	private function handler($post){
 		$Sitename = $post['set_Sitename'];
+		$Sitecion = $this->spliceFilePath($post['set_Siteicon']);
 		$config = array(
-			'Sitename' => $Sitename
+			'Sitename' => $Sitename,
+			'Sitecion' => $Sitecion
 		);
 		return $config;
 	}
@@ -182,6 +190,8 @@ HTML;
 //网站名称 
 \$gSitename = '{$config['Sitename']}';
 
+//网站地址栏图标路径
+\$gSitecion = '{$config['Sitecion']}';
 CODE;
 	return $template;
 	}
@@ -210,5 +220,33 @@ Error404;
 			echo '<script type="text/javascript">alert(\'非法访问!\');window.location.href=\'index.php?page=2\';</script>';
 			die (1);
 		}
+	}
+
+
+	/**
+	 * 检查文件是否存在
+	 *
+	 * 如果不存在，返回一条错误信息到最终页
+	 *
+	 * @param string $in_filepath 用户提交的文件路径
+	 */
+	private function checkFileExist($in_filepath){
+		global $IP;
+		$filepath = $IP.$in_filepath;
+		if (file_exists($filepath) == false){
+			return '<div class="infobox"><b>警告</b><br><li id=>地址栏图标文件不存在</li></div>';
+		}
+	}
+
+	/**
+	 * 拼接用户传入的文件名
+	 *
+	 * @param string $in
+	 *
+	 * @return string
+	 */
+	private function spliceFilePath($in){
+		global $IP;
+		return $IP.$in;
 	}
 }
