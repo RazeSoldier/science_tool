@@ -22,6 +22,21 @@
  
 class Installer{
 	/**
+	 * @var array $getRequset GET请求的数组
+	 */
+	private $getRequest;
+
+	/**
+	 * @var array $postRequest POST请求的数组
+	 */
+	private $postRequest;
+
+	public function __construct(){
+		$this->getRequest = filter_input_array(INPUT_GET);
+		$this->postRequest = filter_input_array(INPUT_POST);
+	}
+
+	/**
 	 * 设置title
 	 *
 	 * @return string
@@ -62,7 +77,8 @@ class Installer{
 	 * 路由Web请求
 	 *
 	 */
-	public function pathRouting($HttpRequest){
+	public function pathRouting(){
+		$HttpRequest = $this->getRequest['page'];
 		if ($HttpRequest == null or $HttpRequest == 1){
 			$this->outputPage1();
 			$HttpRequest = 1;
