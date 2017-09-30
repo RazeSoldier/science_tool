@@ -40,8 +40,3 @@ require_once INCLUDES_PATH.'DefaultSettings.php';
 $gCheckError = new checkError();
 
 $gWebRequest = new WebRequest();
-
-/**
- * @var string $gCommonHead 通用的head代码
- */
-$gCommonHead = '<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';

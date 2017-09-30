@@ -22,6 +22,21 @@
  
 class Installer{
 	/**
+	 * @var array $getRequset GET请求的数组
+	 */
+	private $getRequest;
+
+	/**
+	 * @var array $postRequest POST请求的数组
+	 */
+	private $postRequest;
+
+	public function __construct(){
+		$this->getRequest = filter_input_array(INPUT_GET);
+		$this->postRequest = filter_input_array(INPUT_POST);
+	}
+
+	/**
 	 * 设置title
 	 *
 	 * @return string
@@ -62,7 +77,8 @@ class Installer{
 	 * 路由Web请求
 	 *
 	 */
-	public function pathRouting($HttpRequest){
+	public function pathRouting(){
+		$HttpRequest = $this->getRequest['page'];
 		if ($HttpRequest == null or $HttpRequest == 1){
 			$this->outputPage1();
 			$HttpRequest = 1;
@@ -108,6 +124,7 @@ HTML;
 	<div>
 		<h2>安装脚本</h2>
 		网站名称:<input name="set_Sitename" type="text"><br>
+		网站地址栏图标路径:\$IP/ <input name="set_Siteicon" type="text"> <small>(请把图标文件放置到网站的目录下面，\$IP指软件当前的安装路径)</small><br>
 		<input name="submit" type="submit" value="提交">
 	</div>
 </form>
@@ -118,15 +135,21 @@ HTML;
 	
 	private function outputPage3(){
 		$post = filter_input_array(INPUT_POST);
+		$this->checkInstall($post);
 		$code = $this->getCode($post);
 		$content = <<<HTML
 <div>
-<h2>安装脚本</h2>
+<h2>安装脚本</h2>{$this->checkFileExist($post['set_Siteicon'])}
 配置已完成，请复制以下代码到软件的根目录并命名为LocalSettings.php<br>
 <textarea name="文本框" rows=10 cols=40 warp="hard" readonly>{$code}</textarea>
 </div>
 HTML;
-	$css = 'div{text-align:center}';
+	$css = 'div{text-align:center} .warning-infobox {
+		border: 2px solid #ff7f00;
+		margin: 0.5em;
+		clear: left;
+		overflow: hidden;
+	}';
 	return $this->output($content, $css);
 	}
 	
@@ -158,8 +181,10 @@ HTML;
 	 */
 	private function handler($post){
 		$Sitename = $post['set_Sitename'];
+		$SitecionPart = $this->getSitecionPart($post['set_Siteicon']);
 		$config = array(
-			'Sitename' => $Sitename
+			'Sitename' => $Sitename,
+			'SitecionPart' => $SitecionPart
 		);
 		return $config;
 	}
@@ -180,9 +205,28 @@ HTML;
 
 //网站名称 
 \$gSitename = '{$config['Sitename']}';
-
+{$config['SitecionPart']}
 CODE;
 	return $template;
+	}
+
+	/**
+	 * 获取$gSitexion配置的段落html代码
+	 *
+	 * 如果用户未指定Sitecion，则返回NULL
+	 *
+	 * @return string|NULL
+	 */
+	private function getSitecionPart($in){
+		if ($this->checkInputValueIsNotNull($in) == false){
+			return NULL;
+		}else{
+			$code = <<<CODE
+\n//网站地址栏图标路径
+\$gSitecion = {$this->spliceFilePath($in)};
+CODE;
+			return $code;
+		}
 	}
 	
 	/**
@@ -197,5 +241,60 @@ CODE;
 <a href="JavaScript:history.go(-1)">返回上一页</a>或者
 <a href="index.php">返回首页</a>
 Error404;
+	}
+
+	/**
+	 * 检查用户访问是否非法
+	 *
+	 * @param string $value
+	 */
+	private function checkInstall($value){
+		if (isset($value) == false){
+			echo '<script type="text/javascript">alert(\'非法访问!\');window.location.href=\'index.php?page=2\';</script>';
+			die (1);
+		}
+	}
+
+
+	/**
+	 * 检查文件是否存在
+	 *
+	 * 如果不存在，返回一条错误信息到最终页
+	 *
+	 * @param string $in_filepath 用户提交的文件路径
+	 */
+	private function checkFileExist($in_filepath){
+		global $IP;
+		$filepath = $IP.$in_filepath;
+		if (file_exists($filepath) == false){
+			return '<div class="warning-infobox"><b>警告</b><br><li id=>地址栏图标文件不存在</li></div>';
+		}
+	}
+
+	/**
+	 * 检查用户是否输入值
+	 *
+	 * 如果有，则返回原始值;如果没有，则返回NULL
+	 *
+	 * @param string|NULL $value
+	 */
+	private function checkInputValueIsNotNull($value){
+		if ($value == '' or ctype_space($value) == true){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	/**
+	 * 拼接用户传入的文件名
+	 *
+	 * @param string $in
+	 *
+	 * @return string
+	 */
+	private function spliceFilePath($in){
+		global $IP;
+		return $IP.$in;
 	}
 }

@@ -26,7 +26,13 @@
  */
 
 /**
- * 网站名称
+ * @var string $Sitename 网站名称
  * @since 0.3.0
  */
 $gSitename = '工具箱';
+
+/**
+ * @var string $gSiteicon 网站地址栏图标
+ * @since 0.3.2
+ */
+$gSiteicon = NULL;

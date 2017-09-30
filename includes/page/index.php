@@ -2,7 +2,7 @@
 <html>
     <head>
     <title><?php global $gSitename;echo $gSitename;?></title>
-    <meta charset="UTF-8" />
+    <?php global $gCommonHead;echo $gCommonHead;?>
     </head>
     <body>
         <h1><?php echo $gSitename; ?></h1>

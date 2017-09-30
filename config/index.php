@@ -23,11 +23,10 @@
 /*检测PHP版本*/
 require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
 
+/*定义软件的根目录*/
+$IP = dirname(__DIR__) . '\\';
+
 require_once __DIR__ . '/../includes/Installer.php';
 $Installer = new Installer();
 
-/**
- * @var string $HttpRequest 获取查询字符串的page参数
- */
-$HttpRequest = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
-$Installer->pathRouting($HttpRequest);
+$Installer->pathRouting();

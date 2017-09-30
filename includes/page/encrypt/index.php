@@ -2,8 +2,7 @@
 <html>
     <head>
         <title>哈希函数计算 - <?php echo $gSitename;?></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php global $gCommonHead;echo $gCommonHead;?>
         <script type="text/javascript">
             function onclickAction(id){
                 var arr = new Array('md2', 'md4', 'md5', 'sha1', 'sha224', 'sha256', 'sha384', 'sha512');
