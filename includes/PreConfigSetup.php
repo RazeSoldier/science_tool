@@ -40,3 +40,8 @@ require_once INCLUDES_PATH.'DefaultSettings.php';
 $gCheckError = new checkError();
 
 $gWebRequest = new WebRequest();
+
+// 加载composer的自动加载器，如果存在的话
+if ( is_readable( "$IP/vendor/autoload.php" ) ) {
+	require_once "$IP/vendor/autoload.php";
+}
