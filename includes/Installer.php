@@ -111,15 +111,25 @@ class Installer{
 	 *
 	 */
 	private function outputPage1(){
+	    if (file_exists($this->IP.'LocalSettings.php')){
 		$content = <<<HTML
 <div>
-	<h2>安装脚本</h2>
-	欢迎使用本软件，science tool。<br>
-	<a href="/config/index.php?page=2">点此</a>开始安装软件。
+    <h2>安装脚本</h2>
+    欢迎使用本软件，science tool。<br>
+    <a href="/config/index.php?page=2">点此</a>开始安装软件。
 </div>
 HTML;
-		$css = 'div{text-align:center}';
-		return $this->output($content, $css);
+	    }else{
+		$content = <<<HTML
+<div>
+    <h2>安装脚本</h2>
+    LocalSettings.php已存在<br>
+    <a href="/config/index.php?page=2">依旧配置</a>
+</div>
+HTML;
+	    }
+	    $css = 'div{text-align:center}';
+	    return $this->output($content, $css);
 	}
 	
 	/**
