@@ -139,7 +139,7 @@ HTML;
 		$code = $this->getCode($post);
 		$content = <<<HTML
 <div>
-<h2>安装脚本</h2>{$this->checkFileExist($post['set_Siteicon'])}
+<h2>安装脚本</h2>{$this->setWarningInfobox($post)}
 配置已完成，请复制以下代码到软件的根目录并命名为LocalSettings.php<br>
 <textarea name="文本框" rows=10 cols=40 warp="hard" readonly>{$code}</textarea>
 </div>
@@ -242,6 +242,33 @@ CODE;
 <a href="index.php">返回首页</a>
 Error404;
 	}
+	
+	/**
+	 * 定义错误信息框
+	 * 
+	 * @param array $post POST请求数组
+	 * @return string|NULL
+	 */
+	private function setWarningInfobox($post){
+	    $checkFileExist = $this->checkFileExist($post['set_Siteicon']);
+	    $check = array(
+		$checkFileExist
+	    );
+	    
+	    $error = NULL; //声明一个空值的变量
+	    foreach ($check as $value) {
+		/*如果数组$check其中一个元素有值，为$error赋true*/
+		if (isset($value)){
+		    $error = true;
+		}
+	    }
+	    
+	    if ($error){
+		$content = $checkFileExist;
+		$WarningInfobox = '<div class="warning-infobox"><b>警告</b>'.$content.'</div>';
+		return $WarningInfobox;
+	    }
+	}
 
 	/**
 	 * 检查用户访问是否非法
@@ -267,7 +294,7 @@ Error404;
 		global $IP;
 		$filepath = $IP.$in_filepath;
 		if (file_exists($filepath) == false){
-			return '<div class="warning-infobox"><b>警告</b><br><li id=>地址栏图标文件不存在</li></div>';
+			return '<li>地址栏图标文件不存在</li>';
 		}
 	}
 
