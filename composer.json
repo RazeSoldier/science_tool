@@ -1,0 +1,15 @@
+{
+	"name": "science_tool/core",
+	"license": "GPL-2.0+",
+	"authors": [
+        {
+            "name": "Raze Soldier",
+            "email": "liguangjie4399@hotmail.com",
+            "homepage": "https://www.razesoldier.cn",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "ezyang/htmlpurifier": "^4.9"
+    }
+}
