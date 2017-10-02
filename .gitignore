@@ -4,6 +4,9 @@
 /composer.local.json
 /composer.phar
 
+# Software install & usage
+/LocalSettings.php
+
 # Misc
 /favicon.ico
 /.htaccess
