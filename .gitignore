@@ -1,0 +1,9 @@
+# Composer
+/vendor
+/composer.lock
+/composer.local.json
+/composer.phar
+
+# Misc
+/favicon.ico
+/.htaccess
