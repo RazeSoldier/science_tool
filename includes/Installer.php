@@ -226,15 +226,15 @@ CODE;
 	 * @return string|NULL
 	 */
 	private function getSitecionPart($in){
-		if ($this->checkInputValueIsNotNull($in) == false){
-			return NULL;
-		}else{
-			$code = <<<CODE
+	    if ($this->checkInputValueIsNotNull($in) == false){
+		return NULL;
+	    }else{
+		$code = <<<CODE
 \n//网站地址栏图标路径
-\$gSitecion = {$this->spliceFilePath($in)};
+\$gSitecion = '{$this->spliceFilePath($in)}';
 CODE;
-			return $code;
-		}
+		return $code;
+	    }
 	}
 	
 	/**
