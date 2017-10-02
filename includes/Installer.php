@@ -293,7 +293,7 @@ Error404;
 	private function checkFileExist($in_filepath){
 		global $IP;
 		$filepath = $IP.$in_filepath;
-		if (file_exists($filepath) == false){
+		if (file_exists($filepath) == false and $this->checkInputValueIsNotNull($in_filepath)){
 			return '<li>地址栏图标文件不存在</li>';
 		}
 	}
@@ -301,7 +301,7 @@ Error404;
 	/**
 	 * 检查用户是否输入值
 	 *
-	 * 如果有，则返回原始值;如果没有，则返回NULL
+	 * 如果有，则返回true;如果没有，则返回false
 	 *
 	 * @param string|NULL $value
 	 */
