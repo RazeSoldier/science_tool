@@ -22,6 +22,11 @@
  
 class Installer{
 	/**
+	 * @var string $IP 软件根目录路径
+	 */
+	private $IP;
+    
+	/**
 	 * @var array $getRequset GET请求的数组
 	 */
 	private $getRequest;
@@ -32,8 +37,11 @@ class Installer{
 	private $postRequest;
 
 	public function __construct(){
-		$this->getRequest = filter_input_array(INPUT_GET);
-		$this->postRequest = filter_input_array(INPUT_POST);
+	    global $IP;
+	    
+	    $this->IP = $IP;
+            $this->getRequest = filter_input_array(INPUT_GET);
+            $this->postRequest = filter_input_array(INPUT_POST);
 	}
 
 	/**
@@ -291,8 +299,7 @@ Error404;
 	 * @param string $in_filepath 用户提交的文件路径
 	 */
 	private function checkFileExist($in_filepath){
-		global $IP;
-		$filepath = $IP.$in_filepath;
+		$filepath = $this->IP.$in_filepath;
 		if (file_exists($filepath) == false and $this->checkInputValueIsNotNull($in_filepath)){
 			return '<li>地址栏图标文件不存在</li>';
 		}
@@ -321,7 +328,6 @@ Error404;
 	 * @return string
 	 */
 	private function spliceFilePath($in){
-		global $IP;
-		return $IP.$in;
+		return $this->IP.$in;
 	}
 }
