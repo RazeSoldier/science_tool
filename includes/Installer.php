@@ -241,7 +241,7 @@ CODE;
 	    }else{
 		$code = <<<CODE
 \n//网站地址栏图标路径
-\$gSitecion = '{$this->spliceFilePath($in)}';
+\$gSitecion = \$IP.'$in';
 CODE;
 		return $code;
 	    }
@@ -328,16 +328,5 @@ Error404;
 		}else{
 			return true;
 		}
-	}
-
-	/**
-	 * 拼接用户传入的文件名
-	 *
-	 * @param string $in
-	 *
-	 * @return string
-	 */
-	private function spliceFilePath($in){
-		return $this->IP.$in;
 	}
 }
