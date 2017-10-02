@@ -134,7 +134,7 @@ HTML;
 	}
 	
 	private function outputPage3(){
-		$post = filter_input_array(INPUT_POST);
+		$post = $this->postRequest;
 		$this->checkInstall($post);
 		$code = $this->getCode($post);
 		$content = <<<HTML
