@@ -35,8 +35,10 @@ class PathRouter {
      * @return string 查询URL中的title参数
      */
     private function getTitleParm(){
-        $titleParm = $this->httpRequest['title'];
-        return $titleParm;
+	if (array_key_exists('title', $this->httpRequest)){
+	    $titleParm = $this->httpRequest['title'];
+	    return $titleParm;
+	}
     }
 
     /**
