@@ -123,8 +123,10 @@ Error11;
     
     /*返回12错误码*/
     public function return12(){
+        global $gCommonHead;
         $error12 = <<<Error12
 <title>错误 - {$this->getSiteName()}</title>
+$gCommonHead
 <h1>错误！</h1>
 你未输入所有计算所需要的数值<br>
 <a href="JavaScript:history.go(-1)">返回</a>

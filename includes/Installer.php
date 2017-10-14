@@ -111,15 +111,25 @@ class Installer{
 	 *
 	 */
 	private function outputPage1(){
+	    if (file_exists($this->IP.'LocalSettings.php')){
 		$content = <<<HTML
 <div>
-	<h2>安装脚本</h2>
-	欢迎使用本软件，science tool。<br>
-	<a href="/config/index.php?page=2">点此</a>开始安装软件。
+    <h2>安装脚本</h2>
+    欢迎使用本软件，science tool。<br>
+    <a href="/config/index.php?page=2">点此</a>开始安装软件。
 </div>
 HTML;
-		$css = 'div{text-align:center}';
-		return $this->output($content, $css);
+	    }else{
+		$content = <<<HTML
+<div>
+    <h2>安装脚本</h2>
+    LocalSettings.php已存在<br>
+    <a href="/config/index.php?page=2">依旧配置</a>
+</div>
+HTML;
+	    }
+	    $css = 'div{text-align:center}';
+	    return $this->output($content, $css);
 	}
 	
 	/**
@@ -231,7 +241,7 @@ CODE;
 	    }else{
 		$code = <<<CODE
 \n//网站地址栏图标路径
-\$gSitecion = '{$this->spliceFilePath($in)}';
+\$gSitecion = \$IP.'$in';
 CODE;
 		return $code;
 	    }
@@ -318,16 +328,5 @@ Error404;
 		}else{
 			return true;
 		}
-	}
-
-	/**
-	 * 拼接用户传入的文件名
-	 *
-	 * @param string $in
-	 *
-	 * @return string
-	 */
-	private function spliceFilePath($in){
-		return $this->IP.$in;
 	}
 }

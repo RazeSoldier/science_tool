@@ -39,15 +39,14 @@ if (file_exists(CONFIG_FILE)){
 /**
  * @var string $gCommonHead 通用的head代码
  */
-$gCommonHead = '<link rel="shortcut icon" href="'.$gSitecion.'
-" /><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';
+$gCommonHead = CommonHTML::setCommonHead();
 
 /**
  * 获取url中的查询字串符
  * @var array gHttpRequire URL中所有的查询字串符
  */
-$gHttpRequire = $gWebRequest->getHttpRequire();
+$gHttpRequest = $gWebRequest->getHttpRequest();
 
 /*实例化PathRouter类*/
-$pathRouter = new PathRouter($gHttpRequire);
+$pathRouter = new PathRouter($gHttpRequest);
 $Routing = $pathRouter->Routing();

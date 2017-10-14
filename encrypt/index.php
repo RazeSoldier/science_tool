@@ -22,9 +22,8 @@ $titletype = $enerypt -> getTitle(); //大写计算类型
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php
+	echo $gCommonHead;
         echo "<title>{$titletype}函数计算结果 - {$gSitename}</title>";
         ?>
     </head>

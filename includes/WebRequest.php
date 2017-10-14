@@ -36,7 +36,7 @@ class WebRequest{
         $this->getRequest = $_GET;
     }
     
-    public function getHttpRequire(){
+    public function getHttpRequest(){
         $getRequest = $this->getRequest;
         return $getRequest;
     }

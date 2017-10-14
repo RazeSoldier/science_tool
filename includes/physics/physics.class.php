@@ -74,9 +74,10 @@ HTML;
         
         /*生成head*/
         global $gSitename;
-        $title = "<title>{$titletype}计算结果 - $gSitename</title>";
+	global $gCommonHead;
+	$title = "<title>{$titletype}计算结果 - $gSitename</title>";
         $head = '<head>'
-                .'<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0">'
+                .$gCommonHead
                 .$title
                 .'</head>';
         

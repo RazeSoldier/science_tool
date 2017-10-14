@@ -20,8 +20,8 @@
  * @file
  */
 
-global $gHttpRequire;
-$action = $gHttpRequire['action'];
+global $gHttpRequest;
+$action = $gHttpRequest['action'];
 
 if ($action == 'result'){
     require_once 'encrypt/index.php';
