@@ -21,9 +21,9 @@
  */
 
 function routing($in){
-    global $gHttpRequire;
-	global $gSitename;
-    $action = $gHttpRequire['action'];
+    global $gHttpRequest;
+    global $gSitename;
+    $action = $gHttpRequest['action'];
     if ($action == 'result'){
         require_once 'physics/index.php';
     }else{
@@ -31,7 +31,7 @@ function routing($in){
     }
 }
 
-switch ($subTitleRequire) {
+switch ($subTitleRequest) {
     case 'gravity':
         routing('gravity');
         break;

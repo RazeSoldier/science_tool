@@ -21,11 +21,12 @@
  */
 
 class PathRouter {
-    private $httprequire; //URL中所有的查询字符串
+    private $httpRequest; //URL中所有的查询字符串
+    
     private $titleParm; //查询字符串中的title参数
 
-    public function __construct($httprequire) {
-        $this->httprequire = $httprequire;
+    public function __construct($httpRequest) {
+        $this->httpRequest = $httpRequest;
     }
     
     /**
@@ -34,7 +35,7 @@ class PathRouter {
      * @return string 查询URL中的title参数
      */
     private function getTitleParm(){
-        $titleParm = $this->httprequire['title'];
+        $titleParm = $this->httpRequest['title'];
         return $titleParm;
     }
 
@@ -59,9 +60,9 @@ class PathRouter {
      * 
      * @return array 包含所有title参数的数组
      */
-    private function explodeTitleRequire(){
-        $splitTitleRequire = explode('/', $this->getTitleParm());
-        return $splitTitleRequire;
+    private function explodeTitleRequest(){
+        $splitTitleRequest = explode('/', $this->getTitleParm());
+        return $splitTitleRequest;
     }
     
     /**
@@ -69,9 +70,9 @@ class PathRouter {
      * 
      * @return string title参数中的主请求
      */
-    private function getMainTitleRequire(){
-        $mainTitleRequire = $this->explodeTitleRequire()[0];
-        return $mainTitleRequire;
+    private function getMainTitleRequest(){
+        $mainTitleRequest = $this->explodeTitleRequest()[0];
+        return $mainTitleRequest;
     }
     
     /**
@@ -79,18 +80,18 @@ class PathRouter {
      * 
      * @return string title参数中的子请求
      */
-    private function getSubTitleRequire(){
-        $subTitleRequire = $this->explodeTitleRequire()[1];
-        return $subTitleRequire;
+    private function getSubTitleRequest(){
+        $subTitleRequest = $this->explodeTitleRequest()[1];
+        return $subTitleRequest;
     }
 
     /**
      * 路由主请求
      */
     private function MainRouter(){
-		global $gSitename;
-        $mainTitleRequire = $this->getMainTitleRequire();
-        $subTitleRequire = $this->getSubTitleRequire();
+	global $gSitename;
+        $mainTitleRequire = $this->getMainTitleRequest();
+        $subTitleRequest = $this->getSubTitleRequest();
         
         switch ($mainTitleRequire) {
             case 'physics':

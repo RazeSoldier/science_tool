@@ -46,8 +46,8 @@ $gCommonHead = '<link rel="shortcut icon" href="'.$gSitecion.'
  * 获取url中的查询字串符
  * @var array gHttpRequire URL中所有的查询字串符
  */
-$gHttpRequire = $gWebRequest->getHttpRequire();
+$gHttpRequest = $gWebRequest->getHttpRequest();
 
 /*实例化PathRouter类*/
-$pathRouter = new PathRouter($gHttpRequire);
+$pathRouter = new PathRouter($gHttpRequest);
 $Routing = $pathRouter->Routing();
