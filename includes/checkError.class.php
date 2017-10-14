@@ -153,8 +153,9 @@ Error3;
     public function return404(){
         http_response_code(404);
         global $gCommonHead;
-        echo <<<Error404
-<title>页面不存在 - {$this->getSiteName()}</title>
+	global $gSitename;
+	echo <<<Error404
+<title>页面不存在 - {$gSitename}</title>
 $gCommonHead
 <h1>页面不存在</h1>
 <a href="JavaScript:history.go(-1)">返回上一页</a>或者
