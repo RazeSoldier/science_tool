@@ -23,11 +23,13 @@
 function routing($in){
     global $gHttpRequest;
     global $gSitename;
-    $action = $gHttpRequest['action'];
-    if ($action == 'result'){
-        require_once 'health/index.php';
+    if (array_key_exists('action', $gHttpRequest)){
+	$action = $gHttpRequest['action'];
+	if ($action == 'result'){
+	    require_once 'health/index.php';
+	}
     }else{
-        require_once DOCS_PATH.'health/'.$in.'.php';
+	require_once DOCS_PATH.'health/'.$in.'.php';
     }
 }
 

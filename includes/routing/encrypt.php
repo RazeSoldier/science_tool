@@ -21,10 +21,11 @@
  */
 
 global $gHttpRequest;
-$action = $gHttpRequest['action'];
-
-if ($action == 'result'){
-    require_once 'encrypt/index.php';
+if (array_key_exists('action', $gHttpRequest)){
+    $action = $gHttpRequest['action'];
+    if ($action == 'result'){
+	require_once 'encrypt/index.php';
+    }
 }else{
     require_once DOCS_PATH.'encrypt/index.php';
 }
