@@ -80,11 +80,15 @@ class PathRouter {
     /**
      * 获取title参数中的子请求
      * 
-     * @return string title参数中的子请求
+     * @return string|NULL title参数中的子请求
      */
     private function getSubTitleRequest(){
-        $subTitleRequest = $this->explodeTitleRequest()[1];
-        return $subTitleRequest;
+        if (array_key_exists(1, $this->explodeTitleRequest())){
+            $subTitleRequest = $this->explodeTitleRequest()[1];
+            return $subTitleRequest;
+        }else{
+            return NULL;
+        }
     }
 
     /**
