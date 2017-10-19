@@ -221,6 +221,11 @@ HTML;
  * @file
  */
 
+// 防止外部直接访问
+if (!defined('SCIENCE_TOOL')){
+	die ();
+}
+
 //网站名称 
 \$gSitename = '{$config['Sitename']}';
 {$config['SitecionPart']}
