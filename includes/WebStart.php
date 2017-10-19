@@ -25,6 +25,11 @@
  */
 $gRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
 
+/**
+ * @const boolean 定义web入口点，请勿移动此行到includes/Defines.php
+ */
+define('SCIENCE_TOOL', true);
+
 /*预加载配置*/
 require_once "$IP/includes/PreConfigSetup.php";
 
