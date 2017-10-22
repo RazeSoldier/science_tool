@@ -24,7 +24,7 @@
 require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
 
 /*定义软件的根目录*/
-$IP = dirname(__DIR__) . '\\';
+$IP = dirname(__DIR__);
 
 require_once __DIR__ . '/../includes/Installer.php';
 $Installer = new Installer();
