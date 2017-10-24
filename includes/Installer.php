@@ -38,7 +38,7 @@ class Installer{
 
 	public function __construct(){
 	    global $IP;
-	    
+
 	    $this->IP = $IP;
             $this->getRequest = filter_input_array(INPUT_GET);
             $this->postRequest = filter_input_array(INPUT_POST);
@@ -111,7 +111,7 @@ class Installer{
 	 *
 	 */
 	private function outputPage1(){
-	    if (file_exists($this->IP.'LocalSettings.php')){
+	    if (!file_exists($this->IP.'/LocalSettings.php')){
 		$content = <<<HTML
 <div>
     <h2>安装脚本</h2>
@@ -220,6 +220,11 @@ HTML;
  *
  * @file
  */
+
+// 防止外部直接访问
+if (!defined('SCIENCE_TOOL')){
+	die ();
+}
 
 //网站名称 
 \$gSitename = '{$config['Sitename']}';

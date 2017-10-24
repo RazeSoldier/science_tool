@@ -23,11 +23,13 @@
 function routing($in){
     global $gHttpRequest;
     global $gSitename;
-    $action = $gHttpRequest['action'];
-    if ($action == 'result'){
-        require_once 'physics/index.php';
+    if (array_key_exists('action', $gHttpRequest)){
+	$action = $gHttpRequest['action'];
+	if ($action == 'result'){
+	    require_once 'physics/index.php';
+	}
     }else{
-        require_once DOCS_PATH.'physics/'.$in.'.php';
+	require_once DOCS_PATH.'physics/'.$in.'.php';
     }
 }
 
