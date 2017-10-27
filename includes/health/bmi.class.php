@@ -10,7 +10,7 @@ class BMI {
 
     public function __construct($weight,$height){ //获取外部数据
         $this -> m = $weight;
-        $this -> h = $height / 100;
+        $this -> h = (integer)$height / 100;
         $this -> arr = array(
             1 => $this -> m,
             2 => $height

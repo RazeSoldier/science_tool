@@ -151,7 +151,7 @@ Error3;
 
     /*返回404错误码并且返回404错误信息*/
     public function return404(){
-        http_response_code(404);
+        HttpStatus::header(404);
         global $gCommonHead;
 	global $gSitename;
 	echo <<<Error404
@@ -165,7 +165,7 @@ Error404;
     
     /*返回405错误码并且返回405错误信息*/
     public function return405(){
-        http_response_code(405);
+        HttpStatus::header(405);
         global $gCommonHead;
         echo <<<Error405
 <title>操作不存在 - {$this->getSiteName()}</title>
@@ -178,6 +178,7 @@ Error405;
     
     /*返回500错误码*/
     public function return500(){
+	HttpStatus::header(500);
         global $gCommonHead;
         $error500 = <<<Error500
 $gCommonHead

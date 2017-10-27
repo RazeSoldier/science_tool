@@ -11,9 +11,10 @@ $checkerror = new checkEncryptError();
 $checkerror -> checkRadioValue($type);
 
 $value = filter_input(INPUT_POST, $type); //获取用户输入的数值
+$capitalOutput = filter_input(INPUT_POST, 'capital'); //获得是否大写输出文本的值
 
 require_once INCLUDES_PATH.'encrypt/encrypt.class.php';
-$enerypt = new enerypt($type, $value);
+$enerypt = new enerypt($type, $value, $capitalOutput);
 $space = $enerypt -> checkSpace($value); //检查用户是否输入了文本或是否输入了空格
 $result = $enerypt -> Output();
 
