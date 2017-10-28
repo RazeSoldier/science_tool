@@ -31,7 +31,7 @@ $gRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
 define('SCIENCE_TOOL', true);
 
 /*预加载配置*/
-require_once "$IP/includes/PreConfigSetup.php";
+require_once "$IP/includes/Setup.php";
 
 /*加载配置文件*/
 if (file_exists(CONFIG_FILE)){
