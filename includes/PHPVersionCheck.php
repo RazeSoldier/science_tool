@@ -63,11 +63,22 @@ class PHPVersionCheck{
     }
     
     /**
-     * 设置输出页面
+     * 检查依赖。
+     * 
+     * @return int 如果vendor/autoload.php文件不存在，返回1
+     */
+    function checkVendorExistence(){
+	if (!file_exists(dirname( __FILE__ ).'/../vendor/autoload.php')){
+	    return 1;
+	}
+    }
+    
+    /**
+     * 设置PHP版本不符合要求的输出页面
      * 
      * @return string
      */
-    function setOutputHTML(){
+    function phpErrorOutputHTML(){
         $finalOutput = <<<HTML
 <!DOCTYPE html>
 <html>
@@ -86,17 +97,46 @@ HTML;
         
         return $finalOutput;
     }
+    
+    /**
+     * 设置依赖不满足要求的输出页面
+     * 
+     * @return string
+     */
+    function vendorErrorOutputHTML(){
+	$finalOutput = <<<HTML
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>缺少依赖</title>
+    </head>
+    <body>
+	<h1>内部错误</h1>
+	    您缺少一些外部依赖关系，请使用<a href="http://www.phpcomposer.com">composer</a>来安装依赖。
+    </body>
+</html>
+HTML;
+	return $finalOutput;
+    }
             
     function returnError(){
-        if ($this->checkVersion() == 1){
+        if ($this->checkVersion() === 1){
             header('HTTP/1.0 500 Internal Error');
             // Don't cache error pages!  They cause no end of trouble...
             header( 'Cache-control: none' );
             header( 'Pragma: no-cache' );
             
-            echo $this->setOutputHTML();
+            echo $this->phpErrorOutputHTML();
             die (1);
-        }
+        }else if($this->checkVendorExistence() === 1){
+	    header('HTTP/1.0 500 Internal Error');
+            // Don't cache error pages!  They cause no end of trouble...
+            header( 'Cache-control: none' );
+            header( 'Pragma: no-cache' );
+	    
+	    echo $this->vendorErrorOutputHTML();
+	}
     }
 } 
 
