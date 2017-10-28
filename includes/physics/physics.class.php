@@ -24,14 +24,16 @@ abstract class physics {
                 $titletype = '史瓦西半径';
                 $input = '天体质量:'.$in.' kg';
                 $resultunit = 'm';
+		$ps = NULL;
                 break;
             case 'gravity':
                 $titletype = '万有引力';
                 $input = <<<HTML
-一个物体的质量:{$in['m1']} kg</br>
-另一个物体的质量:{$in['m2']} kg</br>
+一个物体的质量:{$in['m1']} kg<br>
+另一个物体的质量:{$in['m2']} kg<br>
 两物体之间的距离:{$in['r']} m
 HTML;
+		$ps = NULL;
                 $resultunit = 'N';
                 break;
             case 'relativistic_mass':

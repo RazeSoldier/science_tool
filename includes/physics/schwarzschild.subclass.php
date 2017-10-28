@@ -40,6 +40,6 @@ class schwarzschild extends physics{
         $this -> checkError();
         
         $output = parent::getOutput('schwarzschild', $this -> in_sm, $this -> getValue());
-        echo $output;
+        echo gfFilterHTML($output);
     }
 }

@@ -52,6 +52,12 @@ $gCommonHead = CommonHTML::setCommonHead();
  */
 $gHttpRequest = $gWebRequest->getHttpRequest();
 
+/**
+ * 实例化HTMLPurifier类
+ * @var object HTMLPurifier对象
+ */
+$gPurifier = new HTMLPurifier($HPconfig);
+
 /*实例化PathRouter类*/
 $pathRouter = new PathRouter($gHttpRequest);
 $Routing = $pathRouter->Routing();

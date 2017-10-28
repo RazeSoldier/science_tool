@@ -64,6 +64,6 @@ class gravity extends physics{
             'r' => $this -> in_r
         );
         $output = parent::getOutput('gravity', $in, $this -> getValue());
-        echo $output;
+        echo gfFilterHTML($output);
     }
 }
