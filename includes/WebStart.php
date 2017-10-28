@@ -25,15 +25,39 @@
  */
 $gRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
 
+/**
+ * @const boolean 定义web入口点，请勿移动此行到includes/Defines.php
+ */
+define('SCIENCE_TOOL', true);
+
 /*预加载配置*/
 require_once "$IP/includes/PreConfigSetup.php";
+
+/*加载配置文件*/
+if (file_exists(CONFIG_FILE)){
+	require_once CONFIG_FILE;
+}else{
+	require_once INCLUDES_PATH.'/NoLocalSettings.php';
+	die (1);
+}
+
+/**
+ * @var string $gCommonHead 通用的head代码
+ */
+$gCommonHead = CommonHTML::setCommonHead();
 
 /**
  * 获取url中的查询字串符
  * @var array gHttpRequire URL中所有的查询字串符
  */
-$gHttpRequire = filter_input_array(INPUT_GET);
+$gHttpRequest = $gWebRequest->getHttpRequest();
+
+/**
+ * 实例化HTMLPurifier类
+ * @var object HTMLPurifier对象
+ */
+$gPurifier = new HTMLPurifier($HPconfig);
 
 /*实例化PathRouter类*/
-$pathRouter = new PathRouter($gHttpRequire);
+$pathRouter = new PathRouter($gHttpRequest);
 $Routing = $pathRouter->Routing();

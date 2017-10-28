@@ -152,8 +152,7 @@ class frequency_wavelength extends physics {
     final public function finalOutput(){
         $this -> checkError();
         $html = $this -> getHTML();
-
-        echo <<<HTML
+	$output = <<<HTML
 <!DOCTYPE html>
 <html>
     <head>
@@ -169,5 +168,6 @@ class frequency_wavelength extends physics {
         {$html['reltype']}:{$html['value']} {$html['relunit']}
     </body>
 HTML;
+	echo gfFilterHTML($output);
     }
 }

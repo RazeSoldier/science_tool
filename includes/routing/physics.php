@@ -21,17 +21,19 @@
  */
 
 function routing($in){
-    global $gHttpRequire;
-	global $gSitename;
-    $action = $gHttpRequire['action'];
-    if ($action == 'result'){
-        require_once 'physics/index.php';
+    global $gHttpRequest;
+    global $gSitename;
+    if (array_key_exists('action', $gHttpRequest)){
+	$action = $gHttpRequest['action'];
+	if ($action == 'result'){
+	    require_once 'physics/index.php';
+	}
     }else{
-        require_once DOCS_PATH.'physics/'.$in.'.php';
+	require_once DOCS_PATH.'physics/'.$in.'.php';
     }
 }
 
-switch ($subTitleRequire) {
+switch ($subTitleRequest) {
     case 'gravity':
         routing('gravity');
         break;

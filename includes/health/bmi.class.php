@@ -10,7 +10,7 @@ class BMI {
 
     public function __construct($weight,$height){ //获取外部数据
         $this -> m = $weight;
-        $this -> h = $height / 100;
+        $this -> h = (integer)$height / 100;
         $this -> arr = array(
             1 => $this -> m,
             2 => $height
@@ -57,9 +57,10 @@ class BMI {
     
     private function getHead(){ //获取Head
         global $gSitename;
-        echo '<head>';
-        echo '<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';
-        echo "<title>BMI计算结果 - 健康/{$gSitename}</title>";
+	global $gCommonHead;
+	echo '<head>';
+        echo $gCommonHead;
+        echo "<title>BMI计算结果 - {$gSitename}</title>";
         echo '</head>';
     }
 

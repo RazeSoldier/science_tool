@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>史瓦西半径 - <?php echo $gSitename;?></title>
-        <meta charset="UTF-8" />
+        <?php global $gCommonHead;echo $gCommonHead;?>
     </head>
     <body>
         <h1>史瓦西半径计算</h1>

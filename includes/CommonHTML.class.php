@@ -1,11 +1,6 @@
 <?php
 /** 
- * 本文件包含了默认软件设置，请勿修改本文件
- * 
- *         NEVER EDIT THIS FILE
- *           永远不要编辑本文件
- * 
- * 要修改网站设置，请编辑‘LocalSettings.php’文件
+ * 共用HTML代码
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,14 +20,19 @@
  * @file
  */
 
-/**
- * @var string $Sitename 网站名称
- * @since 0.3.0
- */
-$gSitename = '工具箱';
-
-/**
- * @var string $gSiteicon 网站地址栏图标
- * @since 0.3.2
- */
-$gSiteicon = NULL;
+class CommonHTML{
+    /**
+     * 定义$gCommonHead的值
+     * 
+     * @return string
+     */
+    public static function setCommonHead(){
+	global $gSiteicon;
+	if (!empty($gSiteicon)){
+	    return '<link rel="shortcut icon" href="'.$gSiteicon
+		    .'" /><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';
+	}else{
+	    return '<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">';
+	}
+    }
+}

@@ -20,11 +20,12 @@
  * @file
  */
 
-global $gHttpRequire;
-$action = $gHttpRequire['action'];
-
-if ($action == 'result'){
-    require_once 'encrypt/index.php';
+global $gHttpRequest;
+if (array_key_exists('action', $gHttpRequest)){
+    $action = $gHttpRequest['action'];
+    if ($action == 'result'){
+	require_once 'encrypt/index.php';
+    }
 }else{
     require_once DOCS_PATH.'encrypt/index.php';
 }

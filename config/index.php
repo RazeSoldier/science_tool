@@ -1,11 +1,6 @@
 <?php
 /** 
- * 本文件包含了默认软件设置，请勿修改本文件
- * 
- *         NEVER EDIT THIS FILE
- *           永远不要编辑本文件
- * 
- * 要修改网站设置，请编辑‘LocalSettings.php’文件
+ * 软件的安装和配置脚本文件
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,14 +20,13 @@
  * @file
  */
 
-/**
- * @var string $Sitename 网站名称
- * @since 0.3.0
- */
-$gSitename = '工具箱';
+/*检测PHP版本*/
+require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
 
-/**
- * @var string $gSiteicon 网站地址栏图标
- * @since 0.3.2
- */
-$gSiteicon = NULL;
+/*定义软件的根目录*/
+$IP = dirname(__DIR__);
+
+require_once __DIR__ . '/../includes/Installer.php';
+$Installer = new Installer();
+
+$Installer->pathRouting();

@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>时间膨胀 - <?php echo $gSitename;?></title>
-        <meta charset="UTF-8" />
+        <?php global $gCommonHead;echo $gCommonHead;?>
     </head>   
     <body>
         <h1>时间膨胀计算</h1>

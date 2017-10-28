@@ -20,8 +20,8 @@ class length_contraction extends physics{
      */
     private function checkError(){
         $value = array(
-            $this -> in_l,
-            $this -> in_v,
+	    $this -> in_l,
+            $this -> in_v
         );
         
         $check = new checkPhysicsError();
@@ -40,7 +40,7 @@ class length_contraction extends physics{
             die ($check->return2()); //检查用户输入的数字是否大于0
         }
         
-        $checkLightSpeed = $check -> checkLightSpeed($value);
+        $checkLightSpeed = $check -> checkLightSpeed(array($this->in_v));
         if ($checkLightSpeed == false){
             die ($check->return21()); //检查用户输入的数字是否小于光速
         }
@@ -73,6 +73,6 @@ class length_contraction extends physics{
             'v' => $this -> in_v
         );
         $output = parent::getOutput('length_contraction', $in, $this -> getValue()['value'], $this -> getValue());
-        echo $output;
+        echo gfFilterHTML($output);
     }
 }

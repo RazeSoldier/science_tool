@@ -95,8 +95,10 @@ class checkError {
     
     /*返回10错误码*/
     public function return10(){
+        global $gCommonHead;
         $error10 = <<<Error10
 <title>错误 - {$this->getSiteName()}</title>
+$gCommonHead
 <h1>错误！</h1>
 你未输入任何数值！<br>
 <a href="JavaScript:history.go(-1)">返回</a>
@@ -107,8 +109,10 @@ Error10;
 
     /*返回11错误码*/
     public function return11(){
+        global $gCommonHead;
         $error11 = <<<Error11
 <title>错误 - {$this->getSiteName()}</title>
+$gCommonHead
 <h1>错误！</h1>
 你未选择任意选项！<br>
 <a href="JavaScript:history.go(-1)">返回</a>
@@ -119,8 +123,10 @@ Error11;
     
     /*返回12错误码*/
     public function return12(){
+        global $gCommonHead;
         $error12 = <<<Error12
 <title>错误 - {$this->getSiteName()}</title>
+$gCommonHead
 <h1>错误！</h1>
 你未输入所有计算所需要的数值<br>
 <a href="JavaScript:history.go(-1)">返回</a>
@@ -131,8 +137,10 @@ Error12;
     
     /*返回3错误码*/
     public function return3(){
+        global $gCommonHead;
         $error3 = <<<Error3
 <title>错误 - {$this->getSiteName()}</title>
+$gCommonHead
 <h1>错误！</h1>
 你输入了非数字，请输入正确的数字。<br>
 <a href="JavaScript:history.go(-1)">返回</a>
@@ -143,9 +151,12 @@ Error3;
 
     /*返回404错误码并且返回404错误信息*/
     public function return404(){
-        http_response_code(404);
-        echo <<<Error404
-<title>页面不存在 - {$this->getSiteName()}</title>
+        HttpStatus::header(404);
+        global $gCommonHead;
+	global $gSitename;
+	echo <<<Error404
+<title>页面不存在 - {$gSitename}</title>
+$gCommonHead
 <h1>页面不存在</h1>
 <a href="JavaScript:history.go(-1)">返回上一页</a>或者
 <a href="index.php">返回首页</a>
@@ -154,9 +165,11 @@ Error404;
     
     /*返回405错误码并且返回405错误信息*/
     public function return405(){
-        http_response_code(405);
+        HttpStatus::header(405);
+        global $gCommonHead;
         echo <<<Error405
 <title>操作不存在 - {$this->getSiteName()}</title>
+$gCommonHead
 <h1>操作不存在</h1>
 <a href="JavaScript:history.go(-1)">返回上一页</a>或者
 <a href="index.php">返回首页</a>
@@ -165,7 +178,10 @@ Error405;
     
     /*返回500错误码*/
     public function return500(){
+	HttpStatus::header(500);
+        global $gCommonHead;
         $error500 = <<<Error500
+$gCommonHead
 <title>Internal Error - {$this->getSiteName()}</title>
 <h1>500 Error</h1>
 You entered a non-array for the method.
