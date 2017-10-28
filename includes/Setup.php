@@ -64,6 +64,9 @@ if (defined('ST_CONFIG_CALLBACK')){
     require_once CONFIG_FILE;
 }
 
+// 设置内部字符编码为UTF-8
+mb_internal_encoding( 'UTF-8' );
+
 /**
  * 实例化checkError类
  * 
