@@ -1,6 +1,6 @@
 <?php
 /** 
- * 预加载配置文件
+ * 包含使ScienceTool工作的大部分内容
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,17 +20,49 @@
  * @file
  */
 
-/*手动设置include_path路径*/
-set_include_path($IP.'includes');
+/**
+ * 本文件不是一个有效的访问点，不做进一步执行
+ * 除非定义了SCIENCE_TOOL
+ */
+if (!defined('SCIENCE_TOOL')){
+    die (1);
+}
 
-/*加载一些全局常量*/
+/**
+ * 预加载配置，在加载LocalSettings.php之前
+ */
+
+// 加载一些全局常量
 require_once "$IP/includes/Defines.php";
 
-/*加载自动加载类的代码*/
+// 加载自动加载类的代码
 require_once INCLUDES_PATH.'AutoLoader.php';
 
-/*加载默认设置*/
+// 加载默认设置
 require_once INCLUDES_PATH.'DefaultSettings.php';
+
+// 加载全局函数
+require_once INCLUDES_PATH.'GlobalFunctions.php';
+
+// 实例化HTMLPurifier的配置
+$HPconfig = HTMLPurifier_Config::createDefault();
+
+// 加载composer的自动加载器，如果存在的话
+if ( is_readable( "$IP/vendor/autoload.php" ) ) {
+    require_once "$IP/vendor/autoload.php";
+}
+
+/**
+ * 加载LocalSettings.php
+ */
+if (defined('ST_CONFIG_CALLBACK')){
+    call_user_func(ST_CONFIG_CALLBACK);
+}else{
+    if ( !defined('CONFIG_FILE')){
+	define('CONFIG_FILE', "$IP/LocalSettings.php");
+    }
+    require_once CONFIG_FILE;
+}
 
 /**
  * 实例化checkError类
@@ -41,13 +73,23 @@ $gCheckError = new checkError();
 
 $gWebRequest = new WebRequest();
 
-// 加载全局函数
-require_once INCLUDES_PATH.'GlobalFunctions.php';
+/**
+ * @var string $gCommonHead 通用的head代码
+ */
+$gCommonHead = CommonHTML::setCommonHead();
 
-// 加载composer的自动加载器，如果存在的话
-if ( is_readable( "$IP/vendor/autoload.php" ) ) {
-    require_once "$IP/vendor/autoload.php";
-}
+/**
+ * 获取url中的查询字串符
+ * @var array gHttpRequire URL中所有的查询字串符
+ */
+$gHttpRequest = $gWebRequest->getHttpRequest();
 
-// 实例化HTMLPurifier的配置
-$HPconfig = HTMLPurifier_Config::createDefault();
+/**
+ * 实例化HTMLPurifier类
+ * @var object HTMLPurifier对象
+ */
+$gPurifier = new HTMLPurifier($HPconfig);
+
+/*实例化PathRouter类*/
+$pathRouter = new PathRouter($gHttpRequest);
+$Routing = $pathRouter->Routing();
