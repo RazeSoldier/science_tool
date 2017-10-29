@@ -67,6 +67,9 @@ if (defined('ST_CONFIG_CALLBACK')){
 // 设置内部字符编码为UTF-8
 mb_internal_encoding( 'UTF-8' );
 
+// 检查HTMLPurifier的缓存目录是否可被web服务器读写
+checkError::checkFilterCache();
+
 /**
  * 实例化checkError类
  * 
