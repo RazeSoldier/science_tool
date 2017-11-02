@@ -25,8 +25,9 @@ class PathRouter {
     
     private $titleParm; //查询字符串中的title参数
 
-    public function __construct($httpRequest) {
-        $this->httpRequest = $httpRequest;
+    public function __construct() {
+	global $gWebRequest;
+        $this->httpRequest = $gWebRequest->getRequest;
     }
     
     /**
