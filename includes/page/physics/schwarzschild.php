@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>史瓦西半径 - <?php echo $gSitename;?></title>
+        <title>史瓦西半径 - <?php global $gSitename; echo $gSitename;?></title>
         <?php global $gCommonHead;echo $gCommonHead;?>
     </head>
     <body>
