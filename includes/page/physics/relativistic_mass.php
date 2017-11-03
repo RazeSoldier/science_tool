@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>相对论质量 - <?php echo $gSitename;?></title>
+        <title>相对论质量 - <?php global $gSitename; echo $gSitename;?></title>
         <?php global $gCommonHead;echo $gCommonHead;?>
     </head>
     <body>

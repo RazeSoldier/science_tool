@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>频率和波长互换 - <?php echo $gSitename;?></title>
+        <title>频率和波长互换 - <?php global $gSitename; echo $gSitename;?></title>
         <?php global $gCommonHead;echo $gCommonHead;?>
         <script type="text/javascript">
             function FtoW() {

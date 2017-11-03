@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>长度收缩 - <?php echo $gSitename;?></title>
+        <title>长度收缩 - <?php global $gSitename; echo $gSitename;?></title>
         <?php global $gCommonHead;echo $gCommonHead;?>
     </head>
     <body>
