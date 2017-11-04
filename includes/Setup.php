@@ -94,6 +94,8 @@ $gCommonHead = CommonHTML::setCommonHead();
  */
 $gPurifier = new HTMLPurifier($HPconfig);
 
+$gOutput = new OutputPage();
+
 /*实例化PathRouter类*/
 $pathRouter = new PathRouter();
 $Routing = $pathRouter->Routing();

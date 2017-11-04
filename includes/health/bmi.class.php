@@ -54,18 +54,11 @@ class BMI {
             return '肥胖 (>28)';
         }
     }
-    
-    private function getHead(){ //获取Head
-        global $gSitename;
-	global $gCommonHead;
-	$head = '<head>'.$gCommonHead."<title>BMI计算结果 - {$gSitename}</title>".'</head>';
-	return $head;
-    }
 
     final public function output(){ //最终输出
 	$this -> checkError();
-	$body = '<body>你的BMI为:'.$this -> getValue().' kg/m<sup>2</sup><br>健康状况:'.$this ->getHealthStatus().'</body>';
-	$output = $this -> getHead().$body;
-	echo gfFilterHTML($output);
-	}
+	$content = '你的BMI为:'.$this -> getValue().' kg/m<sup>2</sup><br>健康状况:'.$this ->getHealthStatus();
+	global $gOutput;
+	$gOutput->output('BMI计算结果', $content);
+    }
 }

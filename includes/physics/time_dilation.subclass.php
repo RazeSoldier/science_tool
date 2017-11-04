@@ -72,8 +72,9 @@ class time_dilation extends physics{
             't' => $this -> in_t,
             'v' => $this -> in_v
         );
-        $output = parent::getOutput('time_dilation', $in, $this -> getValue()['value'], $this -> getValue());
-        echo gfFilterHTML($output);
+        $content = parent::getOutput('time_dilation', $in, $this -> getValue()['value'], $this -> getValue());
+        global $gOutput;
+	$gOutput->output('时间膨胀计算', $content);
     }
     
 }

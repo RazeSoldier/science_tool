@@ -72,7 +72,8 @@ class length_contraction extends physics{
             'l' => $this -> in_l,
             'v' => $this -> in_v
         );
-        $output = parent::getOutput('length_contraction', $in, $this -> getValue()['value'], $this -> getValue());
-        echo gfFilterHTML($output);
+        $content = parent::getOutput('length_contraction', $in, $this -> getValue()['value'], $this -> getValue());
+        global $gOutput;
+	$gOutput->output('长度收缩计算', $content);
     }
 }

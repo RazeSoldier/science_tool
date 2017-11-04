@@ -73,7 +73,8 @@ class relativistic_momentum extends physics{
             'm' => $this -> in_m,
             'v' => $this -> in_v
         );
-        $output = parent::getOutput('relativistic_momentum', $in, $this -> getValue()['value'], $this -> getValue());
-        echo gfFilterHTML($output);
+        $content = parent::getOutput('relativistic_momentum', $in, $this -> getValue()['value'], $this -> getValue());
+        global $gOutput;
+	$gOutput->output('相对论动量计算', $content);
     }
 }

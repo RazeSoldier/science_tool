@@ -39,7 +39,8 @@ class schwarzschild extends physics{
     final public function Output(){
         $this -> checkError();
         
-        $output = parent::getOutput('schwarzschild', $this -> in_sm, $this -> getValue());
-        echo gfFilterHTML($output);
+        $content = parent::getOutput('schwarzschild', $this -> in_sm, $this -> getValue());
+        global $gOutput;
+	$gOutput->output('史瓦西半径计算', $content);
     }
 }

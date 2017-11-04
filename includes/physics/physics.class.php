@@ -74,31 +74,14 @@ HTML;
                 break;
         }
         
-        /*生成head*/
-        global $gSitename;
-	global $gCommonHead;
-	$title = "<title>{$titletype}计算结果 - $gSitename</title>";
-        $head = '<head>'
-                .$gCommonHead
-                .$title
-                .'</head>';
-        
         /*生成body*/
-        $body = '<body>'
-                .'<b>条件量</b><br>'
+        $content = '<b>条件量</b><br>'
                 .$input
                 .'</br><hr/>'
                 .'<b>计算结果</b>:'
                 .$value.' '.$resultunit.'<br>'
-                .$ps
-                .'</body>';
+                .$ps;
         
-        /*拼接成html*/
-        $html = '<!DOCTYPE html><html>'
-                .$head
-                .$body
-                .'</html>';
-        
-        return $html;
+        return $content;
     }
 }
