@@ -60,6 +60,7 @@ root
     |HttpStatus.php
     |Installer.php
     |NoLocalSettings.php
+    |OutputPage.php
     |PHPVersionCheck.php
     |PathRouter.php
     |Setup.php
