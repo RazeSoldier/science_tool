@@ -172,7 +172,7 @@ Error3;
     }
 
     /*返回404错误码并且返回404错误信息*/
-    public function return404(){
+    public static function return404(){
         HttpStatus::header(404);
         global $gCommonHead;
 	global $gSitename;
@@ -186,7 +186,7 @@ Error404;
     }
     
     /*返回405错误码并且返回405错误信息*/
-    public function return405(){
+    public static function return405(){
         HttpStatus::header(405);
         global $gCommonHead;
         echo <<<Error405
@@ -212,4 +212,3 @@ Error500;
         return $error500;
     }
 }
-
