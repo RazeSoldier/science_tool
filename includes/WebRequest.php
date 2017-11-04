@@ -22,12 +22,12 @@
 
 class WebRequest{
     /**
-     * @var string POST请求
+     * @var array POST请求
      */
     public $postRequest;
     
     /**
-     * @var string GET请求
+     * @var array GET请求
      */
     public $getRequest;
     
