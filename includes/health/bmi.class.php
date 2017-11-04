@@ -54,13 +54,6 @@ class BMI {
             return '肥胖 (>28)';
         }
     }
-    
-    private function getHead(){ //获取Head
-        global $gSitename;
-	global $gCommonHead;
-	$head = '<head>'.$gCommonHead."<title>BMI计算结果 - {$gSitename}</title>".'</head>';
-	return $head;
-    }
 
     final public function output(){ //最终输出
 	$this -> checkError();
