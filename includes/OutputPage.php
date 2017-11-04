@@ -81,7 +81,7 @@ class OutputPage {
      * @return string
      */
     final public function output($pageTitle, $content){
-	return '<!DOCTYPE html><html>'.
+	echo '<!DOCTYPE html><html>'.
 		$this->setHTMLHead($pageTitle).
 		$this->setHTMLBody($content).
 		'</html>';

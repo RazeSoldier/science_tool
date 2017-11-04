@@ -25,4 +25,4 @@ $content = <<<STR
 <b>计算结果</b><br>{$result}
 STR;
 $title = "{$titletype}函数计算结果";
-echo $gOutput->output($title, $content);
+$gOutput->output($title, $content);
