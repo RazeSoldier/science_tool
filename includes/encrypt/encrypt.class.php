@@ -1,10 +1,10 @@
 <?php
 /**
- * Description of enerypt
+ * Description of encrypt
  * 哈希函数类
  * 
  */
-class enerypt {
+class encrypt {
     private $type; //计算类型
     private $value; //用户输入的数值
     

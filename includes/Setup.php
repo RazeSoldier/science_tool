@@ -89,17 +89,13 @@ $gWebRequest = new WebRequest();
 $gCommonHead = CommonHTML::setCommonHead();
 
 /**
- * 获取url中的查询字串符
- * @var array gHttpRequire URL中所有的查询字串符
- */
-$gHttpRequest = $gWebRequest->getHttpRequest();
-
-/**
  * 实例化HTMLPurifier类
  * @var object HTMLPurifier对象
  */
 $gPurifier = new HTMLPurifier($HPconfig);
 
+$gOutput = new OutputPage();
+
 /*实例化PathRouter类*/
-$pathRouter = new PathRouter($gHttpRequest);
+$pathRouter = new PathRouter();
 $Routing = $pathRouter->Routing();
