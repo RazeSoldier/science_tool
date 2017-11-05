@@ -2,16 +2,16 @@
 /* 
  * 处理enerypt/index.html传入的参数
  */
-global $gOutput;
+global $gWebRequest, $gOutput;
 
-$type = filter_input(INPUT_POST, 'type'); //获取计算类型
+$type = $gWebRequest->postRequest['type']; //获取计算类型
 
 /*检查用户是否选定单选项(error11)*/
 $checkerror = new checkEncryptError(); 
 $checkerror->checkRadioValue($type);
 
-$value = filter_input(INPUT_POST, $type); //获取用户输入的数值
-$capitalOutput = filter_input(INPUT_POST, 'capital'); //获得是否大写输出文本的值
+$value = $gWebRequest->postRequest[$type]; //获取用户输入的数值
+$capitalOutput = $gWebRequest->postRequest['capital']; //获得是否大写输出文本的值
 
 $enerypt = new encrypt($type, $value, $capitalOutput);
 $space = $enerypt->checkSpace($value); //检查用户是否输入了文本或是否输入了空格
