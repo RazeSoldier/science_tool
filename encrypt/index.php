@@ -13,11 +13,11 @@ $checkerror->checkRadioValue($type);
 $value = $gWebRequest->postRequest[$type]; //获取用户输入的数值
 $capitalOutput = $gWebRequest->postRequest['capital']; //获得是否大写输出文本的值
 
-$enerypt = new encrypt($type, $value, $capitalOutput);
-$space = $enerypt->checkSpace($value); //检查用户是否输入了文本或是否输入了空格
-$result = $enerypt->Output();
+$encrypt = new encrypt($type, $value, $capitalOutput);
+$space = $encrypt->checkSpace($value); //检查用户是否输入了文本或是否输入了空格
+$result = $encrypt->Output();
 
-$titletype = $enerypt->getTitle(); //大写计算类型
+$titletype = $encrypt->getTitle(); //大写计算类型
 
 $content = <<<STR
 <h1>{$titletype}函数计算结果</h1>
