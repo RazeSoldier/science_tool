@@ -12,7 +12,6 @@ $type = filter_input(INPUT_POST, 'type'); //获取计算类型
  */
 switch ($type) {
     case 'bmi':
-        require_once INCLUDES_PATH.'health/bmi.class.php';
         $weight = filter_input(INPUT_POST,'weight');
         $height = filter_input(INPUT_POST,'height');
         $bml = new BMI($weight,$height);
