@@ -136,6 +136,7 @@ HTML;
             header( 'Pragma: no-cache' );
 	    
 	    echo $this->vendorErrorOutputHTML();
+            die (1);
 	}
     }
 } 
