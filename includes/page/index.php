@@ -3,11 +3,17 @@
     <head>
     <title><?php global $gSitename;echo $gSitename;?></title>
     <?php global $gCommonHead;echo $gCommonHead;?>
+    <style>
+	table, td, th{
+	    border: 1px solid gray;
+	    float: right;
+	}
+    </style>
     </head>
     <body>
         <h1><?php echo $gSitename; ?></h1>
         <h2>物理学公式计算</h2>
-        <table border="1" style="float:right;border-collapse:collapse;">
+        <table>
             <tr>
                 <td>
                     物理学公式计算请输入数字(可以支持类似"2E20、3.5E4"之类可被计算机识别的科学记数法)

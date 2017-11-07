@@ -1,6 +1,6 @@
 <?php
 /** 
- * 预加载配置文件
+ * 本文件放置全局函数
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,23 +20,20 @@
  * @file
  */
 
-/*手动设置include_path路径*/
-set_include_path($IP.'includes');
-
-/*加载一些全局常量*/
-require_once "$IP/includes/Defines.php";
-
-/*加载自动加载类的代码*/
-require_once INCLUDES_PATH.'AutoLoader.php';
-
-/*加载默认设置*/
-require_once INCLUDES_PATH.'DefaultSettings.php';
+if (!defined('SCIENCE_TOOL')){
+    die ('本文件是science_tool的一部分，它不是一个有效的访问点。');
+}
 
 /**
- * 实例化checkError类
+ * 过滤输入的HTML代码
  * 
- * @var string $gCheckError 将checkError对象存储到全局变量里
+ * @global object $gPurifier
+ * @param string $input
+ * @return string
+ * @since 0.3.3
  */
-$gCheckError = new checkError();
-
-$gWebRequest = new WebRequest();
+function gfFilterHTML($input) {
+    global $gPurifier;
+    $finalOutput = $gPurifier->purify($input);
+    return $finalOutput;
+}

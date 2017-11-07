@@ -19,7 +19,7 @@ class relativistic_mass extends physics{
      */
     private function checkError(){
         $value = array(
-            $this -> in_m,
+	    $this -> in_m,
             $this -> in_v,
         );
         
@@ -39,7 +39,7 @@ class relativistic_mass extends physics{
             die ($check->return2()); //检查用户输入的数字是否大于0
         }
         
-        $checkLightSpeed = $check -> checkLightSpeed($value);
+        $checkLightSpeed = $check -> checkLightSpeed(array($this->in_v));
         if ($checkLightSpeed == false){
             die ($check->return21()); //检查用户输入的数字是否小于光速
         }
@@ -71,7 +71,8 @@ class relativistic_mass extends physics{
             'm' => $this -> in_m,
             'v' => $this -> in_v
         );
-        $output = parent::getOutput('relativistic_mass', $in, $this -> getValue()['value'], $this -> getValue());
-        echo $output;
+        $content = parent::getOutput('relativistic_mass', $in, $this -> getValue()['value'], $this -> getValue());
+        global $gOutput;
+	$gOutput->output('相对论质量计算', $content);
     }
 }

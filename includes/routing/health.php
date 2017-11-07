@@ -19,25 +19,5 @@
  * 
  * @file
  */
-
-function routing($in){
-    global $gHttpRequest;
-    global $gSitename;
-    if (array_key_exists('action', $gHttpRequest)){
-	$action = $gHttpRequest['action'];
-	if ($action == 'result'){
-	    require_once 'health/index.php';
-	}
-    }else{
-	require_once DOCS_PATH.'health/'.$in.'.php';
-    }
-}
-
-switch ($subTitleRequest) {
-    case 'bmi':
-        routing('bmi');
-        break;
-    default:
-        die (checkError::return404());
-        break;
-}
+global $pathRouter;
+$pathRouter->subRouter();

@@ -25,28 +25,29 @@
  */
 $gRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
 
-/*预加载配置*/
-require_once "$IP/includes/PreConfigSetup.php";
+/**
+ * @const boolean 定义web入口点，请勿移动此行到includes/Defines.php
+ */
+define('SCIENCE_TOOL', true);
 
-/*加载配置文件*/
-if (file_exists(CONFIG_FILE)){
-	require_once CONFIG_FILE;
-}else{
-	require_once INCLUDES_PATH.'/NoLocalSettings.php';
-	die (1);
+// 手动设置include_path路径
+set_include_path($IP.'/includes');
+
+/**
+ * 如果LocalSettings.php不存在，尝试显示错误信息
+ */
+if (!defined('ST_CONFIG_CALLBACK')){
+    if (!defined('CONFIG_FILE')){
+	define('CONFIG_FILE', "$IP/LocalSettings.php");
+    }
+    if (!is_readable(CONFIG_FILE)){
+	function gfWebStartNoLocalSettings(){
+	    global $IP;
+	    require_once "$IP/includes/NoLocalSettings.php";
+	    die();
+	}
+	define('ST_CONFIG_CALLBACK', 'gfWebStartNoLocalSettings');
+    }
 }
 
-/**
- * @var string $gCommonHead 通用的head代码
- */
-$gCommonHead = CommonHTML::setCommonHead();
-
-/**
- * 获取url中的查询字串符
- * @var array gHttpRequire URL中所有的查询字串符
- */
-$gHttpRequest = $gWebRequest->getHttpRequest();
-
-/*实例化PathRouter类*/
-$pathRouter = new PathRouter($gHttpRequest);
-$Routing = $pathRouter->Routing();
+require_once "$IP/includes/Setup.php";

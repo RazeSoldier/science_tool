@@ -10,7 +10,7 @@ class BMI {
 
     public function __construct($weight,$height){ //获取外部数据
         $this -> m = $weight;
-        $this -> h = $height / 100;
+        $this -> h = (integer)$height / 100;
         $this -> arr = array(
             1 => $this -> m,
             2 => $height
@@ -54,20 +54,11 @@ class BMI {
             return '肥胖 (>28)';
         }
     }
-    
-    private function getHead(){ //获取Head
-        global $gSitename;
-	global $gCommonHead;
-	echo '<head>';
-        echo $gCommonHead;
-        echo "<title>BMI计算结果 - {$gSitename}</title>";
-        echo '</head>';
-    }
 
     final public function output(){ //最终输出
-		$this -> checkError();
-        $this -> getHead();
-        echo '你的BMI为:'.$this -> getValue().' kg/m<sup>2</sup>';
-        echo '<br>健康状况:'.$this ->getHealthStatus();
-	}
+	$this -> checkError();
+	$content = '你的BMI为:'.$this -> getValue().' kg/m<sup>2</sup><br>健康状况:'.$this ->getHealthStatus();
+	global $gOutput;
+	$gOutput->output('BMI计算结果', $content);
+    }
 }

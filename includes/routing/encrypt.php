@@ -20,9 +20,9 @@
  * @file
  */
 
-global $gHttpRequest;
-if (array_key_exists('action', $gHttpRequest)){
-    $action = $gHttpRequest['action'];
+global $gWebRequest;
+if (array_key_exists('action', $gWebRequest->getRequest)){
+    $action = $gWebRequest->getRequest['action'];
     if ($action == 'result'){
 	require_once 'encrypt/index.php';
     }

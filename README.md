@@ -1,6 +1,6 @@
 本软件主要包含了科学方面的小工具，利用web服务提供。
 
-本软件由PHP编写，主要用于web服务。您必须在您的计算机上面部署PHP环境才能使用本软件。此外，您只需要把本软件的根目录复制到web服务器下即可。
+本软件由PHP编写，主要用于web服务。您必须在您的计算机上面部署PHP环境才能使用本软件。此外，您必须安装本软件的依赖（执行composer install命令）。
 
 == 授权协议 ==
 
@@ -9,6 +9,8 @@
 
 == 目录结构图 ==
 root
+|--config
+    |index.php
 |--enerypt
     |index.php
 |--health
@@ -33,6 +35,7 @@ root
             |relativistic_momentum.php
             |schwarzschild.php
             |time_dilation.php
+	|README
         |index.php
     |--physics
         |checkPhysicsError.subclass.php
@@ -50,19 +53,27 @@ root
         |physics.php
     |.htaccess
     |AutoLoader.php
+    |CommonHTML.class.php
     |DefaultSettings.php
     |Defines.php
+    |GlobalFunctions.php
+    |HttpStatus.php
     |Installer.php
     |NoLocalSettings.php
+    |OutputPage.php
     |PHPVersionCheck.php
     |PathRouter.php
-    |PreConfigSetup.php
+    |Setup.php
     |WebRequest.php
     |WebStart.php
     |checkError.class.php
 |--physics
     |index.php
+|.gitignore
+|.travis.yml
+|CODE_OF_CONDUCT.md
 |COPYING
 |README.md
 |RELEASE-x.x.x
+|composer.json
 |index.php

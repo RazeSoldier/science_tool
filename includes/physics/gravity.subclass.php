@@ -63,7 +63,8 @@ class gravity extends physics{
             'm2' => $this -> in_m2,
             'r' => $this -> in_r
         );
-        $output = parent::getOutput('gravity', $in, $this -> getValue());
-        echo $output;
+        $content = parent::getOutput('gravity', $in, $this->getValue());
+        global $gOutput;
+	$gOutput->output('万有引力计算', $content);
     }
 }

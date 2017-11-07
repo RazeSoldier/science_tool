@@ -1,25 +1,36 @@
 <?php
 /**
- * Description of enerypt
+ * Description of encrypt
  * 哈希函数类
  * 
  */
-class enerypt {
+class encrypt {
     private $type; //计算类型
     private $value; //用户输入的数值
+    
+    /**
+     * @var string $capitalOutput 输出文本是否大写
+     */
+    private $capitalOutput;
 
-    public function __construct($type, $value) {
+    public function __construct($type, $value, $capitalOutput) {
         $this -> type = $type;
         $this -> value = $value;
+	$this->capitalOutput = $capitalOutput;
     }
     
     private function gethash(){ //根据$type来计算$value
         $hash = hash($this -> type, $this -> value);
         return $hash;
     }
-    
+
     final public function Output(){
-        return $this -> gethash();
+	if ($this->capitalOutput == 1){
+	    $output = strtoupper($this->gethash());
+	}else{
+	    $output = $this->gethash();
+	}
+	return $output;
     }
     
     public function getTitle(){ //根据$type来获取标题

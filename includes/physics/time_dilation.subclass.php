@@ -40,7 +40,7 @@ class time_dilation extends physics{
             die ($check->return3()); //检查用户输入的数字是否大于0
         }
         
-        $checkLightSpeed = $check -> checkLightSpeed($value);
+        $checkLightSpeed = $check -> checkLightSpeed(array($this -> in_v));
         if ($checkLightSpeed == false){
             die ($check->return21()); //检查用户输入的数字是否小于光速
         }
@@ -72,8 +72,9 @@ class time_dilation extends physics{
             't' => $this -> in_t,
             'v' => $this -> in_v
         );
-        $output = parent::getOutput('time_dilation', $in, $this -> getValue()['value'], $this -> getValue());
-        echo $output;
+        $content = parent::getOutput('time_dilation', $in, $this -> getValue()['value'], $this -> getValue());
+        global $gOutput;
+	$gOutput->output('时间膨胀计算', $content);
     }
     
 }

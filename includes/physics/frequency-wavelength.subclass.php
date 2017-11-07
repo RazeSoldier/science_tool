@@ -150,24 +150,16 @@ class frequency_wavelength extends physics {
     }
 
     final public function finalOutput(){
-        $this -> checkError();
-        $html = $this -> getHTML();
-
-        echo <<<HTML
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{$html['title']} - 计算结果学园都市</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <h1>{$html['title']}</h1>
-        <b>条件量</b><br>
-        {$html['type']}:{$html['in_value']} {$html['unit']}
-        <hr/><b>计算结果</b><br>
-        {$html['reltype']}:{$html['value']} {$html['relunit']}
-    </body>
+        $this->checkError();
+        $html = $this->getHTML();
+	$content = <<<HTML
+<h1>{$html['title']}</h1>
+<b>条件量</b><br>
+{$html['type']}:{$html['in_value']} {$html['unit']}
+<hr/><b>计算结果</b><br>
+{$html['reltype']}:{$html['value']} {$html['relunit']}
 HTML;
+	global $gOutput;
+	$gOutput->output($html['title'], $content);
     }
 }

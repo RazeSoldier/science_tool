@@ -16,6 +16,28 @@
 
 class checkError {
     /**
+     * 检查HTMLPurifier的缓存目录是否可被web服务器读写
+     * 
+     * 检查vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer
+     * 是否可以被网络服务器读写
+     */
+    public static function checkFilterCache(){
+	global $IP;
+	$checkDir = "$IP/vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer";
+	
+	if ( !is_readable( $checkDir ) ){
+	    HttpStatus::header( 500 );
+	    echo 'HTMLPurifier的缓存目录不可读，请确保vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer可以由web服务器读写';
+	    die ( 1 );
+	}
+	if ( !is_writable( $checkDir ) ){
+	    HttpStatus::header( 500 );
+	    echo 'HTMLPurifier的缓存目录不可写，请确保vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer可以由web服务器读写';
+	    die ( 1 );
+	}
+    }
+
+    /**
      * 获取$gSitename的数值
      * 
      * @return string $gSitename的数值
@@ -150,8 +172,8 @@ Error3;
     }
 
     /*返回404错误码并且返回404错误信息*/
-    public function return404(){
-        http_response_code(404);
+    public static function return404(){
+        HttpStatus::header(404);
         global $gCommonHead;
 	global $gSitename;
 	echo <<<Error404
@@ -164,8 +186,8 @@ Error404;
     }
     
     /*返回405错误码并且返回405错误信息*/
-    public function return405(){
-        http_response_code(405);
+    public static function return405(){
+        HttpStatus::header(405);
         global $gCommonHead;
         echo <<<Error405
 <title>操作不存在 - {$this->getSiteName()}</title>
@@ -178,6 +200,7 @@ Error405;
     
     /*返回500错误码*/
     public function return500(){
+	HttpStatus::header(500);
         global $gCommonHead;
         $error500 = <<<Error500
 $gCommonHead
@@ -189,4 +212,3 @@ Error500;
         return $error500;
     }
 }
-

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>时间膨胀 - <?php echo $gSitename;?></title>
+        <title>时间膨胀 - <?php global $gSitename; echo $gSitename;?></title>
         <?php global $gCommonHead;echo $gCommonHead;?>
     </head>   
     <body>

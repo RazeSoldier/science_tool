@@ -36,3 +36,9 @@ $gSitename = '工具箱';
  * @since 0.3.2
  */
 $gSiteicon = NULL;
+
+/**
+ * @var boolean $gFilterCache 是否启用HTMLPurifier的缓存机制
+ * @since 0.3.3
+ */
+$gFilterCache = true;

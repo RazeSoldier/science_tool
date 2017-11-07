@@ -22,22 +22,17 @@
 
 class WebRequest{
     /**
-     * @var string POST请求
+     * @var array POST请求
      */
-    private $postRequest;
+    public $postRequest;
     
     /**
-     * @var string GET请求
+     * @var array GET请求
      */
-    private $getRequest;
+    public $getRequest;
     
     public function __construct() {
         $this->postRequest = $_POST;
         $this->getRequest = $_GET;
     }
-    
-    public function getHttpRequest(){
-        $getRequest = $this->getRequest;
-        return $getRequest;
-    }
-}
+}    
