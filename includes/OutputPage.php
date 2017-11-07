@@ -29,7 +29,7 @@ class OutputPage {
     /**
      * @var string 共用的head代码
      */
-    private $commonHead;
+    public $commonHead;
     
     public function __construct() {
 	global $gSitename;

@@ -84,17 +84,17 @@ $gCheckError = new checkError();
 $gWebRequest = new WebRequest();
 
 /**
- * @var string $gCommonHead 通用的head代码
- */
-$gCommonHead = CommonHTML::setCommonHead();
-
-/**
  * 实例化HTMLPurifier类
  * @var object HTMLPurifier对象
  */
 $gPurifier = new HTMLPurifier($HPconfig);
 
 $gOutput = new OutputPage();
+
+/**
+ * @var string $gCommonHead 通用的head代码
+ */
+$gCommonHead = $gOutput->commonHead;
 
 /*实例化PathRouter类*/
 $pathRouter = new PathRouter();
