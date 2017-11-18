@@ -126,20 +126,24 @@ class PathRouter {
      * 路由子请求
      */
     public function subRouter() {
-	if (array_key_exists('action', $this->httpRequest)){
-	    $action = $this->httpRequest['action'];
-	    if ($action == 'result'){
-		require_once "{$this->getMainTitleRequest()}/index.php";
-	    }
-	}else{
-	    // 如果路由不到，返回404
-	    if (file_exists(
-		    DOCS_PATH."{$this->getMainTitleRequest()}/{$this->getSubTitleRequest()}.php")
-		    ){
-			require_once DOCS_PATH."{$this->getMainTitleRequest()}/{$this->getSubTitleRequest()}.php";
+        if (array_key_exists('action', $this->httpRequest)){
+            $action = $this->httpRequest['action'];
+            if ($action == 'result' and
+                file_exists(DOCS_PATH."{$this->getMainTitleRequest()}/{$this->getSubTitleRequest()}.php")
+            ){
+                require_once "{$this->getMainTitleRequest()}/index.php";
+            } else {
+                checkError::return404();
+            }
+        }else{
+            // 如果路由不到，返回404
+            if (file_exists(
+                DOCS_PATH."{$this->getMainTitleRequest()}/{$this->getSubTitleRequest()}.php")
+            ){
+                require_once DOCS_PATH."{$this->getMainTitleRequest()}/{$this->getSubTitleRequest()}.php";
 		    } else {
-			checkError::return404();
-		    }
-	}
+                checkError::return404();
+            }
+        }
     }
 }
