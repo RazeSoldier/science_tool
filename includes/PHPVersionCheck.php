@@ -28,6 +28,23 @@
  */
 class PHPVersionCheck{
     /**
+     * @var string $extensionErrorMassage 缺少扩展的错误信息
+     */
+    var $extensionErrorMassage = <<<ErrorMassage
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>缺少扩展</title>
+    </head>
+    <body>
+    <h1>内部错误</h1>
+        您似乎缺少<a href="http://php.net/manual/zh/book.bmstring.php">mbstring扩展</a>，本项目需要这个扩展。
+    </body>
+</html>
+ErrorMassage;
+
+    /**
      * 返回当前PHP环境的相关信息
      * 
      * @return array 软件所能支持的PHP信息，包括:
@@ -68,9 +85,20 @@ class PHPVersionCheck{
      * @return int 如果vendor/autoload.php文件不存在，返回1
      */
     function checkVendorExistence(){
-	if (!file_exists(dirname( __FILE__ ).'/../vendor/autoload.php')){
-	    return 1;
-	}
+        if (!file_exists(dirname( __FILE__ ).'/../vendor/autoload.php')){
+            return 1;
+        }
+    }
+
+    /**
+     * 检查扩展
+     *
+     * @return boolean 如果缺少扩展，返回false
+     */
+    function checkExtension() {
+        if ( !extension_loaded( 'mbstring' ) ) {
+            return false;
+        }
     }
     
     /**
@@ -104,7 +132,7 @@ HTML;
      * @return string
      */
     function vendorErrorOutputHTML(){
-	$finalOutput = <<<HTML
+        $finalOutput = <<<HTML
 <!DOCTYPE html>
 <html>
     <head>
@@ -130,14 +158,20 @@ HTML;
             echo $this->phpErrorOutputHTML();
             die (1);
         }else if($this->checkVendorExistence() === 1){
-	    header('HTTP/1.0 500 Internal Error');
+            header('HTTP/1.0 500 Internal Error');
             // Don't cache error pages!  They cause no end of trouble...
             header( 'Cache-control: none' );
             header( 'Pragma: no-cache' );
-	    
-	    echo $this->vendorErrorOutputHTML();
+            echo $this->vendorErrorOutputHTML();
             die (1);
-	}
+        } else if ( $this->checkExtension() === false ) {
+            header('HTTP/1.0 500 Internal Error');
+            // Don't cache error pages!  They cause no end of trouble...
+            header( 'Cache-control: none' );
+            header( 'Pragma: no-cache' );
+            echo $this->extensionErrorMassage;
+            die ( 1 );
+        }
     }
 } 
 
