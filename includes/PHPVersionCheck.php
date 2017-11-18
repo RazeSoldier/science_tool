@@ -39,7 +39,7 @@ class PHPVersionCheck{
     </head>
     <body>
     <h1>内部错误</h1>
-        您似乎缺少<a href="http://php.net/manual/zh/book.bmstring.php">mbstring扩展</a>，本项目需要这个扩展。
+        您似乎缺少<a href="http://php.net/manual/zh/book.bmstring.php">mbstring扩展</a>，本软件需要这个扩展。
     </body>
 </html>
 ErrorMassage;
