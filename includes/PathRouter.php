@@ -84,10 +84,10 @@ class PathRouter {
      * @return string|NULL title参数中的子请求
      */
     private function getSubTitleRequest(){
-        if (array_key_exists(1, $this->explodeTitleRequest())){
+        if ( array_key_exists( 1, $this->explodeTitleRequest() ) ) {
             $subTitleRequest = $this->explodeTitleRequest()[1];
             return $subTitleRequest;
-        }else{
+        } else {
             return NULL;
         }
     }
@@ -126,20 +126,20 @@ class PathRouter {
      * 路由子请求
      */
     public function subRouter() {
-        if (array_key_exists('action', $this->httpRequest)){
+        if ( array_key_exists( 'action', $this->httpRequest ) ) {
             $action = $this->httpRequest['action'];
-            if ($action == 'result' and
-                file_exists(DOCS_PATH."{$this->getMainTitleRequest()}/{$this->getSubTitleRequest()}.php")
-            ){
+            if ( $action == 'result' and
+                file_exists(DOCS_PATH."{$this->getMainTitleRequest()}/{$this->getSubTitleRequest()}.php" )
+            ) {
                 require_once "{$this->getMainTitleRequest()}/index.php";
             } else {
                 checkError::return404();
             }
-        }else{
+        } else {
             // 如果路由不到，返回404
-            if (file_exists(
-                DOCS_PATH."{$this->getMainTitleRequest()}/{$this->getSubTitleRequest()}.php")
-            ){
+            if ( file_exists (
+                DOCS_PATH."{$this->getMainTitleRequest()}/{$this->getSubTitleRequest()}.php" )
+            ) {
                 require_once DOCS_PATH."{$this->getMainTitleRequest()}/{$this->getSubTitleRequest()}.php";
 		    } else {
                 checkError::return404();
