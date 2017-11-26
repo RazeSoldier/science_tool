@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace ScienceTool;
+
 class Installer{
     /**
      * @var string $IP 软件根目录路径
