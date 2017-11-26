@@ -1,7 +1,7 @@
 <?php
-/** 
+/**
  * 本文件检查PHP版本是否符合要求
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
@@ -23,7 +23,7 @@
 /**
  * 检查PHP的版本
  * 如果当前环境的版本低于5.4.0,报错
- * 
+ *
  * @class
  */
 class PHPVersionCheck{
@@ -62,7 +62,7 @@ ErrorMassage;
             'upgradeURL' => $upgradeURL
         );
     }
-    
+
     /**
      * 检查PHP环境
      * 
@@ -173,7 +173,7 @@ HTML;
             die ( 1 );
         }
     }
-} 
+}
 
 /**
  * 实例化PHPVersionCheck类

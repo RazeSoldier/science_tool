@@ -27,6 +27,6 @@ require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
 $IP = dirname(__DIR__);
 
 require_once __DIR__ . '/../includes/Installer.php';
-$Installer = new Installer();
+$Installer = new \ScienceTool\Installer();
 
 $Installer->pathRouting();
