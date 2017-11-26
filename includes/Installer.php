@@ -202,10 +202,10 @@ HTML;
     private function handler($post) {
         $Sitename = $post['set_Sitename'];
         $SitecionPart = $this->getSitecionPart( $post['set_Siteicon'] );
-        $config = array(
+        $config = [
             'Sitename' => $Sitename,
             'SitecionPart' => $SitecionPart
-        );
+        ];
         return $config;
     }
 
@@ -276,9 +276,9 @@ Error404;
      */
     private function setWarningInfobox($post) {
         $checkFileExist = $this->checkFileExist( $post['set_Siteicon'] );
-        $check = array(
+        $check = [
             $checkFileExist
-        );
+        ];
 
         $error = null; //声明一个空值的变量
         foreach ( $check as $value ) {
