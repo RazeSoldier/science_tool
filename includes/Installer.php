@@ -36,12 +36,12 @@ class Installer{
      */
     private $postRequest;
 
-    public function __construct(){
+    public function __construct() {
         global $IP;
 
         $this->IP = $IP;
-        $this->getRequest = filter_input_array(INPUT_GET);
-        $this->postRequest = filter_input_array(INPUT_POST);
+        $this->getRequest = filter_input_array( INPUT_GET );
+        $this->postRequest = filter_input_array( INPUT_POST );
     }
 
     /**
@@ -49,7 +49,7 @@ class Installer{
      *
      * @return string
      */
-    private function setTitle(){
+    private function setTitle() {
         return '<title>安装脚本</title>';
     }
 
@@ -59,7 +59,7 @@ class Installer{
      * @param string style
      * @return string
      */
-    private function setCss($style){
+    private function setCss($style) {
         return '<style>'.$style.'</style>';
     }
 
@@ -68,8 +68,8 @@ class Installer{
      *
      * @return string
      */
-    private function setHead($css = null){
-        return '<head>'.$this->setTitle().$this->setCss($css).'</head>';
+    private function setHead($css = null) {
+        return '<head>'.$this->setTitle().$this->setCss( $css ).'</head>';
     }
 
     /**
@@ -77,7 +77,7 @@ class Installer{
      *
      * @return string
      */
-    private function setBody($content){
+    private function setBody($content) {
         return '<body>'.$content.'</body>';
     }
 
@@ -85,14 +85,14 @@ class Installer{
      * 路由Web请求
      *
      */
-    public function pathRouting(){
+    public function pathRouting() {
         $HttpRequest = $this->getRequest['page'];
-        if ($HttpRequest == null or $HttpRequest == 1){
+        if ( $HttpRequest == null or $HttpRequest == 1 ) {
             $this->outputPage1();
             $HttpRequest = 1;
         }
 
-        switch ($HttpRequest){
+        switch ( $HttpRequest ) {
             case 1:
                 break;
             case 2:
@@ -110,16 +110,16 @@ class Installer{
      * 起始页
      *
      */
-    private function outputPage1(){
-        if (!file_exists($this->IP.'/LocalSettings.php')){
-        $content = <<<HTML
+    private function outputPage1() {
+        if ( !file_exists($this->IP.'/LocalSettings.php' ) ) {
+            $content = <<<HTML
 <div>
     <h2>安装脚本</h2>
     欢迎使用本软件，science tool。<br>
     <a href="/config/index.php?page=2">点此</a>开始安装软件。
 </div>
 HTML;
-        }else{
+        } else {
         $content = <<<HTML
 <div>
     <h2>安装脚本</h2>
@@ -129,14 +129,14 @@ HTML;
 HTML;
         }
         $css = 'div{text-align:center}';
-        return $this->output($content, $css);
+        return $this->output( $content, $css );
     }
 
     /**
      * 表单输入页
      *
      */
-    private function outputPage2(){
+    private function outputPage2() {
         $content = <<<HTML
 <form name="Installer" method="post" action="index.php?page=3">
     <div>
@@ -148,13 +148,13 @@ HTML;
 </form>
 HTML;
         $css = 'div{text-align:center}';
-        return $this->output($content, $css);
+        return $this->output( $content, $css );
     }
 
-    private function outputPage3(){
+    private function outputPage3() {
         $post = $this->postRequest;
-        $this->checkInstall($post);
-        $code = $this->getCode($post);
+        $this->checkInstall( $post );
+        $code = $this->getCode( $post );
         $content = <<<HTML
 <div>
 <h2>安装脚本</h2>{$this->setWarningInfobox($post)}
@@ -168,17 +168,17 @@ HTML;
         clear: left;
         overflow: hidden;
         }';
-        return $this->output($content, $css);
+        return $this->output( $content, $css );
     }
 
     /**
      * HTML输出模版
      *
      */
-    private function output($content, $css = null){
+    private function output($content, $css = null) {
         echo '<!DOCTYPE html><html>';
-        echo $this->setHead($css);
-        echo $this->setBody($content);
+        echo $this->setHead( $css );
+        echo $this->setBody( $content );
         echo '</html>';
     }
 
@@ -187,9 +187,9 @@ HTML;
      *
      * @return string
      */
-    private function getCode($post){
-        $config = $this->handler($post);
-        $code = $this->codeTemplate($config);
+    private function getCode($post) {
+        $config = $this->handler( $post );
+        $code = $this->codeTemplate( $config );
         return $code;
     }
 
@@ -197,9 +197,9 @@ HTML;
      * 处理用户输入的信息
      *
      */
-    private function handler($post){
+    private function handler($post) {
         $Sitename = $post['set_Sitename'];
-        $SitecionPart = $this->getSitecionPart($post['set_Siteicon']);
+        $SitecionPart = $this->getSitecionPart( $post['set_Siteicon'] );
         $config = array(
             'Sitename' => $Sitename,
             'SitecionPart' => $SitecionPart
@@ -211,7 +211,7 @@ HTML;
      * LocalSettings.php的模板代码
      *
      */
-    private function codeTemplate($config){
+    private function codeTemplate($config) {
         $template = <<<CODE
 <?php
 /**
@@ -240,15 +240,15 @@ CODE;
      *
      * @return string|NULL
      */
-    private function getSitecionPart($in){
-        if ( $this->checkInputValueIsNotNull($in) == false ) {
+    private function getSitecionPart($in) {
+        if ( $this->checkInputValueIsNotNull( $in ) == false ) {
             return null;
         } else {
             $code = <<<CODE
 \n//网站地址栏图标路径
 \$gSitecion = \$IP.'$in';
 CODE;
-        return $code;
+            return $code;
         }
     }
 
@@ -256,8 +256,8 @@ CODE;
      * 定义404错误信息
      *
      */
-    private function return404(){
-        http_response_code(404);
+    private function return404() {
+        http_response_code( 404 );
         echo <<<Error404
 <title>页面不存在</title>
 <h1>页面不存在</h1>
@@ -272,21 +272,21 @@ Error404;
      * @param array $post POST请求数组
      * @return string|NULL
      */
-    private function setWarningInfobox($post){
-        $checkFileExist = $this->checkFileExist($post['set_Siteicon']);
+    private function setWarningInfobox($post) {
+        $checkFileExist = $this->checkFileExist( $post['set_Siteicon'] );
         $check = array(
             $checkFileExist
         );
 
         $error = null; //声明一个空值的变量
-        foreach ($check as $value) {
+        foreach ( $check as $value ) {
             /*如果数组$check其中一个元素有值，为$error赋true*/
-            if (isset($value)){
+            if ( isset( $value ) ) {
                 $error = true;
             }
         }
 
-        if ($error){
+        if ( $error ) {
             $content = $checkFileExist;
             $WarningInfobox = '<div class="warning-infobox"><b>警告</b>'.$content.'</div>';
             return $WarningInfobox;
@@ -298,10 +298,10 @@ Error404;
      *
      * @param string $value
      */
-    private function checkInstall($value){
-        if (isset($value) == false){
+    private function checkInstall($value) {
+        if ( isset( $value ) == false ) {
             echo '<script type="text/javascript">alert(\'非法访问!\');window.location.href=\'index.php?page=2\';</script>';
-            die (1);
+            die ( 1 );
         }
     }
 
@@ -312,9 +312,9 @@ Error404;
      *
      * @param string $in_filepath 用户提交的文件路径
      */
-    private function checkFileExist($in_filepath){
+    private function checkFileExist($in_filepath) {
         $filepath = $this->IP.$in_filepath;
-        if (file_exists($filepath) == false and $this->checkInputValueIsNotNull($in_filepath)){
+        if ( file_exists( $filepath ) == false and $this->checkInputValueIsNotNull( $in_filepath ) ) {
             return '<li>地址栏图标文件不存在</li>';
         }
     }
@@ -326,10 +326,10 @@ Error404;
      *
      * @param string|NULL $value
      */
-    private function checkInputValueIsNotNull($value){
-        if ($value == '' or ctype_space($value) == true){
+    private function checkInputValueIsNotNull($value) {
+        if ( $value == '' or ctype_space( $value ) == true) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
