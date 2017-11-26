@@ -242,7 +242,7 @@ CODE;
      */
     private function getSitecionPart($in){
         if ( $this->checkInputValueIsNotNull($in) == false ) {
-            return NULL;
+            return null;
         } else {
             $code = <<<CODE
 \n//网站地址栏图标路径
@@ -268,7 +268,7 @@ Error404;
 
     /**
      * 定义错误信息框
-     * 
+     *
      * @param array $post POST请求数组
      * @return string|NULL
      */
@@ -278,7 +278,7 @@ Error404;
             $checkFileExist
         );
 
-        $error = NULL; //声明一个空值的变量
+        $error = null; //声明一个空值的变量
         foreach ($check as $value) {
             /*如果数组$check其中一个元素有值，为$error赋true*/
             if (isset($value)){
@@ -304,7 +304,6 @@ Error404;
             die (1);
         }
     }
-
 
     /**
      * 检查文件是否存在
