@@ -22,7 +22,7 @@
 
 /**
  * 定义一些全局路径常量
- * 
+ *
  * @const string DOCS_PATH 软件根目录下的docs文件夹路径
  * @const string INCLUDES_PATH 软件根目录下的includes文件夹路径
  * @const string ROUTING_PATH 软件根目录下的includes/routing文件夹路径
