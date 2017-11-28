@@ -65,7 +65,7 @@ ErrorMassage;
 
     /**
      * 检查PHP环境
-     * 
+     *
      * @return int 如果PHP版本低于最低可接受的版本，返回1
      */
     function checkVersion(){
@@ -78,7 +78,7 @@ ErrorMassage;
             return 1;
         }
     }
-    
+
     /**
      * 检查依赖。
      * 
