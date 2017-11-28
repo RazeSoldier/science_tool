@@ -46,7 +46,7 @@ ErrorMassage;
 
     /**
      * 返回当前PHP环境的相关信息
-     * 
+     *
      * @return array 软件所能支持的PHP信息，包括:
      * - 'minimumVersionPHP':软件所能支持的最低版本
      * - 'phpVersion':当前的PHP版本
@@ -65,20 +65,20 @@ ErrorMassage;
 
     /**
      * 检查PHP环境
-     * 
+     *
      * @return int 如果PHP版本低于最低可接受的版本，返回1
      */
     function checkVersion(){
         if (function_exists( 'version_compare' ) == false){
             die ('version_compare函数<b>不存在</b>，无法比较PHP版本。你的PHP版本很可能低于4.1.0！');
         }
-        
+
         $PHPinfo = $this->getPHPinfo();
         if (version_compare($PHPinfo['phpVersion'], $PHPinfo['minimumVersionPHP']) < 0){
             return 1;
         }
     }
-    
+
     /**
      * 检查依赖。
      * 
